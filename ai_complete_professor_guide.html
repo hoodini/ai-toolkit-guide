@@ -1991,6 +1991,9 @@
                 </div>
             </div>
             <div class="controls-section">
+                <button class="lang-toggle" onclick="toggleSimpleMode()" id="simpleModeToggle" style="margin-right: 10px;">
+                    🧠 Simple Mode
+                </button>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langToggle">
                     🌐 עברית
                 </button>
@@ -2012,9 +2015,10 @@
         <!-- Course Overview and Prerequisites -->
         <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px; padding: 30px; margin: 20px;">
             <h2 style="color: white; text-align: center; margin-bottom: 20px;">🚀 Welcome to the Future of AI Education</h2>
-            <p style="text-align: center; font-size: 18px; margin-bottom: 25px; opacity: 0.9;">
-                Learn how AI creates images - from simple concepts to advanced techniques. We'll start with the basics and gradually build up to creating your own AI image generation systems. 
-                No prior AI experience needed!
+            <p style="text-align: center; font-size: 18px; margin-bottom: 25px; opacity: 0.9;" id="main-description">
+                This isn't just another AI tutorial. This is a comprehensive journey from the mathematical bedrock of neural networks 
+                to building production-ready AI image generation systems. Every concept builds upon the previous, creating a 
+                rock-solid foundation for innovation.
             </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 25px 0;">
@@ -2045,19 +2049,19 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
                     <div style="background: var(--bg-secondary); border-left: 4px solid var(--apple-blue); padding: 20px; border-radius: 10px;">
                         <h5 style="color: var(--apple-blue); margin-bottom: 10px;">🧮 Mathematical Mastery</h5>
-                        <p><strong>Learn</strong> the basic math concepts behind AI: how neural networks learn and improve (we'll explain it step by step!)</p>
+                        <p id="math-mastery"><strong>Understand</strong> the mathematical foundations: linear algebra, probability theory, and calculus behind neural networks</p>
                     </div>
                     <div style="background: var(--bg-secondary); border-left: 4px solid var(--apple-purple); padding: 20px; border-radius: 10px;">
                         <h5 style="color: var(--apple-purple); margin-bottom: 10px;">👁️ Architectural Vision</h5>
-                        <p><strong>See</strong> how AI "pays attention" to different parts of images and learns to create new ones from random noise</p>
+                        <p id="architectural-vision"><strong>Visualize</strong> and comprehend transformer attention mechanisms, U-Net structures, and diffusion processes</p>
                     </div>
                     <div style="background: var(--bg-secondary); border-left: 4px solid var(--apple-green); padding: 20px; border-radius: 10px;">
                         <h5 style="color: var(--apple-green); margin-bottom: 10px;">🔬 Technical Analysis</h5>
-                        <p><strong>Explore</strong> the latest AI models like FLUX and understand what makes them so good at creating realistic images</p>
+                        <p id="technical-analysis"><strong>Analyze</strong> FLUX innovations: Flow Matching, dual text encoders, and MMDiT architecture</p>
                     </div>
                     <div style="background: var(--bg-secondary); border-left: 4px solid var(--apple-orange); padding: 20px; border-radius: 10px;">
                         <h5 style="color: var(--apple-orange); margin-bottom: 10px;">⚡ Practical Implementation</h5>
-                        <p><strong>Build</strong> your own AI image generator and learn how to train it with your own images</p>
+                        <p id="practical-implementation"><strong>Calculate</strong> optimal LoRA parameters and build your own training frameworks from scratch</p>
                     </div>
                 </div>
             </div>
@@ -2738,11 +2742,11 @@ p(x) = (1/√(2π)) * exp(-x²/2)
                 </div>
                 
                 <div id="advancedNoiseAnalysis" style="background: var(--bg-card); padding: 25px; border-radius: 15px; margin-top: 20px; border: 2px solid var(--success);">
-                    <h4 style="color: var(--success); margin-bottom: 15px;">🎯 Simple Conclusion</h4>
-                    <p><strong>Gaussian noise is the best choice for AI image generation.</strong> This specific type of randomness helps the AI learn more effectively than other types.</p>
+                    <h4 style="color: var(--success); margin-bottom: 15px;" id="math-conclusion-title">🎯 Mathematical Conclusion</h4>
+                    <p id="math-conclusion-text"><strong>Gaussian noise is not just preferred—it's mathematically required for diffusion models to work.</strong> Any other choice breaks the mathematical foundations that make the reverse process learnable.</p>
                     
                     <div style="margin-top: 20px; padding: 15px; background: rgba(5, 150, 105, 0.1); border-radius: 10px;">
-                        <strong>Key Insight:</strong> FLUX and other successful AI models use Gaussian noise because it creates the smoothest learning process for the AI to understand how to generate images.
+                        <strong>Key Insight:</strong> <span id="key-insight-text">The reason FLUX, DDPM, and all successful diffusion models use Gaussian noise is that it's the only distribution that maintains mathematical consistency throughout the entire forward and reverse processes while providing smooth, trainable gradients for neural networks.</span>
                     </div>
                 </div>
             </div>
@@ -4648,7 +4652,17 @@ In real computers:
                 quote: 'The best way to learn is to understand the underlying principles, see them in action, and build upon them.',
                 objectives: '📚 Course Learning Objectives',
                 objectivesText: 'By the end of this course, you will:',
-                langButton: '🌐 עברית'
+                langButton: '🌐 עברית',
+                mainDescription: "This isn't just another AI tutorial. This is a comprehensive journey from the mathematical bedrock of neural networks to building production-ready AI image generation systems. Every concept builds upon the previous, creating a rock-solid foundation for innovation.",
+                mathMastery: 'Understand the mathematical foundations: linear algebra, probability theory, and calculus behind neural networks',
+                architecturalVision: 'Visualize and comprehend transformer attention mechanisms, U-Net structures, and diffusion processes',
+                technicalAnalysis: 'Analyze FLUX innovations: Flow Matching, dual text encoders, and MMDiT architecture',
+                practicalImplementation: 'Calculate optimal LoRA parameters and build your own training frameworks from scratch',
+                mathConclusionTitle: '🎯 Mathematical Conclusion',
+                mathConclusionText: 'Gaussian noise is not just preferred—it\'s mathematically required for diffusion models to work. Any other choice breaks the mathematical foundations that make the reverse process learnable.',
+                keyInsightText: 'The reason FLUX, DDPM, and all successful diffusion models use Gaussian noise is that it\'s the only distribution that maintains mathematical consistency throughout the entire forward and reverse processes while providing smooth, trainable gradients for neural networks.',
+                simpleModeButton: '🧠 Simple Mode',
+                glossaryTitle: '📖 AI Terms Glossary'
             },
             he: {
                 title: '🎓 יצירת תמונות בבינה מלאכותית',
@@ -4657,7 +4671,17 @@ In real computers:
                 quote: 'הדרך הטובה ביותר ללמוד היא להבין את העקרונות הבסיסיים, לראות אותם בפעולה, ולבנות עליהם.',
                 objectives: '📚 יעדי הלמידה של הקורס',
                 objectivesText: 'בסוף הקורס תוכלו:',
-                langButton: '🌐 English'
+                langButton: '🌐 English',
+                mainDescription: 'זה לא עוד מדריך AI. זהו מסע מקיף מהיסודות המתמטיים של רשתות נוירונים לבניית מערכות יצירת תמונות AI מוכנות לייצור. כל מושג נבנה על הקודם ויוצר בסיס איתן לחדשנות.',
+                mathMastery: 'הבנה של היסודות המתמטיים: אלגברה לינארית, תורת הסתברות וחשבון אינפיניטסימלי מאחורי רשתות נוירונים',
+                architecturalVision: 'הדמיה והבנה של מנגנוני attention בטרנספורמרים, מבני U-Net ותהליכי diffusion',
+                technicalAnalysis: 'ניתוח חידושי FLUX: Flow Matching, dual text encoders וארכיטקטורת MMDiT',
+                practicalImplementation: 'חישוב פרמטרי LoRA אופטימליים ובניית frameworks אימון משלכם מאפס',
+                mathConclusionTitle: '🎯 מסקנה מתמטית',
+                mathConclusionText: 'רעש גאוסיאני הוא לא רק מועדף - הוא נדרש מתמטית כדי שמודלי diffusion יעבדו. כל בחירה אחרת שוברת את היסודות המתמטיים שהופכים את התהליך ההפוך ללמיד.',
+                keyInsightText: 'הסיבה ש-FLUX, DDPM וכל מודלי ה-diffusion המוצלחים משתמשים ברעש גאוסיאני היא שזהו ההתפלגות היחידה ששומרת על עקביות מתמטית לאורך כל התהליכים קדימה ואחורה תוך מתן gradients חלקים וניתנים לאימון לרשתות נוירונים.',
+                simpleModeButton: '🧠 מצב פשוט',
+                glossaryTitle: '📖 מילון מונחי AI'
             }
         };
         
@@ -4666,9 +4690,55 @@ In real computers:
             updateLanguage();
         }
         
+        // Simple Mode functionality
+        let isSimpleMode = false;
+        
+        function toggleSimpleMode() {
+            isSimpleMode = !isSimpleMode;
+            const simpleModeToggle = document.getElementById('simpleModeToggle');
+            const t = translations[currentLanguage];
+            
+            if (isSimpleMode) {
+                simpleModeToggle.textContent = '🔬 Expert Mode';
+                addSimpleExplanations();
+            } else {
+                simpleModeToggle.textContent = t.simpleModeButton;
+                removeSimpleExplanations();
+            }
+        }
+        
+        function addSimpleExplanations() {
+            // Add simple explanations on top of existing content
+            const explanations = {
+                'main-description': 'In simple terms: Learn how AI creates amazing images by understanding the basic concepts step-by-step.',
+                'math-mastery': 'Simply put: Learn the basic math that helps AI understand and create images.',
+                'architectural-vision': 'In other words: See how AI "looks at" different parts of images to create new ones.',
+                'technical-analysis': 'Basically: Explore the newest and best AI image-making tools.',
+                'practical-implementation': 'Put simply: Build your own AI image creator and teach it with your pictures.',
+                'math-conclusion-text': 'Simple version: This specific type of randomness works best for AI image generation.',
+                'key-insight-text': 'Easy explanation: The best AI models use this type of randomness because it helps them learn most effectively.'
+            };
+            
+            Object.keys(explanations).forEach(id => {
+                const element = document.getElementById(id);
+                if (element && !element.querySelector('.simple-explanation')) {
+                    const simpleDiv = document.createElement('div');
+                    simpleDiv.className = 'simple-explanation';
+                    simpleDiv.style.cssText = 'background: #E3F2FD; border-left: 4px solid #2196F3; padding: 10px; margin-bottom: 15px; border-radius: 8px; font-style: italic; color: #1976D2;';
+                    simpleDiv.innerHTML = `💡 <strong>Simple:</strong> ${explanations[id]}`;
+                    element.parentNode.insertBefore(simpleDiv, element);
+                }
+            });
+        }
+        
+        function removeSimpleExplanations() {
+            document.querySelectorAll('.simple-explanation').forEach(el => el.remove());
+        }
+        
         function updateLanguage() {
             const body = document.body;
             const langToggle = document.getElementById('langToggle');
+            const simpleModeToggle = document.getElementById('simpleModeToggle');
             const t = translations[currentLanguage];
             
             // Toggle RTL/LTR
@@ -4678,24 +4748,39 @@ In real computers:
                 body.classList.remove('rtl');
             }
             
-            // Update button text
+            // Update button texts
             langToggle.textContent = t.langButton;
+            if (simpleModeToggle) {
+                simpleModeToggle.textContent = isSimpleMode ? '🔬 Expert Mode' : t.simpleModeButton;
+            }
             
             // Update main content
             const titleElement = document.querySelector('.lecture-header h1');
-            const subtitleElement = document.querySelector('.subtitle');
             const instructorElement = document.querySelector('.professor-attribution h3');
             const developedElement = document.querySelector('.professor-attribution p:first-of-type strong:first-of-type');
             const quoteElement = document.querySelector('.professor-attribution em');
-            const objectivesTitle = document.querySelector('.section h2');
-            const objectivesText = document.querySelector('.learning-objective h4');
+            const mainDescElement = document.getElementById('main-description');
+            const mathMasteryElement = document.getElementById('math-mastery');
+            const archVisionElement = document.getElementById('architectural-vision');
+            const techAnalysisElement = document.getElementById('technical-analysis');
+            const practicalImplElement = document.getElementById('practical-implementation');
+            const mathConclusionTitleElement = document.getElementById('math-conclusion-title');
+            const mathConclusionTextElement = document.getElementById('math-conclusion-text');
+            const keyInsightElement = document.getElementById('key-insight-text');
+            const glossaryTitleElement = document.getElementById('glossary-title');
             
             if (titleElement) titleElement.textContent = t.title;
-            if (subtitleElement) subtitleElement.textContent = t.subtitle;
             if (instructorElement) instructorElement.textContent = t.instructor;
             if (quoteElement) quoteElement.textContent = `"${t.quote}"`;
-            if (objectivesTitle) objectivesTitle.textContent = t.objectives;
-            if (objectivesText) objectivesText.textContent = t.objectivesText;
+            if (mainDescElement) mainDescElement.textContent = t.mainDescription;
+            if (mathMasteryElement) mathMasteryElement.innerHTML = `<strong>Understand</strong> ${t.mathMastery.replace('Understand the mathematical foundations: ', '').replace('הבנה של היסודות המתמטיים: ', '')}`;
+            if (archVisionElement) archVisionElement.innerHTML = `<strong>Visualize</strong> ${t.architecturalVision.replace('Visualize and comprehend ', '').replace('הדמיה והבנה של ', '')}`;
+            if (techAnalysisElement) techAnalysisElement.innerHTML = `<strong>Analyze</strong> ${t.technicalAnalysis.replace('Analyze ', '').replace('ניתוח ', '')}`;
+            if (practicalImplElement) practicalImplElement.innerHTML = `<strong>Calculate</strong> ${t.practicalImplementation.replace('Calculate ', '').replace('חישוב ', '')}`;
+            if (mathConclusionTitleElement) mathConclusionTitleElement.textContent = t.mathConclusionTitle;
+            if (mathConclusionTextElement) mathConclusionTextElement.innerHTML = `<strong>${t.mathConclusionText.split('.')[0]}.</strong> ${t.mathConclusionText.split('.').slice(1).join('.')}`;
+            if (keyInsightElement) keyInsightElement.textContent = t.keyInsightText;
+            if (glossaryTitleElement) glossaryTitleElement.textContent = t.glossaryTitle;
             
             // Update developed by section
             if (developedElement && developedElement.parentNode) {
@@ -4722,6 +4807,74 @@ In real computers:
             <div class="modal-footer">
                 <button class="modal-close" onclick="hideModal()">Got it</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Terms Glossary Section -->
+    <div class="section" style="background: var(--bg-card); border-radius: 20px; padding: 30px; margin: 30px 20px; border: 2px solid var(--accent-purple);">
+        <h2 style="text-align: center; color: var(--accent-purple); margin-bottom: 30px;" id="glossary-title">📖 AI Terms Glossary</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;" id="glossary-content">
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-blue);">
+                <h4 style="color: var(--apple-blue); margin-bottom: 10px;">Neural Network</h4>
+                <p style="margin: 0; line-height: 1.5;">A computer system inspired by the human brain, consisting of interconnected nodes (neurons) that learn patterns from data to make predictions or generate content.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-green);">
+                <h4 style="color: var(--apple-green); margin-bottom: 10px;">Diffusion Model</h4>
+                <p style="margin: 0; line-height: 1.5;">An AI technique that learns to generate images by gradually removing noise from random static, essentially learning to "reverse" the process of adding noise to clean images.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-orange);">
+                <h4 style="color: var(--apple-orange); margin-bottom: 10px;">Transformer</h4>
+                <p style="margin: 0; line-height: 1.5;">A neural network architecture that uses "attention" mechanisms to focus on important parts of input data, revolutionizing how AI processes text and images.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-purple);">
+                <h4 style="color: var(--apple-purple); margin-bottom: 10px;">Attention Mechanism</h4>
+                <p style="margin: 0; line-height: 1.5;">A technique that allows AI to "pay attention" to specific parts of an input (like focusing on certain words in a sentence or regions in an image) when making decisions.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-red);">
+                <h4 style="color: var(--apple-red); margin-bottom: 10px;">Gaussian Noise</h4>
+                <p style="margin: 0; line-height: 1.5;">A specific type of random variation that follows a bell-curve distribution, used in diffusion models because it provides the smoothest learning process for AI.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-teal);">
+                <h4 style="color: var(--apple-teal); margin-bottom: 10px;">LoRA (Low-Rank Adaptation)</h4>
+                <p style="margin: 0; line-height: 1.5;">A technique for efficiently fine-tuning large AI models by only updating a small subset of parameters, making it much faster and requiring less memory.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-indigo);">
+                <h4 style="color: var(--apple-indigo); margin-bottom: 10px;">FLUX</h4>
+                <p style="margin: 0; line-height: 1.5;">A state-of-the-art AI image generation model that uses Flow Matching instead of traditional diffusion, providing faster and more accurate image generation.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-pink);">
+                <h4 style="color: var(--apple-pink); margin-bottom: 10px;">Flow Matching</h4>
+                <p style="margin: 0; line-height: 1.5;">An advanced technique used in FLUX that directly learns the path from noise to image, making the generation process more efficient than traditional diffusion.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-yellow);">
+                <h4 style="color: var(--apple-yellow); margin-bottom: 10px;">Text Encoder</h4>
+                <p style="margin: 0; line-height: 1.5;">A component that converts text descriptions into numerical representations that the AI can understand and use to guide image generation.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-cyan);">
+                <h4 style="color: var(--apple-cyan); margin-bottom: 10px;">U-Net</h4>
+                <p style="margin: 0; line-height: 1.5;">A neural network architecture shaped like the letter "U" that's particularly good at image-to-image tasks, commonly used in diffusion models for denoising.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-brown);">
+                <h4 style="color: var(--apple-brown); margin-bottom: 10px;">MMDiT</h4>
+                <p style="margin: 0; line-height: 1.5;">Multimodal Diffusion Transformer - an architecture used in FLUX that efficiently processes both text and image information together in a single unified model.</p>
+            </div>
+            
+            <div class="glossary-term" style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; border-left: 4px solid var(--apple-gray);">
+                <h4 style="color: var(--apple-gray); margin-bottom: 10px;">Gradient</h4>
+                <p style="margin: 0; line-height: 1.5;">The mathematical direction and magnitude of change that tells the AI how to adjust its parameters to improve performance, like a compass pointing toward better solutions.</p>
+            </div>
+            
         </div>
     </div>
 
