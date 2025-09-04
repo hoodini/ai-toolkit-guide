@@ -686,6 +686,214 @@
             }
         }
 
+        /* New Component Styles */
+        .matrix-demo, .lora-calculator {
+            background: rgba(0, 122, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .neural-calculation, .chain-rule-explanation, .gradient-descent {
+            margin: 1.5rem 0;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: var(--font-size-sm);
+        }
+
+        .calc-inputs {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .calc-inputs label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .calc-inputs input[type="number"] {
+            width: 100px;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .calc-results {
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .calc-results p {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .diffusion-visualization {
+            margin: 2rem 0;
+        }
+
+        .noise-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 120px;
+            font-size: var(--font-size-sm);
+        }
+
+        .arrow {
+            font-size: var(--font-size-2xl);
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .system-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .component-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .technique-grid, .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .technique-card, .practice-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .savings {
+            background: var(--gradient-secondary);
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .config-tree {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .config-node {
+            margin: 0.5rem 0;
+        }
+
+        .config-key {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .config-children {
+            margin-left: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            padding-left: 1rem;
+        }
+
+        .config-item {
+            color: var(--secondary-gray);
+            margin: 0.3rem 0;
+        }
+
+        .flow-matching-explanation ul {
+            margin: 1rem 0;
+        }
+
+        .flow-matching-explanation li {
+            margin: 0.5rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .answer-explanation {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Responsive adjustments for new components */
+        @media (max-width: 768px) {
+            .noise-steps {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .technique-grid, .best-practices-grid, .system-components {
+                grid-template-columns: 1fr;
+            }
+
+            .code-block {
+                padding: 1rem;
+                font-size: var(--font-size-xs);
+            }
+
+            .calc-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Print styles */
         @media print {
             body {
@@ -780,6 +988,403 @@
                     </div>
                     <div id="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
                         <span data-en="Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system." data-he="����! ������� �������� �� ����� ���� ��� ����� ������ ������ �� �����: S-������� (~420nm), M-������� (~534nm), �-L-������� (~564nm), ������� ����� ���� ����, ���� �����. ������ RGB ������ �� ����� ������ ����-������� ���.">Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Neural Network Mathematics -->
+        <section class="section">
+            <div class="glass-card">
+                <h2 class="section-title" data-en="Chapter 2: Neural Network Mathematics" data-he="פרק 2: מתמטיקה של רשתות נוירונים">Chapter 2: Neural Network Mathematics</h2>
+                
+                <h3 class="subsection-title" data-en="2.1 The Fundamental Building Block: A Single Neuron" data-he="2.1 אבן הבניין הבסיסית: נוירון יחיד">2.1 The Fundamental Building Block: A Single Neuron</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>A neural network is built from artificial neurons</strong> that perform a simple mathematical operation:" data-he="<strong>רשת נוירונים נבנית מנוירונים מלאכותיים</strong> המבצעים פעולה מתמטית פשוטה:"><strong>A neural network is built from artificial neurons</strong> that perform a simple mathematical operation:</p>
+                    <div class="equation-box">y = σ(Σ(w_i × x_i) + b)</div>
+                    <p data-en="Where:" data-he="כאשר:">Where:</p>
+                    <ul>
+                        <li><span class="highlight">y</span> = <span data-en="Output of the neuron" data-he="פלט הנוירון">Output of the neuron</span></li>
+                        <li><span class="highlight">σ</span> = <span data-en="Activation function (ReLU, sigmoid, etc.)" data-he="פונקציית הפעלה (ReLU, sigmoid, וכו')">Activation function (ReLU, sigmoid, etc.)</span></li>
+                        <li><span class="highlight">w_i</span> = <span data-en="Weight for input i" data-he="משקל עבור קלט i">Weight for input i</span></li>
+                        <li><span class="highlight">x_i</span> = <span data-en="Input value i" data-he="ערך קלט i">Input value i</span></li>
+                        <li><span class="highlight">b</span> = <span data-en="Bias term" data-he="איבר הטיה">Bias term</span></li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title" data-en="2.2 Matrix Operations: The Language of Deep Learning" data-he="2.2 פעולות מטריצה: השפה של למידה עמוקה">2.2 Matrix Operations: The Language of Deep Learning</h3>
+                
+                <div class="interactive-demo">
+                    <h4 data-en="Matrix Multiplication Visualizer" data-he="מדמה כפל מטריצות">Matrix Multiplication Visualizer</h4>
+                    <p data-en="Understanding how neural networks process data through matrix operations:" data-he="הבנה איך רשתות נוירונים מעבדות נתונים דרך פעולות מטריצה:">Understanding how neural networks process data through matrix operations:</p>
+                    
+                    <div class="matrix-demo">
+                        <div class="matrix-explanation">
+                            <p data-en="For a layer with 3 inputs and 2 outputs:" data-he="עבור שכבה עם 3 קלטים ו-2 פלטים:">For a layer with 3 inputs and 2 outputs:</p>
+                            <div class="equation-box">
+                                <div data-en="Input: [x₁, x₂, x₃]<br>Weights: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>Output: [y₁, y₂]" data-he="קלט: [x₁, x₂, x₃]<br>משקלים: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>פלט: [y₁, y₂]">
+                                    Input: [x₁, x₂, x₃]<br>
+                                    Weights: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>
+                                    Output: [y₁, y₂]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="neural-calculation">
+                        <h5 data-en="Calculation:" data-he="חישוב:">Calculation:</h5>
+                        <div class="equation-box">
+                            y₁ = σ(x₁×w₁₁ + x₂×w₂₁ + x₃×w₃₁ + b₁)<br>
+                            y₂ = σ(x₁×w₁₂ + x₂×w₂₂ + x₃×w₃₂ + b₂)
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="2.3 Backpropagation: How Networks Learn" data-he="2.3 התפשטות לאחור: איך רשתות לומדות">2.3 Backpropagation: How Networks Learn</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>Backpropagation</strong> is the algorithm that trains neural networks by calculating gradients:" data-he="<strong>התפשטות לאחור</strong> הוא האלגוריתם המאמן רשתות נוירונים על ידי חישוב גרדיינטים:"><strong>Backpropagation</strong> is the algorithm that trains neural networks by calculating gradients:</p>
+                    
+                    <div class="chain-rule-explanation">
+                        <h5 data-en="The Chain Rule (Fundamental to Backpropagation):" data-he="כלל השרשרת (יסודי להתפשטות לאחור):">The Chain Rule (Fundamental to Backpropagation):</h5>
+                        <div class="equation-box">∂L/∂w = (∂L/∂y) × (∂y/∂z) × (∂z/∂w)</div>
+                        <p data-en="Where:" data-he="כאשר:">Where:</p>
+                        <ul>
+                            <li><span class="highlight">L</span> = <span data-en="Loss function" data-he="פונקציית אובדן">Loss function</span></li>
+                            <li><span class="highlight">w</span> = <span data-en="Network weight" data-he="משקל ברשת">Network weight</span></li>
+                            <li><span class="highlight">y</span> = <span data-en="Layer output" data-he="פלט השכבה">Layer output</span></li>
+                            <li><span class="highlight">z</span> = <span data-en="Pre-activation value" data-he="ערך לפני הפעלה">Pre-activation value</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="gradient-descent">
+                        <h5 data-en="Weight Update Rule:" data-he="כלל עדכון משקלים:">Weight Update Rule:</h5>
+                        <div class="equation-box">w_new = w_old - η × (∂L/∂w)</div>
+                        <p data-en="Where η (eta) is the learning rate" data-he="כאשר η (אטה) הוא קצב הלמידה">Where η (eta) is the learning rate</p>
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question" data-en="🧠 Test Your Understanding: What happens if the learning rate is too high?" data-he="🧠 בחן את ההבנה שלך: מה קורה אם קצב הלמידה גבוה מדי?">🧠 Test Your Understanding: What happens if the learning rate is too high?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) The network learns faster and more accurately" data-he="א) הרשת לומדת מהר יותר ובדיוק רב יותר">A) The network learns faster and more accurately</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) The network may overshoot the optimal solution and fail to converge" data-he="ב) הרשת עלולה לחרוג מהפתרון האופטימלי ולא להתכנס">B) The network may overshoot the optimal solution and fail to converge</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Nothing, learning rate doesn't affect training" data-he="ג) כלום, קצב הלמידה לא משפיע על האימון">C) Nothing, learning rate doesn't affect training</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) The network uses less memory" data-he="ד) הרשת משתמשת בפחות זיכרון">D) The network uses less memory</div>
+                    </div>
+                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
+                        <span data-en="Correct! A high learning rate causes large weight updates that can overshoot the minimum of the loss function, leading to oscillation or divergence. This is why adaptive optimizers like Adam adjust the learning rate dynamically." data-he="נכון! קצב למידה גבוה גורם לעדכוני משקלים גדולים שעלולים לחרוג מהמינימום של פונקציית האובדן, מה שמוביל לתנודות או התבדרות. בגלל זה אופטימייזרים אדפטיביים כמו Adam מתאימים את קצב הלמידה באופן דינמי.">Correct! A high learning rate causes large weight updates that can overshoot the minimum of the loss function, leading to oscillation or divergence. This is why adaptive optimizers like Adam adjust the learning rate dynamically.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: LoRA - Low-Rank Adaptation -->
+        <section class="section">
+            <div class="glass-card">
+                <h2 class="section-title" data-en="Chapter 3: LoRA - Low-Rank Adaptation" data-he="פרק 3: LoRA - התאמה בדירוג נמוך">Chapter 3: LoRA - Low-Rank Adaptation</h2>
+                
+                <h3 class="subsection-title" data-en="3.1 The Problem: Fine-tuning Large Models" data-he="3.1 הבעיה: כוונון עדין של מודלים גדולים">3.1 The Problem: Fine-tuning Large Models</h3>
+                
+                <p data-en="Large language and image models like FLUX have billions of parameters. Fine-tuning all parameters requires enormous computational resources and memory. LoRA provides an elegant solution." data-he="מודלים גדולים של שפה ותמונה כמו FLUX יש מיליארדי פרמטרים. כוונון עדין של כל הפרמטרים דורש משאבי חישוב וזיכרון עצומים. LoRA מספקת פתרון אלגנטי.">Large language and image models like FLUX have billions of parameters. Fine-tuning all parameters requires enormous computational resources and memory. LoRA provides an elegant solution.</p>
+
+                <h3 class="subsection-title" data-en="3.2 Mathematical Foundation of LoRA" data-he="3.2 הבסיס המתמטי של LoRA">3.2 Mathematical Foundation of LoRA</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>LoRA decomposes weight updates</strong> into two smaller matrices:" data-he="<strong>LoRA מפרקת עדכוני משקלים</strong> לשתי מטריצות קטנות יותר:"><strong>LoRA decomposes weight updates</strong> into two smaller matrices:</p>
+                    <div class="equation-box">ΔW = B × A</div>
+                    <p data-en="Where:" data-he="כאשר:">Where:</p>
+                    <ul>
+                        <li><span class="highlight">ΔW</span> = <span data-en="Weight update matrix (d × k)" data-he="מטריצת עדכון משקלים (d × k)">Weight update matrix (d × k)</span></li>
+                        <li><span class="highlight">B</span> = <span data-en="Down-projection matrix (d × r)" data-he="מטריצת השלכה למטה (d × r)">Down-projection matrix (d × r)</span></li>
+                        <li><span class="highlight">A</span> = <span data-en="Up-projection matrix (r × k)" data-he="מטריצת השלכה למעלה (r × k)">Up-projection matrix (r × k)</span></li>
+                        <li><span class="highlight">r</span> = <span data-en="Rank (much smaller than d and k)" data-he="דירוג (הרבה יותר קטן מ-d ו-k)">Rank (much smaller than d and k)</span></li>
+                    </ul>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4 data-en="LoRA Parameter Reduction Calculator" data-he="מחשבון הפחתת פרמטרים של LoRA">LoRA Parameter Reduction Calculator</h4>
+                    <p data-en="See how LoRA dramatically reduces the number of trainable parameters:" data-he="ראה איך LoRA מפחיתה דרמטית את מספר הפרמטרים הניתנים לאימון:">See how LoRA dramatically reduces the number of trainable parameters:</p>
+                    
+                    <div class="lora-calculator">
+                        <div class="calc-inputs">
+                            <label data-en="Original Matrix Size (d):" data-he="גודל מטריצה מקורית (d):">Original Matrix Size (d): <input type="number" id="matrixD" value="4096" min="1"></label>
+                            <label data-en="Output Size (k):" data-he="גודל פלט (k):">Output Size (k): <input type="number" id="matrixK" value="4096" min="1"></label>
+                            <label data-en="LoRA Rank (r):" data-he="דירוג LoRA (r):">LoRA Rank (r): <input type="number" id="loraRank" value="16" min="1"></label>
+                        </div>
+                        <div class="calc-results" id="loraResults">
+                            <p data-en="Original Parameters: 16,777,216" data-he="פרמטרים מקוריים: 16,777,216">Original Parameters: 16,777,216</p>
+                            <p data-en="LoRA Parameters: 131,072" data-he="פרמטרי LoRA: 131,072">LoRA Parameters: 131,072</p>
+                            <p data-en="Reduction: 99.22%" data-he="הפחתה: 99.22%">Reduction: 99.22%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="3.3 LoRA in AI-Toolkit Implementation" data-he="3.3 יישום LoRA ב-AI-Toolkit">3.3 LoRA in AI-Toolkit Implementation</h3>
+                
+                <div class="code-explanation">
+                    <h5 data-en="Key Implementation Details from AI-Toolkit:" data-he="פרטי יישום מפתח מ-AI-Toolkit:">Key Implementation Details from AI-Toolkit:</h5>
+                    <div class="code-block">
+                        <pre><code># From kohya_lora.py
+class LoRAModule(nn.Module):
+    def __init__(self, lora_name, org_module, multiplier=1.0, 
+                 lora_dim=4, alpha=1):
+        # B matrix (down projection)
+        self.lora_down = nn.Linear(org_module.in_features, lora_dim, bias=False)
+        # A matrix (up projection)  
+        self.lora_up = nn.Linear(lora_dim, org_module.out_features, bias=False)
+        self.multiplier = multiplier
+        self.alpha = alpha
+        
+    def forward(self, x):
+        # Original computation: W₀x
+        orig_output = self.org_forward(x)
+        # LoRA computation: α(BAx)
+        lora_output = self.lora_up(self.lora_down(x)) * self.multiplier * self.alpha
+        return orig_output + lora_output</code></pre>
+                    </div>
+                    <p data-en="The final output combines original weights with LoRA adaptation:" data-he="הפלט הסופי משלב משקלים מקוריים עם התאמת LoRA:">The final output combines original weights with LoRA adaptation:</p>
+                    <div class="equation-box">h = W₀x + α(BAx)</div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question" data-en="🔬 Advanced Question: Why does LoRA work so well despite using far fewer parameters?" data-he="🔬 שאלה מתקדמת: למה LoRA עובדת כל כך טוב למרות שימוש בהרבה פחות פרמטרים?">🔬 Advanced Question: Why does LoRA work so well despite using far fewer parameters?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Because it uses random matrices" data-he="א) כי היא משתמשת במטריצות אקראיות">A) Because it uses random matrices</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) Because fine-tuning updates have intrinsically low rank - most information is redundant" data-he="ב) כי לעדכוני כוונון עדין יש דירוג נמוך במטבעם - רוב המידע מיותר">B) Because fine-tuning updates have intrinsically low rank - most information is redundant</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Because it's faster to compute" data-he="ג) כי זה מהיר יותר לחשב">C) Because it's faster to compute</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Because it prevents overfitting" data-he="ד) כי זה מונע התאמת יתר">D) Because it prevents overfitting</div>
+                    </div>
+                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
+                        <span data-en="Correct! Research shows that the weight updates during fine-tuning live in a low-dimensional subspace. LoRA exploits this 'intrinsic dimensionality' - the hypothesis that the important changes can be captured with just a few dimensions, making the full rank matrix mostly redundant." data-he="נכון! מחקרים מראים שעדכוני המשקלים במהלך כוונון עדין חיים במרחב תת-ממדי נמוך. LoRA מנצלת את 'הממדיות הפנימית' הזו - ההשערה שהשינויים החשובים ניתנים ללכידה עם כמה ממדים בלבד, מה שהופך את מטריצת הדירוג המלא למיותרת ברובה.">Correct! Research shows that the weight updates during fine-tuning live in a low-dimensional subspace. LoRA exploits this 'intrinsic dimensionality' - the hypothesis that the important changes can be captured with just a few dimensions, making the full rank matrix mostly redundant.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Diffusion Models Theory -->
+        <section class="section">
+            <div class="glass-card">
+                <h2 class="section-title" data-en="Chapter 4: Diffusion Models - The Art of Controlled Noise" data-he="פרק 4: מודלי דיפוזיה - האומנות של רעש מבוקר">Chapter 4: Diffusion Models - The Art of Controlled Noise</h2>
+                
+                <h3 class="subsection-title" data-en="4.1 The Core Insight: Reversible Noise Process" data-he="4.1 התובנה המרכזית: תהליך רעש הפיך">4.1 The Core Insight: Reversible Noise Process</h3>
+                
+                <p data-en="Diffusion models generate images by learning to reverse a noise corruption process. Instead of generating images directly, they learn to remove noise step by step." data-he="מודלי דיפוזיה יוצרים תמונות על ידי למידה להפוך תהליך השחתת רעש. במקום ליצור תמונות ישירות, הם לומדים להסיר רעש צעד אחר צעד.">Diffusion models generate images by learning to reverse a noise corruption process. Instead of generating images directly, they learn to remove noise step by step.</p>
+
+                <h3 class="subsection-title" data-en="4.2 Forward Process: Adding Noise" data-he="4.2 תהליך קדמי: הוספת רעש">4.2 Forward Process: Adding Noise</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>The forward process</strong> gradually adds Gaussian noise to an image:" data-he="<strong>התהליך הקדמי</strong> מוסיף באופן הדרגתי רעש גאוסיאני לתמונה:"><strong>The forward process</strong> gradually adds Gaussian noise to an image:</p>
+                    <div class="equation-box">q(x_t | x_{t-1}) = N(x_t; √(1-β_t)x_{t-1}, β_t I)</div>
+                    <p data-en="Where:" data-he="כאשר:">Where:</p>
+                    <ul>
+                        <li><span class="highlight">x_t</span> = <span data-en="Image at timestep t" data-he="תמונה בזמן t">Image at timestep t</span></li>
+                        <li><span class="highlight">β_t</span> = <span data-en="Noise schedule parameter" data-he="פרמטר לוח זמני רעש">Noise schedule parameter</span></li>
+                        <li><span class="highlight">N</span> = <span data-en="Gaussian distribution" data-he="התפלגות גאוסיאנית">Gaussian distribution</span></li>
+                        <li><span class="highlight">I</span> = <span data-en="Identity matrix" data-he="מטריצת יחידה">Identity matrix</span></li>
+                    </ul>
+                </div>
+
+                <div class="diffusion-visualization">
+                    <h4 data-en="Noise Addition Process Visualization" data-he="הדמיית תהליך הוספת רעש">Noise Addition Process Visualization</h4>
+                    <div class="noise-steps">
+                        <div class="step" data-en="Original Image<br>t=0" data-he="תמונה מקורית<br>t=0">🖼️<br>Original Image<br>t=0</div>
+                        <div class="arrow">→</div>
+                        <div class="step" data-en="Light Noise<br>t=250" data-he="רעש קל<br>t=250">🌫️<br>Light Noise<br>t=250</div>
+                        <div class="arrow">→</div>
+                        <div class="step" data-en="Medium Noise<br>t=500" data-he="רעש בינוני<br>t=500">⛅<br>Medium Noise<br>t=500</div>
+                        <div class="arrow">→</div>
+                        <div class="step" data-en="Heavy Noise<br>t=750" data-he="רעש כבד<br>t=750">☁️<br>Heavy Noise<br>t=750</div>
+                        <div class="arrow">→</div>
+                        <div class="step" data-en="Pure Noise<br>t=1000" data-he="רעש טהור<br>t=1000">❄️<br>Pure Noise<br>t=1000</div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="4.3 Reverse Process: Learned Denoising" data-he="4.3 תהליך הפוך: הסרת רעש נלמדת">4.3 Reverse Process: Learned Denoising</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>The reverse process</strong> is learned by a neural network (U-Net) that predicts the noise:" data-he="<strong>התהליך ההפוך</strong> נלמד על ידי רשת נוירונים (U-Net) המנבאת את הרעש:"><strong>The reverse process</strong> is learned by a neural network (U-Net) that predicts the noise:</p>
+                    <div class="equation-box">ε_θ(x_t, t) ≈ ε</div>
+                    <p data-en="The network learns to predict the noise that was added at each step, allowing us to remove it:" data-he="הרשת לומדת לחזות את הרעש שהוסף בכל צעד, מה שמאפשר לנו להסיר אותו:">The network learns to predict the noise that was added at each step, allowing us to remove it:</p>
+                    <div class="equation-box">x_{t-1} = (1/√α_t)(x_t - (β_t/√(1-ᾱ_t))ε_θ(x_t, t)) + σ_t z</div>
+                </div>
+
+                <h3 class="subsection-title" data-en="4.4 FLUX and Flow Matching: Advanced Techniques" data-he="4.4 FLUX והתאמת זרם: טכניקות מתקדמות">4.4 FLUX and Flow Matching: Advanced Techniques</h3>
+                
+                <div class="formula-explanation">
+                    <p data-en="<strong>FLUX uses Flow Matching</strong>, a more efficient alternative to traditional DDPM:" data-he="<strong>FLUX משתמש בהתאמת זרם</strong>, חלופה יעילה יותר ל-DDPM המסורתי:"><strong>FLUX uses Flow Matching</strong>, a more efficient alternative to traditional DDPM:</p>
+                    
+                    <div class="flow-matching-explanation">
+                        <h5 data-en="Key Advantages of Flow Matching:" data-he="יתרונות מפתח של התאמת זרם:">Key Advantages of Flow Matching:</h5>
+                        <ul>
+                            <li data-en="<strong>Straight paths:</strong> More direct interpolation between noise and data" data-he="<strong>נתיבים ישרים:</strong> אינטרפולציה ישירה יותר בין רעש ונתונים"><strong>Straight paths:</strong> More direct interpolation between noise and data</li>
+                            <li data-en="<strong>Faster sampling:</strong> Requires fewer denoising steps" data-he="<strong>דגימה מהירה יותר:</strong> דורש פחות צעדי הסרת רעש"><strong>Faster sampling:</strong> Requires fewer denoising steps</li>
+                            <li data-en="<strong>Better training stability:</strong> More stable gradient flow" data-he="<strong>יציבות אימון טובה יותר:</strong> זרם גרדיינט יציב יותר"><strong>Better training stability:</strong> More stable gradient flow</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question" data-en="🎯 Conceptual Question: Why do diffusion models generate high-quality images?" data-he="🎯 שאלה קונספטואלית: למה מודלי דיפוזיה יוצרים תמונות באיכות גבוהה?">🎯 Conceptual Question: Why do diffusion models generate high-quality images?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) They use more parameters than other models" data-he="א) הם משתמשים ביותר פרמטרים ממודלים אחרים">A) They use more parameters than other models</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) The gradual denoising process allows fine-grained control and prevents mode collapse" data-he="ב) תהליך הסרת הרעש ההדרגתי מאפשר שליטה עדינה ומונע קריסת מצב">B) The gradual denoising process allows fine-grained control and prevents mode collapse</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) They train faster than other generative models" data-he="ג) הם מתאמנים מהר יותר ממודלים גנרטיביים אחרים">C) They train faster than other generative models</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) They require less memory during training" data-he="ד) הם דורשים פחות זיכרון במהלך האימון">D) They require less memory during training</div>
+                    </div>
+                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
+                        <span data-en="Correct! The step-by-step denoising process gives the model many opportunities to refine the image, leading to high fidelity. Unlike GANs which can suffer from mode collapse (generating only a few types of images), diffusion models learn the full data distribution through the noise corruption process." data-he="נכון! תהליך הסרת הרעש צעד אחר צעד נותן למודל הזדמנויות רבות לשכלל את התמונה, מה שמוביל לנאמנות גבוהה. בניגוד ל-GANs שעלולים לסבול מקריסת מצב (יצירת רק כמה סוגי תמונות), מודלי דיפוזיה לומדים את ההתפלגות המלאה של הנתונים דרך תהליך השחתת הרעש.">Correct! The step-by-step denoising process gives the model many opportunities to refine the image, leading to high fidelity. Unlike GANs which can suffer from mode collapse (generating only a few types of images), diffusion models learn the full data distribution through the noise corruption process.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: AI-Toolkit Architecture -->
+        <section class="section">
+            <div class="glass-card">
+                <h2 class="section-title" data-en="Chapter 5: AI-Toolkit Architecture Deep Dive" data-he="פרק 5: צלילה עמוקה לארכיטקטורת AI-Toolkit">Chapter 5: AI-Toolkit Architecture Deep Dive</h2>
+                
+                <h3 class="subsection-title" data-en="5.1 Framework Design Principles" data-he="5.1 עקרונות עיצוב המסגרת">5.1 Framework Design Principles</h3>
+                
+                <div class="architecture-overview">
+                    <p data-en="AI-Toolkit is designed as a <strong>modular, extensible training framework</strong> for modern AI models. Let's explore its key architectural decisions:" data-he="AI-Toolkit מעוצב כ<strong>מסגרת אימון מודולרית וניתנת להרחבה</strong> למודלי AI מודרניים. בואו נחקור את החלטות הארכיטקטורה המפתח שלו:">AI-Toolkit is designed as a <strong>modular, extensible training framework</strong> for modern AI models. Let's explore its key architectural decisions:</p>
+                    
+                    <div class="system-components">
+                        <div class="component-card">
+                            <h4 data-en="🏗️ Job System" data-he="🏗️ מערכת עבודות">🏗️ Job System</h4>
+                            <p data-en="Config-driven job execution with support for different training types" data-he="ביצוע עבודות מונחה תצורה עם תמיכה בסוגי אימון שונים">Config-driven job execution with support for different training types</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 data-en="🧠 Model Abstraction" data-he="🧠 הפשטת מודל">🧠 Model Abstraction</h4>
+                            <p data-en="Unified interface for different model types (FLUX, SD, etc.)" data-he="ממשק מאוחד לסוגי מודלים שונים (FLUX, SD, וכו')">Unified interface for different model types (FLUX, SD, etc.)</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 data-en="💾 Memory Management" data-he="💾 ניהול זיכרון">💾 Memory Management</h4>
+                            <p data-en="Smart memory optimization with quantization and gradient checkpointing" data-he="אופטימיזציית זיכרון חכמה עם קוונטיזציה ונקודות בדיקה של גרדיינט">Smart memory optimization with quantization and gradient checkpointing</p>
+                        </div>
+                        <div class="component-card">
+                            <h4 data-en="📊 Dataset Pipeline" data-he="📊 צינור נתונים">📊 Dataset Pipeline</h4>
+                            <p data-en="Efficient data loading with bucketing and caching" data-he="טעינת נתונים יעילה עם קיבוץ וקאשינג">Efficient data loading with bucketing and caching</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="5.2 Memory Optimization Strategies" data-he="5.2 אסטרטגיות אופטימיזציית זיכרון">5.2 Memory Optimization Strategies</h3>
+                
+                <div class="memory-optimization">
+                    <h4 data-en="Key Memory Saving Techniques:" data-he="טכניקות מפתח לחיסכון בזיכרון:">Key Memory Saving Techniques:</h4>
+                    
+                    <div class="technique-grid">
+                        <div class="technique-card">
+                            <h5 data-en="🔢 8-bit Quantization" data-he="🔢 קוונטיזציה 8-ביט">🔢 8-bit Quantization</h5>
+                            <p data-en="Reduces model weights from 32-bit to 8-bit precision" data-he="מפחית משקלי מודל מדיוק 32-ביט ל-8-ביט">Reduces model weights from 32-bit to 8-bit precision</p>
+                            <div class="savings" data-en="Memory Savings: ~75%" data-he="חיסכון בזיכרון: ~75%">Memory Savings: ~75%</div>
+                        </div>
+                        
+                        <div class="technique-card">
+                            <h5 data-en="🗂️ Gradient Checkpointing" data-he="🗂️ נקודות בדיקה של גרדיינט">🗂️ Gradient Checkpointing</h5>
+                            <p data-en="Trades computation for memory by recomputing activations" data-he="מחליף חישוב בזיכרון על ידי חישוב מחדש של הפעלות">Trades computation for memory by recomputing activations</p>
+                            <div class="savings" data-en="Memory Savings: ~50%" data-he="חיסכון בזיכרון: ~50%">Memory Savings: ~50%</div>
+                        </div>
+                        
+                        <div class="technique-card">
+                            <h5 data-en="🎯 LoRA Fine-tuning" data-he="🎯 כוונון עדין LoRA">🎯 LoRA Fine-tuning</h5>
+                            <p data-en="Only trains small adapter modules instead of full model" data-he="מאמן רק מודולי מתאם קטנים במקום המודל המלא">Only trains small adapter modules instead of full model</p>
+                            <div class="savings" data-en="Parameter Reduction: ~99%" data-he="הפחתת פרמטרים: ~99%">Parameter Reduction: ~99%</div>
+                        </div>
+                        
+                        <div class="technique-card">
+                            <h5 data-en="📦 Latent Caching" data-he="📦 קאשינג חבוי">📦 Latent Caching</h5>
+                            <p data-en="Pre-computes and caches VAE encodings of images" data-he="מחשב מראש ושומר בקאש קידודי VAE של תמונות">Pre-computes and caches VAE encodings of images</p>
+                            <div class="savings" data-en="Training Speed: +3x" data-he="מהירות אימון: +3x">Training Speed: +3x</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="5.3 Configuration System Architecture" data-he="5.3 ארכיטקטורת מערכת התצורה">5.3 Configuration System Architecture</h3>
+                
+                <div class="config-explanation">
+                    <p data-en="AI-Toolkit uses YAML configuration files for declarative training setup. This enables reproducibility and easy experimentation:" data-he="AI-Toolkit משתמש בקבצי תצורת YAML להגדרת אימון הצהרתית. זה מאפשר יכולת שחזור וניסויים קלים:">AI-Toolkit uses YAML configuration files for declarative training setup. This enables reproducibility and easy experimentation:</p>
+                    
+                    <div class="config-structure">
+                        <h5 data-en="Key Configuration Sections:" data-he="סעיפי תצורה מפתח:">Key Configuration Sections:</h5>
+                        <div class="config-tree">
+                            <div class="config-node">
+                                <span class="config-key" data-en="job: extension" data-he="job: extension">job: extension</span>
+                                <div class="config-children">
+                                    <div class="config-node">
+                                        <span class="config-key" data-en="config:" data-he="config:">config:</span>
+                                        <div class="config-children">
+                                            <div class="config-item" data-en="name: Training run identifier" data-he="name: מזהה ריצת אימון">name: Training run identifier</div>
+                                            <div class="config-item" data-en="process: Training process configuration" data-he="process: תצורת תהליך אימון">process: Training process configuration</div>
+                                            <div class="config-item" data-en="network: LoRA network settings" data-he="network: הגדרות רשת LoRA">network: LoRA network settings</div>
+                                            <div class="config-item" data-en="datasets: Data loading configuration" data-he="datasets: תצורת טעינת נתונים">datasets: Data loading configuration</div>
+                                            <div class="config-item" data-en="train: Training hyperparameters" data-he="train: היפר-פרמטרי אימון">train: Training hyperparameters</div>
+                                            <div class="config-item" data-en="model: Base model specification" data-he="model: מפרט מודל בסיס">model: Base model specification</div>
+                                            <div class="config-item" data-en="sample: Generation settings" data-he="sample: הגדרות יצירה">sample: Generation settings</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-en="5.4 Production Considerations" data-he="5.4 שיקולי ייצור">5.4 Production Considerations</h3>
+                
+                <div class="production-best-practices">
+                    <h4 data-en="Best Practices for Production Deployment:" data-he="שיטות עבודה מומלצות לפריסת ייצור:">Best Practices for Production Deployment:</h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 data-en="🔄 Model Versioning" data-he="🔄 ניהול גרסאות מודל">🔄 Model Versioning</h5>
+                            <ul>
+                                <li data-en="Use semantic versioning for model releases" data-he="השתמש בגרסאות סמנטיות לשחרורי מודל">Use semantic versioning for model releases</li>
+                                <li data-en="Track training configurations and datasets" data-he="עקוב אחר תצורות אימון ונתונים">Track training configurations and datasets</li>
+                                <li data-en="Implement model registry for organization" data-he="יישם רישום מודלים לארגון">Implement model registry for organization</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 data-en="📈 Monitoring & Logging" data-he="📈 ניטור ורישום">📈 Monitoring & Logging</h5>
+                            <ul>
+                                <li data-en="Log training metrics (loss, learning rate)" data-he="רשום מטריקות אימון (אובדן, קצב למידה)">Log training metrics (loss, learning rate)</li>
+                                <li data-en="Monitor GPU utilization and memory usage" data-he="נטר ניצול GPU ושימוש בזיכרון">Monitor GPU utilization and memory usage</li>
+                                <li data-en="Set up alerts for training failures" data-he="הגדר התראות לכשלי אימון">Set up alerts for training failures</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 data-en="🔒 Security & Privacy" data-he="🔒 אבטחה ופרטיות">🔒 Security & Privacy</h5>
+                            <ul>
+                                <li data-en="Implement access controls for sensitive models" data-he="יישם בקרות גישה למודלים רגישים">Implement access controls for sensitive models</li>
+                                <li data-en="Audit training data for privacy compliance" data-he="בדוק נתוני אימון לעמידה בפרטיות">Audit training data for privacy compliance</li>
+                                <li data-en="Use encrypted storage for model weights" data-he="השתמש באחסון מוצפן למשקלי מודל">Use encrypted storage for model weights</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 data-en="⚡ Performance Optimization" data-he="⚡ אופטימיזציית ביצועים">⚡ Performance Optimization</h5>
+                            <ul>
+                                <li data-en="Profile memory usage patterns" data-he="פרופיל דפוסי שימוש בזיכרון">Profile memory usage patterns</li>
+                                <li data-en="Optimize data loading pipelines" data-he="אופטימיזציה של צינורות טעינת נתונים">Optimize data loading pipelines</li>
+                                <li data-en="Use mixed precision training (bf16)" data-he="השתמש באימון דיוק מעורב (bf16)">Use mixed precision training (bf16)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question" data-en="🏭 Production Question: What's the most critical factor when deploying AI training systems at scale?" data-he="🏭 שאלת ייצור: מהו הגורם הקריטי ביותר בפריסת מערכות אימון AI בקנה מידה?">🏭 Production Question: What's the most critical factor when deploying AI training systems at scale?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Using the latest GPU hardware" data-he="א) שימוש בחומרת GPU החדשה ביותר">A) Using the latest GPU hardware</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="B) Having the largest possible datasets" data-he="ב) קבלת מערכי הנתונים הגדולים ביותר האפשריים">B) Having the largest possible datasets</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="C) Reproducibility and experiment tracking" data-he="ג) יכולת שחזור ומעקב אחר ניסויים">C) Reproducibility and experiment tracking</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Training as fast as possible" data-he="ד) אימון מהיר ככל האפשר">D) Training as fast as possible</div>
+                    </div>
+                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
+                        <span data-en="Correct! While fast hardware and large datasets are important, the ability to reproduce experiments and track their configurations is critical for debugging, compliance, and building reliable systems. Without reproducibility, it's impossible to debug failures, meet regulatory requirements, or systematically improve model performance." data-he="נכון! בעוד שחומרה מהירה ומערכי נתונים גדולים חשובים, היכולת לשחזר ניסויים ולעקוב אחר התצורות שלהם קריטית לדיבוג, עמידה בתקנות ובניית מערכות אמינות. בלי יכולת שחזור, אי אפשר לדבג כשלים, לעמוד בדרישות רגולטוריות או לשפר באופן שיטתי את ביצועי המודל.">Correct! While fast hardware and large datasets are important, the ability to reproduce experiments and track their configurations is critical for debugging, compliance, and building reliable systems. Without reproducibility, it's impossible to debug failures, meet regulatory requirements, or systematically improve model performance.</span>
                     </div>
                 </div>
             </div>
@@ -944,6 +1549,31 @@
             preview.textContent = `RGB(${r}, ${g}, ${b})`;
         }
 
+        // LoRA Calculator functionality
+        function updateLoRACalculation() {
+            const d = parseInt(document.getElementById('matrixD')?.value) || 4096;
+            const k = parseInt(document.getElementById('matrixK')?.value) || 4096;
+            const r = parseInt(document.getElementById('loraRank')?.value) || 16;
+            
+            const originalParams = d * k;
+            const loraParams = (d * r) + (r * k);
+            const reduction = ((originalParams - loraParams) / originalParams * 100).toFixed(2);
+            
+            const resultsDiv = document.getElementById('loraResults');
+            if (resultsDiv) {
+                const currentLang = currentLanguage || 'en';
+                const originalText = currentLang === 'he' ? 'פרמטרים מקוריים' : 'Original Parameters';
+                const loraText = currentLang === 'he' ? 'פרמטרי LoRA' : 'LoRA Parameters';
+                const reductionText = currentLang === 'he' ? 'הפחתה' : 'Reduction';
+                
+                resultsDiv.innerHTML = `
+                    <p data-en="Original Parameters: ${originalParams.toLocaleString()}" data-he="${originalText}: ${originalParams.toLocaleString()}">${originalText}: ${originalParams.toLocaleString()}</p>
+                    <p data-en="LoRA Parameters: ${loraParams.toLocaleString()}" data-he="${loraText}: ${loraParams.toLocaleString()}">${loraText}: ${loraParams.toLocaleString()}</p>
+                    <p data-en="Reduction: ${reduction}%" data-he="${reductionText}: ${reduction}%">${reductionText}: ${reduction}%</p>
+                `;
+            }
+        }
+
         // Quiz functionality
         function checkAnswer(element, isCorrect) {
             const options = element.parentElement.children;
@@ -996,14 +1626,25 @@
             // Initialize RGB demo
             updateRGB();
             
+            // Initialize LoRA calculator
+            updateLoRACalculation();
+            
             // Setup event listeners with error handling
             const redSlider = document.getElementById('redSlider');
             const greenSlider = document.getElementById('greenSlider');
             const blueSlider = document.getElementById('blueSlider');
             
+            const matrixD = document.getElementById('matrixD');
+            const matrixK = document.getElementById('matrixK');
+            const loraRank = document.getElementById('loraRank');
+            
             if (redSlider) redSlider.addEventListener('input', updateRGB);
             if (greenSlider) greenSlider.addEventListener('input', updateRGB);
             if (blueSlider) blueSlider.addEventListener('input', updateRGB);
+            
+            if (matrixD) matrixD.addEventListener('input', updateLoRACalculation);
+            if (matrixK) matrixK.addEventListener('input', updateLoRACalculation);
+            if (loraRank) loraRank.addEventListener('input', updateLoRACalculation);
             
             console.log('<� AI-Toolkit Deep Dive loaded successfully!');
         });
