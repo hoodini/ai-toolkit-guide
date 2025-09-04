@@ -13,32 +13,32 @@
     <style>
         :root {
             /* Colorblind-friendly palette */
-            --primary-blue: #0066CC;
-            --secondary-purple: #6B46C1;
-            --accent-orange: #FF6B35;
-            --success-green: #059669;
-            --warning-yellow: #D97706;
-            --error-red: #DC2626;
+            --primary-blue: #007AFF;
+            --secondary-purple: #5856D6;
+            --accent-orange: #FF9500;
+            --success-green: #30D158;
+            --warning-yellow: #FFCC00;
+            --error-red: #FF3B30;
             
-            --primary-gray: #1F2937;
-            --secondary-gray: #6B7280;
-            --light-gray: #F3F4F6;
+            --primary-gray: #1D1D1F;
+            --secondary-gray: #8E8E93;
+            --light-gray: #F2F2F7;
             --white: #FFFFFF;
             --black: #000000;
             
             /* Glass effects */
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-dark: rgba(0, 0, 0, 0.1);
+            --glass: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-dark: rgba(0, 0, 0, 0.2);
             
             /* Gradients */
-            --gradient-primary: linear-gradient(135deg, #0066CC 0%, #6B46C1 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF6B35 0%, #D97706 100%);
-            --text-gradient: linear-gradient(90deg, #0066CC, #6B46C1);
+            --gradient-primary: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 50%, #3A3A3C 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF9500 0%, #FFCC00 100%);
+            --text-gradient: linear-gradient(90deg, #007AFF, #5856D6);
             
             /* Effects */
             --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --glow: 0 0 20px rgba(0, 102, 204, 0.3);
+            --glow: 0 0 20px rgba(0, 122, 255, 0.3);
             --border-radius: 16px;
             
             /* Typography */
@@ -255,7 +255,7 @@
         /* Interactive Demos */
         .interactive-demo {
             background: var(--glass-dark);
-            border: 2px solid rgba(0, 102, 204, 0.3);
+            border: 2px solid rgba(0, 122, 255, 0.3);
             border-radius: var(--border-radius);
             padding: 2rem;
             margin: 2rem 0;
@@ -300,13 +300,13 @@
             border-radius: 50%;
             background: var(--primary-blue);
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 102, 204, 0.5);
+            box-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
             transition: all 0.3s ease;
         }
 
         .slider::-webkit-slider-thumb:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 16px rgba(0, 102, 204, 0.7);
+            box-shadow: 0 0 16px rgba(0, 122, 255, 0.7);
         }
 
         .slider::-moz-range-thumb {
@@ -316,7 +316,7 @@
             background: var(--primary-blue);
             cursor: pointer;
             border: none;
-            box-shadow: 0 0 12px rgba(0, 102, 204, 0.5);
+            box-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
         }
 
         /* Buttons */
@@ -339,7 +339,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 102, 204, 0.4);
+            box-shadow: 0 12px 24px rgba(0, 122, 255, 0.4);
         }
 
         .btn:active {
@@ -443,7 +443,7 @@
 
         .quiz-option:hover {
             border-color: var(--primary-blue);
-            background: rgba(0, 102, 204, 0.1);
+            background: rgba(0, 122, 255, 0.1);
             transform: translateX(8px);
         }
 
@@ -463,7 +463,7 @@
 
         /* Formula Explanations */
         .formula-explanation {
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(107, 70, 193, 0.1));
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
             border-left: 4px solid var(--primary-blue);
             border-radius: var(--border-radius);
             padding: 2rem;
@@ -519,7 +519,7 @@
             color: var(--white);
             background: var(--primary-blue);
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 102, 204, 0.4);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.4);
         }
 
         /* Animations */
@@ -708,13 +708,13 @@
     <!-- Language Toggle -->
     <div class="language-toggle" id="languageToggle">
         <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-        <button class="lang-btn" onclick="switchLanguage('he')">âÑèÙê</button>
+        <button class="lang-btn" onclick="switchLanguage('he')">ï¿½ï¿½ï¿½ï¿½ï¿½</button>
     </div>
 
     <div class="hero-section">
-        <h1 class="hero-title" data-en="AI-Toolkit Deep Dive" data-he="æÜÙÜÔ âÞÕçÔ Ñ-AI-Toolkit">AI-Toolkit Deep Dive</h1>
-        <p class="hero-subtitle" data-en="From Physics to Production" data-he="ÞäÙÖÙçÔ ÜÙÙæÕè">From Physics to Production</p>
-        <p class="hero-description" data-en="A comprehensive journey through the mathematical, physical, and engineering principles that power modern AI image generation frameworks. Every concept explained from first principles." data-he="Þáâ ÞçÙã ÓèÚ ÔâçèÕàÕê ÔÞêÞØÙÙÝ, ÔäÙÖÙçÜÙÙÝ ÕÔÞÔàÓáÙÙÝ ÔÞàÙâÙÝ ÞáÒèÕê ÞÕÓèàÙÕê ÜÙæÙèê êÞÕàÕê AI. ÛÜ ÞÕéÒ ÞÕáÑè ÞâçèÕàÕê èÐéÕàÙÝ.">
+        <h1 class="hero-title" data-en="AI-Toolkit Deep Dive" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½-AI-Toolkit">AI-Toolkit Deep Dive</h1>
+        <p class="hero-subtitle" data-en="From Physics to Production" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">From Physics to Production</p>
+        <p class="hero-description" data-en="A comprehensive journey through the mathematical, physical, and engineering principles that power modern AI image generation frameworks. Every concept explained from first principles." data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AI. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.">
             A comprehensive journey through the mathematical, physical, and engineering principles 
             that power modern AI image generation frameworks. Every concept explained from first principles.
         </p>
@@ -724,62 +724,62 @@
         <!-- Chapter 1: The Physics of Digital Images -->
         <section class="section">
             <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 1: The Physics of Digital Images" data-he="äèç 1: ÔäÙÖÙçÔ éÜ êÞÕàÕê ÓÙÒÙØÜÙÕê">Chapter 1: The Physics of Digital Images</h2>
+                <h2 class="section-title" data-en="Chapter 1: The Physics of Digital Images" data-he="ï¿½ï¿½ï¿½ 1: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Chapter 1: The Physics of Digital Images</h2>
                 
-                <h3 class="subsection-title" data-en="1.1 Light and Photons: The Foundation" data-he="1.1 ÐÕè ÕäÕØÕàÙÝ: ÔÑáÙá">1.1 Light and Photons: The Foundation</h3>
-                <p data-en="Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level." data-he="ÜäàÙ éàÕÛÜ ÜÔÑÙß ÛÙæÓ AI ÞÙÙæè êÞÕàÕê, âÜÙàÕ ÜÔÑÙß ÞÔ êÞÕàÕê Ôß ÑâæÝ ÑèÞÔ ÔÑáÙáÙê ÑÙÕêè.">Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level.</p>
+                <h3 class="subsection-title" data-en="1.1 Light and Photons: The Foundation" data-he="1.1 ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½">1.1 Light and Photons: The Foundation</h3>
+                <p data-en="Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level." data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ AI ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.">Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level.</p>
                 
                 <div class="formula-explanation">
-                    <p data-en="<strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:" data-he="<strong>ÐÕè ÔÕÐ çèÙàÔ ÐÜçØèÕÞÒàØÙê</strong> âÝ ÐàèÒÙÔ ÔàêÕàÔ âÜ ÙÓÙ ÞéÕÕÐê äÜÐàç:"><strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:</p>
-                    <div class="equation-box">E = hf = hc/»</div>
-                    <p data-en="Where:" data-he="ÛÐéè:">Where:</p>
+                    <p data-en="<strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:" data-he="<strong>ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</strong> ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½:"><strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:</p>
+                    <div class="equation-box">E = hf = hc/ï¿½</div>
+                    <p data-en="Where:" data-he="ï¿½ï¿½ï¿½ï¿½:">Where:</p>
                     <ul>
-                        <li><span class="highlight">E</span> = <span data-en="Energy of a photon" data-he="ÐàèÒÙÔ éÜ äÕØÕß">Energy of a photon</span></li>
-                        <li><span class="highlight">h</span> = <span data-en="Planck's constant (6.626 × 10{³t JÅs)" data-he="çÑÕâ äÜÐàç (6.626 × 10{³t JÅs)">Planck's constant (6.626 × 10{³t JÅs)</span></li>
-                        <li><span class="highlight">f</span> = <span data-en="Frequency of the light" data-he="êÓÙèÕê ÔÐÕè">Frequency of the light</span></li>
-                        <li><span class="highlight">c</span> = <span data-en="Speed of light (3 × 10x m/s)" data-he="ÞÔÙèÕê ÔÐÕè (3 × 10x m/s)">Speed of light (3 × 10x m/s)</span></li>
-                        <li><span class="highlight">»</span> = <span data-en="Wavelength" data-he="ÐÕèÚ ÒÜ">Wavelength</span></li>
+                        <li><span class="highlight">E</span> = <span data-en="Energy of a photon" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">Energy of a photon</span></li>
+                        <li><span class="highlight">h</span> = <span data-en="Planck's constant (6.626 ï¿½ 10{ï¿½t Jï¿½s)" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (6.626 ï¿½ 10{ï¿½t Jï¿½s)">Planck's constant (6.626 ï¿½ 10{ï¿½t Jï¿½s)</span></li>
+                        <li><span class="highlight">f</span> = <span data-en="Frequency of the light" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½">Frequency of the light</span></li>
+                        <li><span class="highlight">c</span> = <span data-en="Speed of light (3 ï¿½ 10x m/s)" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (3 ï¿½ 10x m/s)">Speed of light (3 ï¿½ 10x m/s)</span></li>
+                        <li><span class="highlight">ï¿½</span> = <span data-en="Wavelength" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½">Wavelength</span></li>
                     </ul>
                 </div>
 
-                <h3 class="subsection-title" data-en="1.2 From Photons to Pixels: The Display Physics" data-he="1.2 ÞäÕØÕàÙÝ ÜäÙçáÜÙÝ: äÙÖÙçê ÔêæÕÒÔ">1.2 From Photons to Pixels: The Display Physics</h3>
+                <h3 class="subsection-title" data-en="1.2 From Photons to Pixels: The Display Physics" data-he="1.2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">1.2 From Photons to Pixels: The Display Physics</h3>
                 
                 <div class="interactive-demo">
-                    <h4 data-en="RGB Color Mixing Demonstration" data-he="ÔÓÒÞê âèÑÕÑ æÑâÙ RGB">RGB Color Mixing Demonstration</h4>
-                    <p data-en="Adjust the RGB values to see how colors are created from three primary light sources:" data-he="ÔêÐÝ Ðê âèÛÙ RGB ÛÓÙ ÜèÐÕê ÛÙæÓ àÕæèÙÝ æÑâÙÝ ÞéÜÕéÔ ÞçÕèÕê ÐÕè èÐéÙÙÝ:">Adjust the RGB values to see how colors are created from three primary light sources:</p>
+                    <h4 data-en="RGB Color Mixing Demonstration" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ RGB">RGB Color Mixing Demonstration</h4>
+                    <p data-en="Adjust the RGB values to see how colors are created from three primary light sources:" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ RGB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:">Adjust the RGB values to see how colors are created from three primary light sources:</p>
                     
                     <div class="rgb-demo">
                         <div>
                             <div class="demo-controls">
-                                <label><span data-en="Red:" data-he="ÐÓÕÝ:">Red:</span> <input type="range" class="slider" id="redSlider" min="0" max="255" value="255" aria-label="Red value"></label>
+                                <label><span data-en="Red:" data-he="ï¿½ï¿½ï¿½ï¿½:">Red:</span> <input type="range" class="slider" id="redSlider" min="0" max="255" value="255" aria-label="Red value"></label>
                                 <span id="redValue">255</span>
                             </div>
                             <div class="demo-controls">
-                                <label><span data-en="Green:" data-he="ÙèÕç:">Green:</span> <input type="range" class="slider" id="greenSlider" min="0" max="255" value="255" aria-label="Green value"></label>
+                                <label><span data-en="Green:" data-he="ï¿½ï¿½ï¿½ï¿½:">Green:</span> <input type="range" class="slider" id="greenSlider" min="0" max="255" value="255" aria-label="Green value"></label>
                                 <span id="greenValue">255</span>
                             </div>
                             <div class="demo-controls">
-                                <label><span data-en="Blue:" data-he="Û×ÕÜ:">Blue:</span> <input type="range" class="slider" id="blueSlider" min="0" max="255" value="255" aria-label="Blue value"></label>
+                                <label><span data-en="Blue:" data-he="ï¿½ï¿½ï¿½ï¿½:">Blue:</span> <input type="range" class="slider" id="blueSlider" min="0" max="255" value="255" aria-label="Blue value"></label>
                                 <span id="blueValue">255</span>
                             </div>
                         </div>
                         <div>
                             <div class="color-preview" id="colorPreview"></div>
-                            <p data-en="Resulting Color" data-he="ÔæÑâ ÔÞêçÑÜ">Resulting Color</p>
+                            <p data-en="Resulting Color" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Resulting Color</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="quiz-section">
-                    <div class="quiz-question" data-en=">à Test Your Understanding: Why do we use RGB instead of other color combinations?" data-he=">à Ñ×ß Ðê ÔÔÑàÔ éÜÚ: ÞÓÕâ ÐàÕ ÞéêÞéÙÝ Ñ-RGB ÑÞçÕÝ æÙèÕäÙ æÑâÙÝ Ð×èÙÝ?">>à Test Your Understanding: Why do we use RGB instead of other color combinations?</div>
+                    <div class="quiz-question" data-en=">ï¿½ Test Your Understanding: Why do we use RGB instead of other color combinations?" data-he=">ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½-RGB ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½?">>ï¿½ Test Your Understanding: Why do we use RGB instead of other color combinations?</div>
                     <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Because they're the brightest colors" data-he="Ð) ÛÙ ÔÝ ÔæÑâÙÝ ÔÑÔÙèÙÝ ÑÙÕêè">A) Because they're the brightest colors</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) Because they match the wavelength sensitivity of human cone cells" data-he="Ñ) ÛÙ ÔÝ êÕÐÞÙÝ Ðê èÒÙéÕê ÐÕèÚ ÔÒÜ éÜ êÐÙ ÔçÕàÕá ÔÐàÕéÙÙÝ">B) Because they match the wavelength sensitivity of human cone cells</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Because they're easier to manufacture" data-he="Ò) ÛÙ ÔÝ çÜÙÝ ÙÕêè ÜÙÙæÕè">C) Because they're easier to manufacture</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Because they use less power" data-he="Ó) ÛÙ ÔÝ æÕèÛÙÝ ä×Õê ×éÞÜ">D) Because they use less power</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Because they're the brightest colors" data-he="ï¿½) ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">A) Because they're the brightest colors</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) Because they match the wavelength sensitivity of human cone cells" data-he="ï¿½) ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">B) Because they match the wavelength sensitivity of human cone cells</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Because they're easier to manufacture" data-he="ï¿½) ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">C) Because they're easier to manufacture</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Because they use less power" data-he="ï¿½) ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½">D) Because they use less power</div>
                     </div>
                     <div id="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system." data-he="àÛÕß! ÜâÙàÙÙÝ ÔÐàÕéÙÕê Ùé éÜÕéÔ áÕÒÙ êÐÙ çÕàÕá èÒÙéÙÝ ÜÐÕèÛÙ ÒÜ éÕàÙÝ: S-çÕàÕáÙÝ (~420nm), M-çÕàÕáÙÝ (~534nm), Õ-L-çÕàÕáÙÝ (~564nm), ÔêÕÐÞÙÝ ÑÒÓÕÜ ÜÐÕè Û×ÕÜ, ÙèÕç ÕÐÓÕÝ. êæÕÒÕê RGB ÞàæÜÕê Ðê ÞâèÛê ÔèÐÙÙÔ ÔêÜê-ÛèÕÞØÙê ÔÖÕ.">Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system.</span>
+                        <span data-en="Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system." data-he="ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½: S-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (~420nm), M-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (~534nm), ï¿½-L-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (~564nm), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RGB ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.">Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system.</span>
                     </div>
                 </div>
             </div>
@@ -788,55 +788,55 @@
         <!-- Summary Section -->
         <section class="section">
             <div class="glass-card">
-                <h2 class="section-title" data-en="<“ Summary & Next Steps" data-he="<“ áÙÛÕÝ ÕæâÓÙÝ ÔÑÐÙÝ"><“ Summary & Next Steps</h2>
+                <h2 class="section-title" data-en="<ï¿½ Summary & Next Steps" data-he="<ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½"><ï¿½ Summary & Next Steps</h2>
                 
                 <div class="grid">
                     <div class="feature-card slide-in-left">
-                        <h4 data-en="=Ú What You've Learned" data-he="=Ú ÞÔ ÜÞÓê">=Ú What You've Learned</h4>
+                        <h4 data-en="=ï¿½ What You've Learned" data-he="=ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½">=ï¿½ What You've Learned</h4>
                         <ul>
-                            <li data-en="Physics of digital displays and images" data-he="äÙÖÙçÔ éÜ êæÕÒÕê ÓÙÒÙØÜÙÕê ÕêÞÕàÕê">Physics of digital displays and images</li>
-                            <li data-en="Neural network mathematics from first principles" data-he="ÞêÞØÙçê èéêÕê âæÑÙÕê ÞâçèÕàÕê èÐéÕàÙÝ">Neural network mathematics from first principles</li>
-                            <li data-en="Diffusion model theory and implementation" data-he="êÙÐÕèÙÔ ÕÙÙéÕÝ ÞÕÓÜÙ ÓÙäÕÖÙÔ">Diffusion model theory and implementation</li>
-                            <li data-en="LoRA mathematical foundations" data-he="ÙáÕÓÕê ÞêÞØÙÙÝ éÜ LoRA">LoRA mathematical foundations</li>
-                            <li data-en="AI-Toolkit architecture analysis" data-he="àÙêÕ× ÐèÛÙØçØÕèê AI-Toolkit">AI-Toolkit architecture analysis</li>
-                            <li data-en="Framework design principles" data-he="âçèÕàÕê âÙæÕÑ ÞáÒèê">Framework design principles</li>
+                            <li data-en="Physics of digital displays and images" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Physics of digital displays and images</li>
+                            <li data-en="Neural network mathematics from first principles" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Neural network mathematics from first principles</li>
+                            <li data-en="Diffusion model theory and implementation" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Diffusion model theory and implementation</li>
+                            <li data-en="LoRA mathematical foundations" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ LoRA">LoRA mathematical foundations</li>
+                            <li data-en="AI-Toolkit architecture analysis" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AI-Toolkit">AI-Toolkit architecture analysis</li>
+                            <li data-en="Framework design principles" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">Framework design principles</li>
                         </ul>
                     </div>
                     
                     <div class="feature-card fade-in">
-                        <h4 data-en="=à Practical Applications" data-he="=à ÙÙéÕÞÙÝ ÞâéÙÙÝ">=à Practical Applications</h4>
+                        <h4 data-en="=ï¿½ Practical Applications" data-he="=ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">=ï¿½ Practical Applications</h4>
                         <ul>
-                            <li data-en="Train custom LoRA models" data-he="ÐÞß ÞÕÓÜÙ LoRA ÞÕêÐÞÙÝ">Train custom LoRA models</li>
-                            <li data-en="Optimize memory usage for large models" data-he="ÞØÑ éÙÞÕé ÑÖÙÛèÕß âÑÕè ÞÕÓÜÙÝ ÒÓÕÜÙÝ">Optimize memory usage for large models</li>
-                            <li data-en="Debug training issues" data-he="êçß ÑâÙÕê ÐÙÞÕß">Debug training issues</li>
-                            <li data-en="Design novel architectures" data-he="âæÑ ÐèÛÙØçØÕèÕê ×ÓéàÙÕê">Design novel architectures</li>
-                            <li data-en="Build production systems" data-he="ÑàÔ ÞâèÛÕê ÙÙæÕè">Build production systems</li>
-                            <li data-en="Contribute to open source" data-he="êèÕÝ ÜçÕÓ äêÕ×">Contribute to open source</li>
+                            <li data-en="Train custom LoRA models" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ LoRA ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Train custom LoRA models</li>
+                            <li data-en="Optimize memory usage for large models" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Optimize memory usage for large models</li>
+                            <li data-en="Debug training issues" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">Debug training issues</li>
+                            <li data-en="Design novel architectures" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Design novel architectures</li>
+                            <li data-en="Build production systems" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">Build production systems</li>
+                            <li data-en="Contribute to open source" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½">Contribute to open source</li>
                         </ul>
                     </div>
                     
                     <div class="feature-card slide-in-right">
-                        <h4 data-en="=€ Advanced Topics to Explore" data-he="=€ àÕéÐÙÝ ÞêçÓÞÙÝ Ü×çÙèÔ">=€ Advanced Topics to Explore</h4>
+                        <h4 data-en="=ï¿½ Advanced Topics to Explore" data-he="=ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">=ï¿½ Advanced Topics to Explore</h4>
                         <ul>
-                            <li data-en="Attention mechanisms in transformers" data-he="ÞàÒàÕàÙ êéÕÞê ÜÑ ÑØèàáäÕèÞèÙÝ">Attention mechanisms in transformers</li>
-                            <li data-en="Advanced sampling algorithms" data-he="ÐÜÒÕèÙêÞÙ ÓÒÙÞÔ ÞêçÓÞÙÝ">Advanced sampling algorithms</li>
-                            <li data-en="Multi-modal training" data-he="ÐÙÞÕß èÑ-ÞÕÓÜÙ">Multi-modal training</li>
-                            <li data-en="Distributed training strategies" data-he="ÐáØèØÒÙÕê ÐÙÞÕß ÞÑÕÖè">Distributed training strategies</li>
-                            <li data-en="Model compression techniques" data-he="ØÛàÙçÕê Ó×Ùáê ÞÕÓÜÙÝ">Model compression techniques</li>
-                            <li data-en="Hardware-specific optimizations" data-he="ÐÕäØÙÞÙÖæÙÕê áäæÙäÙÕê Ü×ÕÞèÔ">Hardware-specific optimizations</li>
+                            <li data-en="Attention mechanisms in transformers" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Attention mechanisms in transformers</li>
+                            <li data-en="Advanced sampling algorithms" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Advanced sampling algorithms</li>
+                            <li data-en="Multi-modal training" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½">Multi-modal training</li>
+                            <li data-en="Distributed training strategies" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½">Distributed training strategies</li>
+                            <li data-en="Model compression techniques" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Model compression techniques</li>
+                            <li data-en="Hardware-specific optimizations" data-he="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Hardware-specific optimizations</li>
                         </ul>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin: 3rem 0;">
-                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Ready to Build the Future?" data-he="ÞÕÛß ÜÑàÕê Ðê ÔâêÙÓ?">Ready to Build the Future?</h3>
-                    <p style="font-size: var(--font-size-xl); margin-bottom: 2rem; line-height: 1.6;" data-en="You now have the foundational knowledge to create innovative AI frameworks. The next breakthrough could be yours!" data-he="Ûâê Ùé ÜÚ Ðê ÔÙÓâ ÔÑáÙáÙ ÜÙæÕè ÞáÒèÕê AI ×ÓéàÙÕê. ÔäèÙæÔ ÔÑÐÔ ÙÛÕÜÔ ÜÔÙÕê éÜÚ!">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Ready to Build the Future?" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½?">Ready to Build the Future?</h3>
+                    <p style="font-size: var(--font-size-xl); margin-bottom: 2rem; line-height: 1.6;" data-en="You now have the foundational knowledge to create innovative AI frameworks. The next breakthrough could be yours!" data-he="ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½!">
                         You now have the foundational knowledge to create innovative AI frameworks. 
                         The next breakthrough could be yours!
                     </p>
                     <div class="pulse">
-                        <button class="btn" style="font-size: var(--font-size-lg); padding: 1.25rem 2.5rem;" onclick="showCongrats()" data-en="<¯ Start Building Your Framework" data-he="<¯ Ôê×Ü ÜÑàÕê Ðê ÔÞáÒèê éÜÚ">
-                            <¯ Start Building Your Framework
+                        <button class="btn" style="font-size: var(--font-size-lg); padding: 1.25rem 2.5rem;" onclick="showCongrats()" data-en="<ï¿½ Start Building Your Framework" data-he="<ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½">
+                            <ï¿½ Start Building Your Framework
                         </button>
                     </div>
                 </div>
@@ -846,14 +846,14 @@
 
     <footer class="footer">
         <div class="container">
-            <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Created by Yuval Avidani" data-he="àÕæè âÜ ÙÓÙ ÙÕÑÜ ÐÑÙÓàÙ">Created by Yuval Avidani</h3>
+            <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Created by Yuval Avidani" data-he="ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">Created by Yuval Avidani</h3>
             <div class="author-info">
                 <a href="https://yuv.ai" class="author-link" target="_blank" rel="noopener noreferrer">< YUV.AI</a>
                 <a href="https://twitter.com/yuvalav" class="author-link" target="_blank" rel="noopener noreferrer">=& @yuvalav</a>
                 <a href="https://github.com/hoodini" class="author-link" target="_blank" rel="noopener noreferrer">=1 @hoodini</a>
                 <a href="https://linktr.ee/yuvai" class="author-link" target="_blank" rel="noopener noreferrer">= Links</a>
             </div>
-            <p style="margin-top: 2rem; color: rgba(255, 255, 255, 0.8); font-style: italic;" data-en="&quot;Understanding the underlying principles is the first step to innovation.&quot;" data-he="&quot;ÔÑàê ÔâçèÕàÕê ÔÑáÙáÙÙÝ ÔÙÐ ÔæâÓ ÔèÐéÕß Ü×ÓéàÕê.&quot;">
+            <p style="margin-top: 2rem; color: rgba(255, 255, 255, 0.8); font-style: italic;" data-en="&quot;Understanding the underlying principles is the first step to innovation.&quot;" data-he="&quot;ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.&quot;">
                 "Understanding the underlying principles is the first step to innovation."
             </p>
         </div>
@@ -985,8 +985,8 @@
 
         function showCongrats() {
             const message = currentLanguage === 'he' 
-                ? '<‰ ÞÖÜ ØÕÑ! ÔéÜÞê Ðê ÔæÜÙÜÔ ÔÞçÙäÔ Ñ-AI-Toolkit. ÐêÔ Ûâê ÞÕÛß ÜÑàÕê Ðê ÔÓÕè ÔÑÐ éÜ ÞáÒèÕê AI!'
-                : '<‰ Congratulations! You\'ve completed the comprehensive AI-Toolkit deep dive. You\'re now ready to build the next generation of AI frameworks!';
+                ? '<ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½-AI-Toolkit. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AI!'
+                : '<ï¿½ Congratulations! You\'ve completed the comprehensive AI-Toolkit deep dive. You\'re now ready to build the next generation of AI frameworks!';
             
             alert(message);
         }
@@ -1005,7 +1005,7 @@
             if (greenSlider) greenSlider.addEventListener('input', updateRGB);
             if (blueSlider) blueSlider.addEventListener('input', updateRGB);
             
-            console.log('<‰ AI-Toolkit Deep Dive loaded successfully!');
+            console.log('<ï¿½ AI-Toolkit Deep Dive loaded successfully!');
         });
 
         // Handle errors gracefully
