@@ -6,6 +6,12 @@
     <title>AI Image Generation: Complete Professor's Guide | YUV.AI</title>
     <meta name="description" content="Learn AI image generation from mathematics to implementation. Created by Yuval Avidani (YUV.AI)">
     <meta name="author" content="Yuval Avidani">
+    
+    <!-- Google Fonts for Professional Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -14,7 +20,7 @@
         }
 
         :root {
-            /* Apple-inspired Color System */
+            /* Authentic Apple Color System (iOS 17/macOS Sonoma) */
             --apple-blue: #007AFF;
             --apple-blue-light: #5AC8FA;
             --apple-purple: #AF52DE;
@@ -26,28 +32,73 @@
             --apple-teal: #5AC8FA;
             --apple-indigo: #5856D6;
             
-            /* Modal and Notification Colors */
-            --modal-backdrop: rgba(0, 0, 0, 0.4);
-            --notification-success: #34C759;
-            --notification-error: #FF3B30;
-            --notification-info: #007AFF;
-            --notification-warning: #FF9500;
+            /* Apple System Colors */
+            --system-blue: #007AFF;
+            --system-green: #34C759;
+            --system-indigo: #5856D6;
+            --system-orange: #FF9500;
+            --system-pink: #FF2D92;
+            --system-purple: #AF52DE;
+            --system-red: #FF3B30;
+            --system-teal: #5AC8FA;
+            --system-yellow: #FFCC00;
             
-            /* Background System */
+            /* Apple Background System */
             --bg-primary: #FFFFFF;
             --bg-secondary: #F2F2F7;
             --bg-tertiary: #FFFFFF;
             --bg-grouped: #F2F2F7;
+            --bg-system-grouped: #F2F2F7;
+            --bg-secondary-grouped: #FFFFFF;
+            --bg-tertiary-grouped: #F2F2F7;
             
-            /* Text System */
+            /* Apple Text System */
             --text-primary: #000000;
             --text-secondary: #3C3C43;
-            --text-tertiary: #3C3C4399;
-            --text-quaternary: #3C3C4366;
+            --text-tertiary: rgba(60, 60, 67, 0.6);
+            --text-quaternary: rgba(60, 60, 67, 0.3);
+            --text-placeholder: rgba(60, 60, 67, 0.3);
             
-            /* Fill System */
-            --fill-primary: #78788033;
-            --fill-secondary: #78788028;
+            /* Apple Fill System */
+            --fill-primary: rgba(120, 120, 128, 0.2);
+            --fill-secondary: rgba(120, 120, 128, 0.16);
+            --fill-tertiary: rgba(118, 118, 128, 0.12);
+            --fill-quaternary: rgba(116, 116, 128, 0.08);
+            
+            /* Apple Gray System */
+            --gray-1: #8E8E93;
+            --gray-2: #AEAEB2;
+            --gray-3: #C7C7CC;
+            --gray-4: #D1D1D6;
+            --gray-5: #E5E5EA;
+            --gray-6: #F2F2F7;
+            
+            /* Apple Label Colors */
+            --label-primary: #000000;
+            --label-secondary: rgba(60, 60, 67, 0.6);
+            --label-tertiary: rgba(60, 60, 67, 0.3);
+            --label-quaternary: rgba(60, 60, 67, 0.18);
+            
+            /* Modal and Notification Colors */
+            --modal-backdrop: rgba(0, 0, 0, 0.4);
+            --notification-success: var(--system-green);
+            --notification-error: var(--system-red);
+            --notification-info: var(--system-blue);
+            --notification-warning: var(--system-orange);
+            
+            /* Apple Shadow System */
+            --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-3: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-4: 0 10px 24px rgba(0, 0, 0, 0.07);
+            --shadow-5: 0 15px 35px rgba(0, 0, 0, 0.1);
+            
+            /* Apple Border Radius System */
+            --radius-small: 6px;
+            --radius-medium: 10px;
+            --radius-large: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
             --fill-tertiary: #7676801F;
             --fill-quaternary: #74748014;
             
@@ -82,23 +133,105 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Hebrew', sans-serif;
-            background: linear-gradient(180deg, #F2F2F7 0%, #FFFFFF 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
+            /* Apple-authentic font stack */
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', Inter, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, 'Noto Sans Hebrew', sans-serif;
+            background: var(--bg-primary);
+            color: var(--label-primary);
+            line-height: 1.47;
             font-size: 17px;
+            font-weight: 400;
             margin: 0;
             padding: 80px 0 0 0;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             direction: ltr;
             transition: direction 0.3s ease;
+            min-height: 100vh;
         }
         
         body.rtl {
             direction: rtl;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, 'Heebo', 'Rubik', 'Noto Sans Hebrew', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', Inter, 'Segoe UI', system-ui, 'Heebo', 'Rubik', 'Noto Sans Hebrew', Arial, sans-serif;
+        }
+        
+        /* Apple Typography Scale */
+        .text-large-title {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: 0.41px;
+        }
+        
+        .text-title-1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.14;
+            letter-spacing: 0.36px;
+        }
+        
+        .text-title-2 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.18;
+            letter-spacing: 0.35px;
+        }
+        
+        .text-title-3 {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.38px;
+        }
+        
+        .text-headline {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.29;
+            letter-spacing: -0.43px;
+        }
+        
+        .text-body {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.47;
+            letter-spacing: -0.43px;
+        }
+        
+        .text-callout {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.31;
+            letter-spacing: -0.32px;
+        }
+        
+        .text-subheadline {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.33;
+            letter-spacing: -0.24px;
+        }
+        
+        .text-footnote {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.38;
+            letter-spacing: -0.08px;
+        }
+        
+        .text-caption-1 {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.33;
+            letter-spacing: 0;
+        }
+        
+        .text-caption-2 {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.27;
+            letter-spacing: 0.06px;
         }
 
         /* Add floating particles animation */
@@ -136,12 +269,14 @@
             top: 0;
             left: 0;
             right: 0;
-            background: var(--modal-glass);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 0.5px solid rgba(60, 60, 67, 0.12);
             z-index: 1000;
             padding: 12px 20px;
-            box-shadow: var(--shadow-1);
+            box-shadow: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .header-content {
@@ -163,12 +298,11 @@
         
         .brand-logo {
             font-size: 18px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--apple-blue), var(--apple-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            color: var(--system-blue);
             text-decoration: none;
-            transition: transform 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            letter-spacing: -0.5px;
         }
         
         .brand-logo:hover {
@@ -182,20 +316,22 @@
         }
         
         .brand-link {
-            color: var(--apple-blue);
+            color: var(--system-blue);
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
             padding: 6px 12px;
             border-radius: var(--radius-medium);
             background: var(--fill-quaternary);
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 0.5px solid transparent;
         }
         
         .brand-link:hover {
-            background: var(--apple-blue);
+            background: var(--system-blue);
             color: white;
-            transform: translateY(-1px);
+            transform: translateY(-0.5px);
+            box-shadow: var(--shadow-2);
         }
         
         .controls-section {
@@ -205,7 +341,7 @@
         }
         
         .lang-toggle {
-            background: var(--apple-blue);
+            background: var(--system-blue);
             color: white;
             border: none;
             border-radius: var(--radius-medium);
@@ -213,20 +349,22 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: var(--shadow-1);
         }
         
         .lang-toggle:hover {
             background: #0056CC;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-2);
+            transform: translateY(-0.5px);
+            box-shadow: var(--shadow-3);
         }
         
         .lang-toggle:active {
             transform: translateY(0);
+            box-shadow: var(--shadow-1);
         }
 
         .lecture-header {
@@ -1976,6 +2114,151 @@
             color: var(--text-primary);
         }
         
+        /* Neural Network Animation Styles */
+        .attention-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .attention-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .attention-cell:hover {
+            transform: scale(1.1);
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-medium);
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            background: var(--fill-tertiary);
+            transform: translateX(4px);
+        }
+        
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--system-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: var(--label-primary);
+        }
+        
+        .neuron-ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(52, 199, 89, 0.4);
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 1s ease-out;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        /* Fix dark text on dark background issues */
+        .mathematical-explanation {
+            background: var(--bg-secondary) !important;
+            color: var(--label-primary) !important;
+            border: 1px solid var(--gray-5);
+        }
+        
+        .mathematical-explanation h4 {
+            color: var(--label-primary) !important;
+        }
+        
+        .demo-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--gray-5);
+        }
+        
+        .demo-title {
+            color: var(--label-primary) !important;
+        }
+        
+        /* Fix section backgrounds for better contrast */
+        .section {
+            background: var(--bg-primary);
+            border: 1px solid var(--gray-6);
+            color: var(--label-primary);
+        }
+        
+        .key-concept {
+            background: var(--bg-secondary) !important;
+            color: var(--label-primary) !important;
+            border-left: 4px solid var(--system-blue) !important;
+        }
+        
+        .key-concept h4 {
+            color: var(--system-blue) !important;
+        }
+        
+        /* Practice Questions - Fix contrast */
+        .practice-section {
+            background: var(--bg-primary);
+            color: var(--label-primary);
+        }
+        
+        .practice-title {
+            color: var(--label-primary) !important;
+        }
+        
+        .question-card {
+            background: var(--bg-secondary);
+            color: var(--label-primary);
+            border: 1px solid var(--gray-5);
+        }
+        
+        .question-text {
+            color: var(--label-primary) !important;
+        }
+        
+        /* Code blocks - improve readability */
+        pre, code {
+            background: var(--gray-6) !important;
+            color: var(--label-primary) !important;
+            border: 1px solid var(--gray-5);
+        }
+        
         /* Mobile Responsive Styles */\n        @media (max-width: 768px) {\n            body {\n                font-size: 15px;\n                padding-top: 120px;\n            }\n            \n            .top-header {\n                padding: 10px 15px;\n            }\n            \n            .header-content {\n                justify-content: center;\n                text-align: center;\n            }\n            \n            .brand-section {\n                width: 100%;\n                justify-content: center;\n            }\n            \n            .controls-section {\n                width: 100%;\n                justify-content: center;\n            }\n            \n            .container {\n                padding: 20px 15px;\n            }\n            \n            .lecture-header h1 {\n                font-size: 28px;\n            }\n            \n            .section {\n                padding: 20px;\n                margin: 15px 10px;\n            }\n            \n            .demo-container {\n                padding: 15px;\n            }\n            \n            .mathematical-explanation pre {\n                font-size: 12px;\n                overflow-x: auto;\n            }\n            \n            .pixel-demo {\n                grid-template-columns: repeat(8, 1fr);\n                gap: 2px;\n            }\n            \n            .pixel-box {\n                width: 35px;\n                height: 35px;\n            }\n            \n            .rgb-slider-container {\n                width: 100%;\n            }\n            \n            .rgb-slider-container input[type=\"range\"] {\n                width: 100%;\n            }\n            \n            .practice-section {\n                padding: 20px;\n                margin: 20px 10px;\n            }\n            \n            .modal-content {\n                width: 90%;\n                margin: 20px;\n            }\n            \n            .btn-professor, .btn-apple {\n                font-size: 14px;\n                padding: 10px 16px;\n                width: 100%;\n                margin: 5px 0;\n            }\n            \n            /* Stack buttons on mobile */\n            .demo-container > div[style*=\"display: flex\"] {\n                flex-direction: column;\n                align-items: stretch;\n            }\n            \n            /* Responsive tables */\n            table {\n                font-size: 12px;\n            }\n            \n            /* Responsive code blocks */\n            code {\n                font-size: 12px;\n            }\n        }\n        \n        @media (max-width: 480px) {\n            body {\n                font-size: 14px;\n            }\n            \n            .lecture-header h1 {\n                font-size: 24px;\n            }\n            \n            h2 {\n                font-size: 20px;\n            }\n            \n            h3 {\n                font-size: 18px;\n            }\n            \n            .pixel-demo {\n                grid-template-columns: repeat(5, 1fr);\n            }\n            \n            .pixel-box {\n                width: 28px;\n                height: 28px;\n            }\n            \n            .brand-logo {\n                font-size: 16px;\n            }\n            \n            .brand-link {\n                font-size: 12px;\n                padding: 4px 8px;\n            }\n        }\n        \n        /* RTL Specific Styles */\n        body.rtl .mathematical-explanation pre {\n            direction: ltr;\n            text-align: left;\n        }\n        \n        body.rtl .code-block {\n            direction: ltr;\n            text-align: left;\n        }\n        \n        body.rtl ul, body.rtl ol {\n            padding-right: 30px;\n            padding-left: 0;\n        }\n        \n        body.rtl .brand-links {\n            flex-direction: row-reverse;\n        }\n        \n        /* Hebrew Font Improvements */\n        body.rtl {\n            line-height: 1.8;\n        }\n        \n        body.rtl h1, body.rtl h2, body.rtl h3, body.rtl h4 {\n            font-weight: 700;\n            letter-spacing: 0;\n        }
     </style>
 </head>
@@ -3391,39 +3674,168 @@ Total: ~<span class="code-number">21GB</span> (90% reduction!)</code></pre>
         }
 
         function addNoiseToPixels() {
-            const pixels = document.querySelectorAll('.pixel');
-            pixels.forEach(pixel => {
-                const noise = Math.random() * 0.5 + 0.5;
-                const currentColor = window.getComputedStyle(pixel).backgroundColor;
-                pixel.style.backgroundColor = currentColor;
-                pixel.style.filter = `brightness(${noise}) contrast(${noise})`;
+            const pixels = document.querySelectorAll('.pixel-box');
+            if (pixels.length === 0) {
+                // Fallback: create pixels if they don't exist
+                initializePixelMatrix();
+                setTimeout(() => addNoiseToPixels(), 100);
+                return;
+            }
+            
+            pixels.forEach((pixel, index) => {
+                // Add Gaussian noise effect with animation
+                setTimeout(() => {
+                    const noise = gaussianRandom(0.8, 0.2); // Mean 0.8, std 0.2
+                    const currentBg = window.getComputedStyle(pixel).backgroundColor;
+                    
+                    // Parse RGB values
+                    const rgb = currentBg.match(/\\d+/g);
+                    if (rgb && rgb.length >= 3) {
+                        const r = Math.max(0, Math.min(255, parseInt(rgb[0]) * noise));
+                        const g = Math.max(0, Math.min(255, parseInt(rgb[1]) * noise));
+                        const b = Math.max(0, Math.min(255, parseInt(rgb[2]) * noise));
+                        
+                        pixel.style.backgroundColor = `rgb(${Math.floor(r)}, ${Math.floor(g)}, ${Math.floor(b)})`;
+                        pixel.style.transform = 'scale(1.1)';
+                        
+                        setTimeout(() => {
+                            pixel.style.transform = 'scale(1)';
+                        }, 150);
+                    }
+                }, index * 50);
             });
+            
+            // Show success notification
+            const t = translations[currentLanguage] || translations['en'];
+            showNotification('🌀 Gaussian Noise Applied!', 'Watch how noise affects each pixel differently - this is how AI learns!', 'success');
         }
 
         function clearPixelMatrix() {
-            const pixels = document.querySelectorAll('.pixel');
-            pixels.forEach(pixel => {
-                pixel.style.backgroundColor = '#1e293b';
-                pixel.style.filter = 'none';
+            const pixels = document.querySelectorAll('.pixel-box');
+            pixels.forEach((pixel, index) => {
+                setTimeout(() => {
+                    pixel.style.backgroundColor = `hsl(${220 + index * 3}, 20%, 30%)`;
+                    pixel.style.filter = 'none';
+                    pixel.style.transform = 'scale(0.95)';
+                    
+                    setTimeout(() => {
+                        pixel.style.transform = 'scale(1)';
+                    }, 150);
+                }, index * 20);
             });
         }
+        
+        // Gaussian random number generator (Box-Muller transform)
+        function gaussianRandom(mean = 0, std = 1) {
+            const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+            const v = Math.random();
+            const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+            return z * std + mean;
+        }
 
-        // Neural Network Functions
+        // Neural Network Animation System
+        function initializeStepIndicator() {
+            // Initialize step-by-step animation system for neural networks
+            const stepContainer = document.getElementById('stepIndicator');
+            if (!stepContainer) return;
+            
+            const steps = [
+                'Input Layer: Raw pixel data (RGB values)',
+                'Hidden Layer 1: Feature extraction (edges, textures)', 
+                'Hidden Layer 2: Pattern recognition (shapes, objects)',
+                'Output Layer: Classification/Generation decisions'
+            ];
+            
+            stepContainer.innerHTML = steps.map((step, index) => 
+                `<div class="step-item" id="step-${index}">
+                    <div class="step-number">${index + 1}</div>
+                    <div class="step-text">${step}</div>
+                </div>`
+            ).join('');
+        }
+        
+        function initializeAttentionMatrix() {
+            // Initialize attention mechanism visualization
+            const attentionContainer = document.getElementById('attentionMatrix');
+            if (!attentionContainer) return;
+            
+            const matrixSize = 4;
+            let matrixHTML = '<div class="attention-grid">';
+            
+            for (let i = 0; i < matrixSize; i++) {
+                for (let j = 0; j < matrixSize; j++) {
+                    const attention = Math.random() * 0.8 + 0.2; // Random attention weights
+                    matrixHTML += `<div class="attention-cell" 
+                        data-row="${i}" data-col="${j}"
+                        style="opacity: ${attention}; background: hsl(210, 100%, ${50 + attention * 20}%)"
+                        onclick="showAttentionDetails(${i}, ${j}, ${attention.toFixed(3)})">
+                        ${attention.toFixed(2)}
+                    </div>`;
+                }
+            }
+            
+            matrixHTML += '</div>';
+            attentionContainer.innerHTML = matrixHTML;
+        }
+        
+        function showAttentionDetails(row, col, value) {
+            showModal('🧠 Attention Mechanism', 
+                `Position (${row}, ${col}) has attention weight: ${value}\\n\\nThis means the model is paying ${(value * 100).toFixed(1)}% attention to this part of the input when making decisions.\\n\\nHigher values (brighter blue) indicate more important regions for the current prediction.`);
+        }
+        
         function activateNeuron(neuron, layer, index) {
+            if (!neuron) return;
+            
             neuron.classList.add('activated');
             
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.className = 'neuron-ripple';
+            neuron.appendChild(ripple);
+            
             const analysis = document.getElementById('neuralNetworkAnalysis');
-            const layerSizes = { input: 3, hidden: 4, output: 2 };
+            if (analysis) {
+                const layerSizes = { input: 3, hidden: 4, output: 2 };
+                
+                analysis.innerHTML = `
+                    <strong>🧠 Neuron Activation Analysis:</strong><br>
+                    <strong>Layer:</strong> ${layer.charAt(0).toUpperCase() + layer.slice(1)}<br>
+                    <strong>Index:</strong> ${index}<br>
+                    <strong>Function:</strong> z = Σ(w_i × x_i) + b, a = ReLU(z)<br>
+                    <strong>Connections:</strong> ${layer === 'input' ? 'None (input data)' : `${layerSizes[layer === 'hidden' ? 'input' : 'hidden']} incoming weights`}<br>
+                    <strong>Output:</strong> ${(Math.random() * 0.8 + 0.1).toFixed(3)}
+                `;
+            }
             
-            analysis.innerHTML = `
-                <strong>Neuron Activation Analysis:</strong><br>
-                <strong>Layer:</strong> ${layer.charAt(0).toUpperCase() + layer.slice(1)}<br>
-                <strong>Index:</strong> ${index}<br>
-                <strong>Function:</strong> z = Σ(w_i × x_i) + b, a = activation(z)<br>
-                <strong>Connections:</strong> ${layer === 'input' ? 'None (input data)' : `${layerSizes[layer === 'hidden' ? 'input' : 'hidden']} incoming weights`}
-            `;
+            // Propagate activation to next layer
+            setTimeout(() => {
+                propagateActivation(layer, index);
+            }, 500);
             
-            setTimeout(() => neuron.classList.remove('activated'), 1500);
+            setTimeout(() => {
+                neuron.classList.remove('activated');
+                if (ripple.parentNode) ripple.remove();
+            }, 1500);
+        }
+        
+        function propagateActivation(fromLayer, fromIndex) {
+            // Simulate forward propagation
+            const layerMap = { input: 'hidden', hidden: 'output' };
+            const nextLayer = layerMap[fromLayer];
+            if (!nextLayer) return;
+            
+            const nextNeurons = document.querySelectorAll(`.${nextLayer}-neuron`);
+            nextNeurons.forEach((neuron, index) => {
+                setTimeout(() => {
+                    neuron.style.transform = 'scale(1.1)';
+                    neuron.style.backgroundColor = '#34C759';
+                    
+                    setTimeout(() => {
+                        neuron.style.transform = 'scale(1)';
+                        neuron.style.backgroundColor = '';
+                    }, 300);
+                }, index * 100);
+            });
         }
 
         function forwardPropagate() {
