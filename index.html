@@ -1,1487 +1,949 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>AI-Toolkit Deep Dive: From Physics to Production | YUV.AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 AI From Zero to AI-Toolkit: The Professor's Complete Guide</title>
+    <meta name="description" content="Learn AI from absolute fundamentals - starting with atoms, electricity, and light, building up to neural networks and the AI-Toolkit framework. A complete educational journey.">
     
-    <!-- Hebrew Fonts -->
+    <!-- Apple-inspired fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            /* Colorblind-friendly palette */
-            --primary-blue: #007AFF;
-            --secondary-purple: #5856D6;
-            --accent-orange: #FF9500;
-            --success-green: #30D158;
-            --warning-yellow: #FFCC00;
-            --error-red: #FF3B30;
-            
-            --primary-gray: #1D1D1F;
-            --secondary-gray: #8E8E93;
-            --light-gray: #F2F2F7;
-            --white: #FFFFFF;
-            --black: #000000;
-            
-            /* Glass effects */
-            --glass: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.25);
-            --glass-dark: rgba(0, 0, 0, 0.2);
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 50%, #3A3A3C 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF9500 0%, #FFCC00 100%);
-            --text-gradient: linear-gradient(90deg, #007AFF, #5856D6);
-            
-            /* Effects */
-            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --glow: 0 0 20px rgba(0, 122, 255, 0.3);
-            --border-radius: 16px;
-            
-            /* Typography */
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --font-size-2xl: 1.5rem;
-            --font-size-3xl: 1.875rem;
-            --font-size-4xl: 2.25rem;
-            --font-size-5xl: 3rem;
-            --font-size-6xl: 3.75rem;
-        }
-
-        /* Hebrew RTL Support */
-        html[dir="rtl"] {
-            font-family: 'Heebo', 'Rubik', 'Noto Sans Hebrew', Arial, sans-serif;
-        }
-
-        html[lang="he"] {
-            font-family: 'Heebo', 'Rubik', 'Noto Sans Hebrew', Arial, sans-serif;
-        }
-
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        *:focus {
-            outline: 2px solid var(--primary-blue);
-            outline-offset: 2px;
+        :root {
+            /* Dark theme colors optimized for readability */
+            --bg-primary: #0a0e27;
+            --bg-secondary: #0f1729;
+            --bg-tertiary: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-accent: #60a5fa;
+            --border-color: #334155;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: var(--gradient-primary);
-            background-attachment: fixed;
-            color: var(--white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
             min-height: 100vh;
-            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
-        body.rtl {
-            direction: rtl;
-            font-family: 'Heebo', 'Rubik', 'Noto Sans Hebrew', Arial, sans-serif;
+        body[dir="rtl"] {
+            font-family: 'Heebo', 'Rubik', 'Inter', sans-serif;
         }
 
-        /* Language Toggle */
-        .language-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
-            gap: 0.5rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 0.5rem;
-            box-shadow: var(--shadow);
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .language-toggle.rtl {
-            right: auto;
-            left: 2rem;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
         }
 
         .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: calc(var(--border-radius) / 2);
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
         }
 
-        .lang-btn:hover, .lang-btn.active {
-            background: var(--primary-blue);
-            transform: translateY(-1px);
+        .lang-btn:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 4rem 2rem 2rem 2rem;
+        .lang-btn.active {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
         }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 800;
-            background: var(--text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s 0.5s forwards;
-            line-height: 1.2;
+        /* Progress Bar */
+        .progress-container {
+            background: rgba(15, 23, 41, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s 1s forwards;
+        .progress-bar {
+            background: var(--bg-tertiary);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
         }
 
-        .hero-description {
-            font-size: var(--font-size-xl);
-            max-width: 800px;
-            margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.9);
-            opacity: 0;
-            animation: fadeInUp 1s 1.5s forwards;
-            line-height: 1.7;
-        }
-
-        /* Glass Cards */
-        .glass-card {
-            backdrop-filter: blur(20px);
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section {
-            padding: 4rem 0;
-            scroll-margin-top: 2rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: var(--text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.3;
-        }
-
-        .subsection-title {
-            font-size: clamp(1.25rem, 3vw, 2rem);
-            font-weight: 600;
-            margin: 2rem 0 1rem 0;
-            color: var(--primary-blue);
-            position: relative;
-        }
-
-        .subsection-title::before {
-            content: '';
-            position: absolute;
-            left: -1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
+        .progress-fill {
             height: 100%;
-            background: var(--accent-orange);
-            border-radius: 2px;
+            background: var(--gradient-3);
+            border-radius: 10px;
+            transition: width 0.5s ease;
         }
 
-        .rtl .subsection-title::before {
-            left: auto;
-            right: -1rem;
-        }
-
-        /* Equations and Code */
-        .equation-box {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--primary-blue);
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            font-size: var(--font-size-lg);
-            overflow-x: auto;
-            position: relative;
-        }
-
-        .rtl .equation-box {
-            border-left: none;
-            border-right: 4px solid var(--primary-blue);
-        }
-
-        /* Interactive Demos */
-        .interactive-demo {
-            background: var(--glass-dark);
-            border: 2px solid rgba(0, 122, 255, 0.3);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 2rem 0;
+        .progress-text {
             text-align: center;
-            transition: all 0.3s ease;
+            color: var(--text-accent);
+            font-weight: 600;
+            margin-top: 10px;
         }
 
-        .interactive-demo:hover {
-            border-color: var(--primary-blue);
-            box-shadow: var(--glow);
+        /* Lessons */
+        .lesson {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
         }
 
-        .demo-controls {
+        .lesson-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 20px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
 
-        .slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 200px;
-            height: 8px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .slider:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
+        .lesson-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
             border-radius: 50%;
-            background: var(--primary-blue);
-            cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
         }
 
-        .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 16px rgba(0, 122, 255, 0.7);
+        .lesson-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
         }
 
-        .slider::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
+        .lesson-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        /* Learning Steps */
+        .learning-step {
+            background: var(--bg-tertiary);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid var(--info);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: var(--info);
             border-radius: 50%;
-            background: var(--primary-blue);
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .step-content {
+            padding-left: 50px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .step-content p {
+            margin: 10px 0;
+        }
+
+        .step-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Interactive Demo */
+        .interactive-demo {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid var(--text-accent);
+        }
+
+        .interactive-demo h4 {
+            color: var(--text-accent);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* Knowledge Blocks */
+        .knowledge-block {
+            background: linear-gradient(135deg, #1e3a5f 0%, #42275a 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid var(--text-accent);
+        }
+
+        .knowledge-title {
+            color: var(--text-primary);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .knowledge-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .knowledge-items li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .knowledge-items li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Motivation Section */
+        .motivation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            color: white;
+        }
+
+        .motivation h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .motivation p {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.95;
         }
 
         /* Buttons */
         .btn {
-            background: var(--gradient-primary);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-1);
+            color: white;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: var(--shadow);
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 122, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        /* Grid Layouts */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            backdrop-filter: blur(20px);
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .feature-card h4 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: var(--font-size-lg);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* RGB Demo */
-        .rgb-demo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-            align-items: center;
-        }
-
-        .color-preview {
-            width: 100%;
+        /* Atomic Model */
+        .atom-model {
+            width: 200px;
             height: 200px;
-            border-radius: var(--border-radius);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            background: white;
-        }
-
-        /* Quiz Sections */
-        .quiz-section {
-            background: rgba(107, 70, 193, 0.1);
-            border: 2px solid rgba(107, 70, 193, 0.3);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 3rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-section:hover {
-            border-color: var(--secondary-purple);
-            box-shadow: 0 0 20px rgba(107, 70, 193, 0.3);
-        }
-
-        .quiz-question {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-purple);
-            line-height: 1.4;
-        }
-
-        .quiz-options {
-            display: grid;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .quiz-option {
-            background: var(--glass);
-            border: 2px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
             position: relative;
-            backdrop-filter: blur(10px);
+            margin: 50px auto;
         }
 
-        .quiz-option:hover {
-            border-color: var(--primary-blue);
-            background: rgba(0, 122, 255, 0.1);
-            transform: translateX(8px);
+        .nucleus {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff6b6b, #c92a2a);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
         }
 
-        .rtl .quiz-option:hover {
-            transform: translateX(-8px);
+        .electron-orbit {
+            position: absolute;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .quiz-option.correct {
-            border-color: var(--success-green);
-            background: rgba(5, 150, 105, 0.2);
+        .orbit1 { width: 120px; height: 120px; }
+        .orbit2 { width: 160px; height: 160px; transform: translate(-50%, -50%) rotate(60deg); }
+        .orbit3 { width: 200px; height: 200px; transform: translate(-50%, -50%) rotate(120deg); }
+
+        .electron {
+            width: 10px;
+            height: 10px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
         }
 
-        .quiz-option.incorrect {
-            border-color: var(--error-red);
-            background: rgba(220, 38, 38, 0.2);
+        .electron1 {
+            top: -5px;
+            left: 50%;
+            animation: orbit1 3s linear infinite;
         }
 
-        /* Formula Explanations */
-        .formula-explanation {
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
-            border-left: 4px solid var(--primary-blue);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
+        .electron2 {
+            top: -5px;
+            left: 50%;
+            animation: orbit2 4s linear infinite;
         }
 
-        .rtl .formula-explanation {
-            border-left: none;
-            border-right: 4px solid var(--primary-blue);
-        }
-
-        .highlight {
-            background: rgba(217, 119, 6, 0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--warning-yellow);
-            font-weight: 600;
-            border: 1px solid rgba(217, 119, 6, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 4rem 0;
-            text-align: center;
-            margin-top: 4rem;
-            backdrop-filter: blur(20px);
-        }
-
-        .author-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .author-link {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: calc(var(--border-radius) / 2);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .author-link:hover {
-            color: var(--white);
-            background: var(--primary-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.4);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.6s ease-out;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.6s ease-out;
+        .electron3 {
+            top: -5px;
+            left: 50%;
+            animation: orbit3 5s linear infinite;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
+            .lesson {
+                padding: 25px 20px;
             }
 
-            .hero-section {
-                padding: 2rem 1rem;
-                min-height: 80vh;
+            .lesson-title {
+                font-size: 24px;
             }
 
-            .section {
-                padding: 2rem 0;
+            .step-content {
+                padding-left: 0;
             }
 
-            .glass-card {
-                padding: 1.5rem;
-                margin: 1rem 0;
+            .atom-model {
+                transform: scale(0.8);
             }
 
-            .rgb-demo {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .demo-controls {
+            .header-content {
                 flex-direction: column;
-                gap: 1rem;
-            }
-
-            .slider {
-                width: 280px;
-            }
-
-            .language-toggle {
-                top: 1rem;
-                right: 1rem;
-                scale: 0.9;
-            }
-
-            .language-toggle.rtl {
-                right: auto;
-                left: 1rem;
-            }
-
-            .author-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                text-align: center;
             }
         }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .subsection-title {
-                font-size: 1.25rem;
-            }
-
-            .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: var(--font-size-sm);
-            }
+        /* RTL Support */
+        [dir="rtl"] .step-content {
+            padding-left: 0;
+            padding-right: 50px;
         }
 
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --glass: rgba(0, 0, 0, 0.8);
-                --glass-border: rgba(255, 255, 255, 0.8);
-            }
-
-            .glass-card, .feature-card {
-                border-width: 2px;
-            }
+        [dir="rtl"] .knowledge-items li {
+            padding-left: 0;
+            padding-right: 30px;
         }
 
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .hero-title, .hero-subtitle, .hero-description {
-                opacity: 1;
-            }
+        [dir="rtl"] .knowledge-items li:before {
+            left: auto;
+            right: 0;
         }
 
-        /* New Component Styles */
-        .matrix-demo, .lora-calculator {
-            background: rgba(0, 122, 255, 0.1);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 1.5rem 0;
-        }
-
-        .neural-calculation, .chain-rule-explanation, .gradient-descent {
-            margin: 1.5rem 0;
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-        }
-
-        .code-block pre {
-            margin: 0;
-            color: #00ff88;
-            font-family: 'Courier New', monospace;
-            font-size: var(--font-size-sm);
-        }
-
-        .calc-inputs {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .calc-inputs label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .calc-inputs input[type="number"] {
-            width: 100px;
-            padding: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .calc-results {
-            background: rgba(5, 150, 105, 0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--success-green);
-        }
-
-        .calc-results p {
-            margin: 0.5rem 0;
-            font-weight: 500;
-        }
-
-        .diffusion-visualization {
-            margin: 2rem 0;
-        }
-
-        .noise-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .step {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            text-align: center;
-            min-width: 120px;
-            font-size: var(--font-size-sm);
-        }
-
-        .arrow {
-            font-size: var(--font-size-2xl);
-            color: var(--primary-blue);
-            font-weight: bold;
-        }
-
-        .system-components {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .component-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .component-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .technique-grid, .best-practices-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .technique-card, .practice-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .savings {
-            background: var(--gradient-secondary);
-            color: var(--black);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: var(--font-size-sm);
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-
-        .config-tree {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .config-node {
-            margin: 0.5rem 0;
-        }
-
-        .config-key {
-            color: var(--accent-orange);
-            font-weight: 600;
-        }
-
-        .config-children {
-            margin-left: 2rem;
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            padding-left: 1rem;
-        }
-
-        .config-item {
-            color: var(--secondary-gray);
-            margin: 0.3rem 0;
-        }
-
-        .flow-matching-explanation ul {
-            margin: 1rem 0;
-        }
-
-        .flow-matching-explanation li {
-            margin: 0.5rem 0;
-            padding-left: 0.5rem;
-        }
-
-        .answer-explanation {
-            animation: fadeInUp 0.5s ease;
-        }
-
-        /* Responsive adjustments for new components */
-        @media (max-width: 768px) {
-            .noise-steps {
-                flex-direction: column;
-            }
-
-            .arrow {
-                transform: rotate(90deg);
-                margin: 0.5rem 0;
-            }
-
-            .technique-grid, .best-practices-grid, .system-components {
-                grid-template-columns: 1fr;
-            }
-
-            .code-block {
-                padding: 1rem;
-                font-size: var(--font-size-xs);
-            }
-
-            .calc-inputs {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-
-            .language-toggle, .interactive-demo, .quiz-section {
-                display: none;
-            }
-
-            .glass-card {
-                background: white;
-                border: 1px solid #ccc;
-            }
+        [dir="rtl"] .learning-step {
+            border-left: none;
+            border-right: 4px solid var(--info);
         }
     </style>
 </head>
 <body>
-    <!-- Language Toggle -->
-    <div class="language-toggle" id="languageToggle">
-        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-        <button class="lang-btn" onclick="switchLanguage('he')">�����</button>
-    </div>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo" data-en="🎓 AI: From Atoms to AI-Toolkit" data-he="🎓 AI: מאטומים ל-AI-Toolkit">🎓 AI: From Atoms to AI-Toolkit</div>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+                <button class="lang-btn" onclick="switchLanguage('he')">עברית</button>
+            </div>
+        </div>
+    </header>
 
-    <div class="hero-section">
-        <h1 class="hero-title" data-en="AI-Toolkit Deep Dive" data-he="����� ����� �-AI-Toolkit">AI-Toolkit Deep Dive</h1>
-        <p class="hero-subtitle" data-en="From Physics to Production" data-he="������� ������">From Physics to Production</p>
-        <p class="hero-description" data-en="A comprehensive journey through the mathematical, physical, and engineering principles that power modern AI image generation frameworks. Every concept explained from first principles." data-he="��� ���� ��� �������� ��������, ���������� ���������� ������� ������ �������� ������ ������ AI. �� ���� ����� �������� �������.">
-            A comprehensive journey through the mathematical, physical, and engineering principles 
-            that power modern AI image generation frameworks. Every concept explained from first principles.
-        </p>
-    </div>
-
+    <!-- Progress Tracker -->
     <div class="container">
-        <!-- Chapter 1: The Physics of Digital Images -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 1: The Physics of Digital Images" data-he="��� 1: ������� �� ������ ���������">Chapter 1: The Physics of Digital Images</h2>
-                
-                <h3 class="subsection-title" data-en="1.1 Light and Photons: The Foundation" data-he="1.1 ��� ��������: �����">1.1 Light and Photons: The Foundation</h3>
-                <p data-en="Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level." data-he="���� ����� ����� ���� AI ����� ������, ����� ����� �� ������ �� ���� ���� ������� �����.">Before we can understand how AI generates images, we must understand what images actually are at the most fundamental level.</p>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:" data-he="<strong>��� ��� ����� ������������</strong> �� ������ ������ �� ��� ������ �����:"><strong>Light is electromagnetic radiation</strong> with energy given by Planck's equation:</p>
-                    <div class="equation-box">E = hf = hc/�</div>
-                    <p data-en="Where:" data-he="����:">Where:</p>
-                    <ul>
-                        <li><span class="highlight">E</span> = <span data-en="Energy of a photon" data-he="������ �� �����">Energy of a photon</span></li>
-                        <li><span class="highlight">h</span> = <span data-en="Planck's constant (6.626 � 10{�t J�s)" data-he="���� ����� (6.626 � 10{�t J�s)">Planck's constant (6.626 � 10{�t J�s)</span></li>
-                        <li><span class="highlight">f</span> = <span data-en="Frequency of the light" data-he="������ ����">Frequency of the light</span></li>
-                        <li><span class="highlight">c</span> = <span data-en="Speed of light (3 � 10x m/s)" data-he="������ ���� (3 � 10x m/s)">Speed of light (3 � 10x m/s)</span></li>
-                        <li><span class="highlight">�</span> = <span data-en="Wavelength" data-he="���� ��">Wavelength</span></li>
+        <div class="progress-container">
+            <h3 style="text-align: center; margin-bottom: 10px;" data-en="Your Learning Journey" data-he="מסע הלמידה שלך">Your Learning Journey</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+            <div class="progress-text" id="progressText" data-en="Ready to begin your journey..." data-he="מוכן להתחיל את המסע שלך...">Ready to begin your journey...</div>
+        </div>
+
+        <!-- Lesson 0: Introduction -->
+        <section class="lesson" id="lesson0">
+            <div class="lesson-header">
+                <div class="lesson-number">0</div>
+                <h2 class="lesson-title" data-en="Welcome to Your AI Journey" data-he="ברוכים הבאים למסע ה-AI שלכם">Welcome to Your AI Journey</h2>
+                <p class="lesson-subtitle" data-en="From the smallest particles to training AI models" data-he="מהחלקיקים הקטנים ביותר ועד אימון מודלי AI">From the smallest particles to training AI models</p>
+            </div>
+
+            <div class="motivation">
+                <h3>🚀 <span data-en="Why Start With Atoms?" data-he="למה להתחיל עם אטומים?">Why Start With Atoms?</span></h3>
+                <p data-en="You're about to understand AI not just as code, but as a physical phenomenon. Every AI model, every neural network, every piece of training data exists because atoms form transistors, transistors form processors, and processors manipulate electrons to perform calculations. By the end of this journey, you'll understand AI from the ground up - literally from atoms to AI-Toolkit." data-he="אתם עומדים להבין AI לא רק כקוד, אלא כתופעה פיזית. כל מודל AI, כל רשת נוירונים, כל פיסת נתוני אימון קיימים כי אטומים יוצרים טרנזיסטורים, טרנזיסטורים יוצרים מעבדים, ומעבדים מטפלים באלקטרונים כדי לבצע חישובים. בסוף המסע הזה, תבינו AI מהיסוד - ממש מאטומים ועד AI-Toolkit.">You're about to understand AI not just as code, but as a physical phenomenon. Every AI model, every neural network, every piece of training data exists because atoms form transistors, transistors form processors, and processors manipulate electrons to perform calculations. By the end of this journey, you'll understand AI from the ground up - literally from atoms to AI-Toolkit.</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="What You'll Learn" data-he="מה תלמדו">What You'll Learn</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="This isn't just another AI tutorial. We're going to build your understanding from first principles:" data-he="זה לא עוד מדריך AI. אנחנו הולכים לבנות את ההבנה שלכם מעקרונות ראשוניים:">This isn't just another AI tutorial. We're going to build your understanding from first principles:</p>
+                    <ul style="margin: 15px 0; line-height: 2;">
+                        <li data-en="⚛️ <strong>Physics</strong>: How atoms and electricity create computation" data-he="⚛️ <strong>פיזיקה</strong>: איך אטומים וחשמל יוצרים חישוב">⚛️ <strong>Physics</strong>: How atoms and electricity create computation</li>
+                        <li data-en="💡 <strong>Light & Color</strong>: How energy becomes the images AI processes" data-he="💡 <strong>אור וצבע</strong>: איך אנרגיה הופכת לתמונות ש-AI מעבד">💡 <strong>Light & Color</strong>: How energy becomes the images AI processes</li>
+                        <li data-en="🖥️ <strong>Computing</strong>: How billions of simple switches create intelligence" data-he="🖥️ <strong>מחשוב</strong>: איך מיליארדי מתגים פשוטים יוצרים אינטליגנציה">🖥️ <strong>Computing</strong>: How billions of simple switches create intelligence</li>
+                        <li data-en="🧠 <strong>Neural Networks</strong>: The mathematical brain inspired by biology" data-he="🧠 <strong>רשתות נוירונים</strong>: המוח המתמטי בהשראת הביולוגיה">🧠 <strong>Neural Networks</strong>: The mathematical brain inspired by biology</li>
+                        <li data-en="🎨 <strong>Diffusion Models</strong>: How AI creates images from pure noise" data-he="🎨 <strong>מודלי דיפוזיה</strong>: איך AI יוצר תמונות מרעש טהור">🎨 <strong>Diffusion Models</strong>: How AI creates images from pure noise</li>
+                        <li data-en="🔧 <strong>AI-Toolkit</strong>: Practical implementation of everything you've learned" data-he="🔧 <strong>AI-Toolkit</strong>: יישום מעשי של כל מה שלמדתם">🔧 <strong>AI-Toolkit</strong>: Practical implementation of everything you've learned</li>
                     </ul>
                 </div>
+            </div>
 
-                <h3 class="subsection-title" data-en="1.2 From Photons to Pixels: The Display Physics" data-he="1.2 �������� ��������: ������ ������">1.2 From Photons to Pixels: The Display Physics</h3>
-                
-                <div class="interactive-demo">
-                    <h4 data-en="RGB Color Mixing Demonstration" data-he="����� ����� ���� RGB">RGB Color Mixing Demonstration</h4>
-                    <p data-en="Adjust the RGB values to see how colors are created from three primary light sources:" data-he="���� �� ���� RGB ��� ����� ���� ������ ����� ������ ������ ��� ������:">Adjust the RGB values to see how colors are created from three primary light sources:</p>
-                    
-                    <div class="rgb-demo">
-                        <div>
-                            <div class="demo-controls">
-                                <label><span data-en="Red:" data-he="����:">Red:</span> <input type="range" class="slider" id="redSlider" min="0" max="255" value="255" aria-label="Red value"></label>
-                                <span id="redValue">255</span>
-                            </div>
-                            <div class="demo-controls">
-                                <label><span data-en="Green:" data-he="����:">Green:</span> <input type="range" class="slider" id="greenSlider" min="0" max="255" value="255" aria-label="Green value"></label>
-                                <span id="greenValue">255</span>
-                            </div>
-                            <div class="demo-controls">
-                                <label><span data-en="Blue:" data-he="����:">Blue:</span> <input type="range" class="slider" id="blueSlider" min="0" max="255" value="255" aria-label="Blue value"></label>
-                                <span id="blueValue">255</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="color-preview" id="colorPreview"></div>
-                            <p data-en="Resulting Color" data-he="���� ������">Resulting Color</p>
-                        </div>
-                    </div>
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-en="Your Guides: Learning from the Best" data-he="המדריכים שלכם: לומדים מהטובים ביותר">Your Guides: Learning from the Best</h3>
                 </div>
+                <div class="step-content">
+                    <p data-en="This course is inspired by two legendary educators:" data-he="הקורס הזה בהשראת שני מחנכים אגדיים:">This course is inspired by two legendary educators:</p>
+                    <p data-en="<strong>🎓 David Malan (Harvard CS50)</strong> - Known for making complex concepts accessible through clear explanations and engaging demonstrations." data-he="<strong>🎓 דיוויד מאלאן (Harvard CS50)</strong> - ידוע בהפיכת מושגים מורכבים לנגישים דרך הסברים ברורים והדגמות מרתקות."><strong>🎓 David Malan (Harvard CS50)</strong> - Known for making complex concepts accessible through clear explanations and engaging demonstrations.</p>
+                    <p data-en="<strong>🧠 Andrew Ng (Stanford AI)</strong> - Master of breaking down AI into intuitive, mathematical foundations that anyone can understand." data-he="<strong>🧠 אנדרו נג (Stanford AI)</strong> - אמן בפירוק AI ליסודות מתמטיים אינטואיטיביים שכל אחד יכול להבין."><strong>🧠 Andrew Ng (Stanford AI)</strong> - Master of breaking down AI into intuitive, mathematical foundations that anyone can understand.</p>
+                </div>
+            </div>
 
-                <div class="quiz-section">
-                    <div class="quiz-question" data-en=">� Test Your Understanding: Why do we use RGB instead of other color combinations?" data-he=">� ��� �� ����� ���: ���� ��� ������� �-RGB ����� ������ ����� �����?">>� Test Your Understanding: Why do we use RGB instead of other color combinations?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Because they're the brightest colors" data-he="�) �� �� ������ ������� �����">A) Because they're the brightest colors</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) Because they match the wavelength sensitivity of human cone cells" data-he="�) �� �� ������ �� ������ ���� ��� �� ��� ������ ��������">B) Because they match the wavelength sensitivity of human cone cells</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Because they're easier to manufacture" data-he="�) �� �� ���� ���� ������">C) Because they're easier to manufacture</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Because they use less power" data-he="�) �� �� ������ ���� ����">D) Because they use less power</div>
-                    </div>
-                    <div id="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system." data-he="����! ������� �������� �� ����� ���� ��� ����� ������ ������ �� �����: S-������� (~420nm), M-������� (~534nm), �-L-������� (~564nm), ������� ����� ���� ����, ���� �����. ������ RGB ������ �� ����� ������ ����-������� ���.">Correct! Human eyes have three types of cone cells sensitive to different wavelengths: S-cones (~420nm), M-cones (~534nm), and L-cones (~564nm), roughly corresponding to blue, green, and red light. RGB displays exploit this tri-chromatic vision system.</span>
-                    </div>
-                </div>
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(1)" data-en="🚀 Begin Your Journey" data-he="🚀 התחל את המסע שלך">🚀 Begin Your Journey</button>
             </div>
         </section>
 
-        <!-- Chapter 2: Neural Network Mathematics -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 2: Neural Network Mathematics" data-he="פרק 2: מתמטיקה של רשתות נוירונים">Chapter 2: Neural Network Mathematics</h2>
-                
-                <h3 class="subsection-title" data-en="2.1 The Fundamental Building Block: A Single Neuron" data-he="2.1 אבן הבניין הבסיסית: נוירון יחיד">2.1 The Fundamental Building Block: A Single Neuron</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>A neural network is built from artificial neurons</strong> that perform a simple mathematical operation:" data-he="<strong>רשת נוירונים נבנית מנוירונים מלאכותיים</strong> המבצעים פעולה מתמטית פשוטה:"><strong>A neural network is built from artificial neurons</strong> that perform a simple mathematical operation:</p>
-                    <div class="equation-box">y = σ(Σ(w_i × x_i) + b)</div>
-                    <p data-en="Where:" data-he="כאשר:">Where:</p>
-                    <ul>
-                        <li><span class="highlight">y</span> = <span data-en="Output of the neuron" data-he="פלט הנוירון">Output of the neuron</span></li>
-                        <li><span class="highlight">σ</span> = <span data-en="Activation function (ReLU, sigmoid, etc.)" data-he="פונקציית הפעלה (ReLU, sigmoid, וכו')">Activation function (ReLU, sigmoid, etc.)</span></li>
-                        <li><span class="highlight">w_i</span> = <span data-en="Weight for input i" data-he="משקל עבור קלט i">Weight for input i</span></li>
-                        <li><span class="highlight">x_i</span> = <span data-en="Input value i" data-he="ערך קלט i">Input value i</span></li>
-                        <li><span class="highlight">b</span> = <span data-en="Bias term" data-he="איבר הטיה">Bias term</span></li>
-                    </ul>
-                </div>
+        <!-- Lesson 1: Everything is Made of Atoms -->
+        <section class="lesson" id="lesson1">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <h2 class="lesson-title" data-en="Everything is Made of Atoms" data-he="הכל עשוי מאטומים">Everything is Made of Atoms</h2>
+                <p class="lesson-subtitle" data-en="The building blocks of reality and computation" data-he="אבני הבניין של המציאות והחישוב">The building blocks of reality and computation</p>
+            </div>
 
-                <h3 class="subsection-title" data-en="2.2 Matrix Operations: The Language of Deep Learning" data-he="2.2 פעולות מטריצה: השפה של למידה עמוקה">2.2 Matrix Operations: The Language of Deep Learning</h3>
-                
-                <div class="interactive-demo">
-                    <h4 data-en="Matrix Multiplication Visualizer" data-he="מדמה כפל מטריצות">Matrix Multiplication Visualizer</h4>
-                    <p data-en="Understanding how neural networks process data through matrix operations:" data-he="הבנה איך רשתות נוירונים מעבדות נתונים דרך פעולות מטריצה:">Understanding how neural networks process data through matrix operations:</p>
+            <div class="motivation">
+                <h3>⚛️ <span data-en="Why Atoms Matter for AI" data-he="למה אטומים חשובים ל-AI">Why Atoms Matter for AI</span></h3>
+                <p data-en="Your computer, your GPU running AI models, even the electricity powering them - everything starts with atoms. Silicon atoms form the chips, copper atoms carry the electricity, and rare earth atoms create your screen. Understanding atoms isn't just physics - it's understanding the foundation of all technology." data-he="המחשב שלך, ה-GPU שמריץ מודלי AI, אפילו החשמל שמפעיל אותם - הכל מתחיל עם אטומים. אטומי סיליקון יוצרים את השבבים, אטומי נחושת נושאים את החשמל, ואטומים נדירים יוצרים את המסך שלך. הבנת אטומים זה לא רק פיזיקה - זה הבנת הבסיס של כל הטכנולוגיה.">Your computer, your GPU running AI models, even the electricity powering them - everything starts with atoms. Silicon atoms form the chips, copper atoms carry the electricity, and rare earth atoms create your screen. Understanding atoms isn't just physics - it's understanding the foundation of all technology.</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="What is an Atom?" data-he="מה זה אטום?">What is an Atom?</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="An atom is the smallest unit of matter that retains the properties of an element. Think of it like LEGO blocks - just as everything you build with LEGO comes from combining basic blocks, everything in the universe is built from atoms." data-he="אטום הוא היחידה הקטנה ביותר של חומר ששומרת על תכונות היסוד. תחשבו על זה כמו קוביות LEGO - בדיוק כמו שכל מה שבונים עם LEGO מגיע משילוב של קוביות בסיסיות, כל דבר ביקום בנוי מאטומים.">An atom is the smallest unit of matter that retains the properties of an element. Think of it like LEGO blocks - just as everything you build with LEGO comes from combining basic blocks, everything in the universe is built from atoms.</p>
                     
-                    <div class="matrix-demo">
-                        <div class="matrix-explanation">
-                            <p data-en="For a layer with 3 inputs and 2 outputs:" data-he="עבור שכבה עם 3 קלטים ו-2 פלטים:">For a layer with 3 inputs and 2 outputs:</p>
-                            <div class="equation-box">
-                                <div data-en="Input: [x₁, x₂, x₃]<br>Weights: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>Output: [y₁, y₂]" data-he="קלט: [x₁, x₂, x₃]<br>משקלים: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>פלט: [y₁, y₂]">
-                                    Input: [x₁, x₂, x₃]<br>
-                                    Weights: [[w₁₁, w₁₂], [w₂₁, w₂₂], [w₃₁, w₃₂]]<br>
-                                    Output: [y₁, y₂]
+                    <p data-en="<strong>Size perspective:</strong> If an atom were the size of a tennis ball, a tennis ball would be the size of Earth!" data-he="<strong>פרספקטיבת גודל:</strong> אם אטום היה בגודל של כדור טניס, כדור טניס היה בגודל של כדור הארץ!"><strong>Size perspective:</strong> If an atom were the size of a tennis ball, a tennis ball would be the size of Earth!</p>
+                </div>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-en="The Silicon Connection" data-he="הקשר הסיליקון">The Silicon Connection</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="<strong>Silicon (Si)</strong> is the second most abundant element in Earth's crust, and it's the foundation of all computer chips. But why silicon?" data-he="<strong>סיליקון (Si)</strong> הוא היסוד השני הכי נפוץ בקרום כדור הארץ, והוא הבסיס של כל שבבי המחשב. אבל למה סיליקון?"><strong>Silicon (Si)</strong> is the second most abundant element in Earth's crust, and it's the foundation of all computer chips. But why silicon?</p>
+                    
+                    <p data-en="Silicon is a <strong>semiconductor</strong> - it can act as both a conductor (allows electricity) and an insulator (blocks electricity). By controlling this property with tiny amounts of electricity, we create transistors - the on/off switches that form the basis of all computation." data-he="סיליקון הוא <strong>מוליך למחצה</strong> - הוא יכול לפעול גם כמוליך (מאפשר חשמל) וגם כמבודד (חוסם חשמל). על ידי שליטה בתכונה הזו עם כמויות זעירות של חשמל, אנחנו יוצרים טרנזיסטורים - מתגי הפעלה/כיבוי שיוצרים את הבסיס של כל החישוב.">Silicon is a <strong>semiconductor</strong> - it can act as both a conductor (allows electricity) and an insulator (blocks electricity). By controlling this property with tiny amounts of electricity, we create transistors - the on/off switches that form the basis of all computation.</p>
+                </div>
+            </div>
+
+            <div class="knowledge-block">
+                <h3 class="knowledge-title" data-en="🧱 Key Knowledge Block #1" data-he="🧱 בלוק ידע מפתח #1">🧱 Key Knowledge Block #1</h3>
+                <ul class="knowledge-items">
+                    <li data-en="Everything is made of atoms - including your computer" data-he="הכל עשוי מאטומים - כולל המחשב שלך">Everything is made of atoms - including your computer</li>
+                    <li data-en="Silicon atoms are semiconductors - the foundation of computer chips" data-he="אטומי סיליקון הם מוליכים למחצה - הבסיס של שבבי מחשב">Silicon atoms are semiconductors - the foundation of computer chips</li>
+                    <li data-en="By controlling electricity through silicon, we create computation" data-he="על ידי שליטה בחשמל דרך סיליקון, אנחנו יוצרים חישוב">By controlling electricity through silicon, we create computation</li>
+                    <li data-en="Modern chips contain billions of transistors made from silicon atoms" data-he="שבבים מודרניים מכילים מיליארדי טרנזיסטורים עשויים מאטומי סיליקון">Modern chips contain billions of transistors made from silicon atoms</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(2)" data-en="⚛️ Next: What's Inside an Atom?" data-he="⚛️ הבא: מה יש בתוך אטום?">⚛️ Next: What's Inside an Atom?</button>
+            </div>
+        </section>
+
+        <!-- Lesson 2: What's Inside an Atom? -->
+        <section class="lesson" id="lesson2">
+            <div class="lesson-header">
+                <div class="lesson-number">2</div>
+                <h2 class="lesson-title" data-en="What's Inside an Atom?" data-he="מה יש בתוך אטום?">What's Inside an Atom?</h2>
+                <p class="lesson-subtitle" data-en="Protons, neutrons, electrons - and how they create electricity" data-he="פרוטונים, נייטרונים, אלקטרונים - ואיך הם יוצרים חשמל">Protons, neutrons, electrons - and how they create electricity</p>
+            </div>
+
+            <div class="motivation">
+                <h3>⚡ <span data-en="The Birth of Electricity" data-he="הולדת החשמל">The Birth of Electricity</span></h3>
+                <p data-en="Inside every atom lies the secret to electricity. Those tiny electrons orbiting the nucleus? They're what flow through your computer's circuits billions of times per second, carrying the information that becomes everything from text to AI-generated images. Let's look inside!" data-he="בתוך כל אטום טמון הסוד לחשמל. האלקטרונים הקטנטנים האלה שמקיפים את הגרעין? הם מה שזורם דרך המעגלים של המחשב שלך מיליארדי פעמים בשנייה, נושאים את המידע שהופך לכל דבר מטקסט ועד תמונות שנוצרו על ידי AI. בואו נסתכל פנימה!">Inside every atom lies the secret to electricity. Those tiny electrons orbiting the nucleus? They're what flow through your computer's circuits billions of times per second, carrying the information that becomes everything from text to AI-generated images. Let's look inside!</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="The Three Particles" data-he="שלושת החלקיקים">The Three Particles</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="Every atom contains three types of particles:" data-he="כל אטום מכיל שלושה סוגי חלקיקים:">Every atom contains three types of particles:</p>
+                    
+                    <ul style="margin: 15px 0; line-height: 2;">
+                        <li data-en="<strong>Protons (+)</strong>: Positive charge, live in the nucleus (center)" data-he="<strong>פרוטונים (+)</strong>: מטען חיובי, חיים בגרעין (מרכז)"><strong>Protons (+)</strong>: Positive charge, live in the nucleus (center)</li>
+                        <li data-en="<strong>Neutrons (0)</strong>: No charge, also in the nucleus, add mass" data-he="<strong>נייטרונים (0)</strong>: ללא מטען, גם בגרעין, מוסיפים מסה"><strong>Neutrons (0)</strong>: No charge, also in the nucleus, add mass</li>
+                        <li data-en="<strong>Electrons (-)</strong>: Negative charge, orbit around the nucleus" data-he="<strong>אלקטרונים (-)</strong>: מטען שלילי, מקיפים את הגרעין"><strong>Electrons (-)</strong>: Negative charge, orbit around the nucleus</li>
+                    </ul>
+                    
+                    <p data-en="The number of protons determines what element it is. 1 proton = Hydrogen, 14 protons = Silicon, 79 protons = Gold!" data-he="מספר הפרוטונים קובע איזה יסוד זה. פרוטון 1 = מימן, 14 פרוטונים = סיליקון, 79 פרוטונים = זהב!">The number of protons determines what element it is. 1 proton = Hydrogen, 14 protons = Silicon, 79 protons = Gold!</p>
+                </div>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-en="Interactive Atom Model" data-he="מודל אטום אינטראקטיבי">Interactive Atom Model</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="Here's a simplified model of a silicon atom (14 protons, 14 neutrons, 14 electrons):" data-he="הנה מודל מפושט של אטום סיליקון (14 פרוטונים, 14 נייטרונים, 14 אלקטרונים):">Here's a simplified model of a silicon atom (14 protons, 14 neutrons, 14 electrons):</p>
+                    
+                    <div class="atom-model">
+                        <div class="nucleus"></div>
+                        <div class="electron-orbit orbit1">
+                            <div class="electron electron1"></div>
+                        </div>
+                        <div class="electron-orbit orbit2">
+                            <div class="electron electron2"></div>
+                        </div>
+                        <div class="electron-orbit orbit3">
+                            <div class="electron electron3"></div>
+                        </div>
+                    </div>
+                    
+                    <p data-en="<strong>Key Insight:</strong> Electrons in the outermost orbit can jump to other atoms. This movement of electrons is what we call <strong>electricity</strong>!" data-he="<strong>תובנה מרכזית:</strong> אלקטרונים במסלול החיצוני ביותר יכולים לקפוץ לאטומים אחרים. התנועה הזו של אלקטרונים היא מה שאנחנו קוראים לו <strong>חשמל</strong>!"><strong>Key Insight:</strong> Electrons in the outermost orbit can jump to other atoms. This movement of electrons is what we call <strong>electricity</strong>!</p>
+                </div>
+            </div>
+
+            <div class="knowledge-block">
+                <h3 class="knowledge-title" data-en="🧱 Key Knowledge Block #2" data-he="🧱 בלוק ידע מפתח #2">🧱 Key Knowledge Block #2</h3>
+                <ul class="knowledge-items">
+                    <li data-en="Atoms have three parts: protons (+), neutrons (neutral), electrons (-)" data-he="לאטומים יש שלושה חלקים: פרוטונים (+), נייטרונים (נייטרלי), אלקטרונים (-)">Atoms have three parts: protons (+), neutrons (neutral), electrons (-)</li>
+                    <li data-en="Protons and neutrons stay in the center (nucleus)" data-he="פרוטונים ונייטרונים נשארים במרכז (גרעין)">Protons and neutrons stay in the center (nucleus)</li>
+                    <li data-en="Electrons move around the outside - these create electricity!" data-he="אלקטרונים נעים מסביב בחוץ - אלה יוצרים חשמל!">Electrons move around the outside - these create electricity!</li>
+                    <li data-en="Your computer controls electron movement to do calculations" data-he="המחשב שלך שולט בתנועת אלקטרונים כדי לעשות חישובים">Your computer controls electron movement to do calculations</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(3)" data-en="⚡ Next: How Electricity Actually Works" data-he="⚡ הבא: איך חשמל באמת עובד">⚡ Next: How Electricity Actually Works</button>
+            </div>
+        </section>
+
+        <!-- Lesson 3: How Electricity Actually Works -->
+        <section class="lesson" id="lesson3">
+            <div class="lesson-header">
+                <div class="lesson-number">3</div>
+                <h2 class="lesson-title" data-en="How Electricity Actually Works" data-he="איך חשמל באמת עובד">How Electricity Actually Works</h2>
+                <p class="lesson-subtitle" data-en="The force that powers both your computer and AI" data-he="הכוח שמפעיל גם את המחשב וגם את ה-AI">The force that powers both your computer and AI</p>
+            </div>
+
+            <div class="motivation">
+                <h3>⚡ <span data-en="The Most Powerful Force You Use Every Day" data-he="הכוח הכי חזק שאתה משתמש בו כל יום">The Most Powerful Force You Use Every Day</span></h3>
+                <p data-en="Every second, trillions of electrons are flowing through your device to create this text, process your thoughts, and yes - run AI models. Understanding electricity isn't just physics - it's understanding the foundation of all modern technology." data-he="כל שנייה, טריליוני אלקטרונים זורמים דרך המכשיר שלך ליצור את הטקסט הזה, לעבד את המחשבות שלך, וכן - להפעיל מודלי AI. הבנת חשמל זה לא רק פיזיקה - זה הבנת הבסיס של כל הטכנולוגיה המודרנית.">Every second, trillions of electrons are flowing through your device to create this text, process your thoughts, and yes - run AI models. Understanding electricity isn't just physics - it's understanding the foundation of all modern technology.</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="The Simple Truth About Electricity" data-he="האמת הפשוטה על חשמל">The Simple Truth About Electricity</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="<strong>Electricity is just electrons moving from one place to another.</strong>" data-he="<strong>חשמל זה פשוט אלקטרונים שעוברים ממקום אחד לאחר.</strong>"><strong>Electricity is just electrons moving from one place to another.</strong></p>
+                    
+                    <p data-en="That's it. Really. All the complexity of your computer, the internet, AI - it all comes down to controlling where electrons go and when." data-he="זה הכל. באמת. כל המורכבות של המחשב שלך, האינטרנט, AI - הכל מסתכם בשליטה איפה אלקטרונים הולכים ומתי.">That's it. Really. All the complexity of your computer, the internet, AI - it all comes down to controlling where electrons go and when.</p>
+                    
+                    <p data-en="But <strong>why</strong> do electrons move? And <strong>how</strong> do we control them?" data-he="אבל <strong>למה</strong> אלקטרונים נעים? ו<strong>איך</strong> אנחנו שולטים בהם?">But <strong>why</strong> do electrons move? And <strong>how</strong> do we control them?</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(4)" data-en="🌈 Next: Light, Color, and Your Screen" data-he="🌈 הבא: אור, צבע והמסך שלך">🌈 Next: Light, Color, and Your Screen</button>
+            </div>
+        </section>
+
+        <!-- Lesson 4: Light, Color and Physics -->
+        <section class="lesson" id="lesson4">
+            <div class="lesson-header">
+                <div class="lesson-number">4</div>
+                <h2 class="lesson-title" data-en="Light, Color and Physics" data-he="אור, צבע ופיזיקה">Light, Color and Physics</h2>
+                <p class="lesson-subtitle" data-en="How energy becomes the colors you see" data-he="איך אנרגיה הופכת לצבעים שאתה רואה">How energy becomes the colors you see</p>
+            </div>
+
+            <div class="motivation">
+                <h3>🌈 <span data-en="The Hidden Science Behind Every Pixel" data-he="המדע הנסתר מאחורי כל פיקסל">The Hidden Science Behind Every Pixel</span></h3>
+                <p data-en="Right now, your screen is creating millions of tiny dots of light - each one a precise mix of red, green, and blue. But what IS light? How does energy become color? And how does your screen control it with the electricity we just learned about? Understanding this connects the physics of the universe to the pixels displaying these words." data-he="כרגע, המסך שלך יוצר מיליוני נקודות אור קטנטנות - כל אחת מהן תערובת מדויקת של אדום, ירוק וכחול. אבל מה זה אור? איך אנרגיה הופכת לצבע? ואיך המסך שלך שולט בזה עם החשמל שזה עתה למדנו עליו? הבנת זה מחברת את הפיזיקה של היקום לפיקסלים שמציגים את המילים האלה.">Right now, your screen is creating millions of tiny dots of light - each one a precise mix of red, green, and blue. But what IS light? How does energy become color? And how does your screen control it with the electricity we just learned about? Understanding this connects the physics of the universe to the pixels displaying these words.</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="What Light Actually Is" data-he="מה אור באמת">What Light Actually Is</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="Light is <strong>electromagnetic radiation</strong> - energy traveling through space as waves. Think of it like invisible waves in an invisible ocean, but these waves carry energy that your eyes can detect." data-he="אור הוא <strong>קרינה אלקטרומגנטית</strong> - אנרגיה שנוסעת בחלל כגלים. תחשוב על זה כמו גלים בלתי נראים באוקיינוס בלתי נראה, אבל הגלים האלה נושאים אנרגיה שהעיניים שלך יכולות לזהות.">Light is <strong>electromagnetic radiation</strong> - energy traveling through space as waves. Think of it like invisible waves in an invisible ocean, but these waves carry energy that your eyes can detect.</p>
+                    
+                    <p data-en="The key insight from physics: <strong>Different amounts of energy = different colors</strong>" data-he="התובנה המפתח מהפיזיקה: <strong>כמויות שונות של אנרגיה = צבעים שונים</strong>">The key insight from physics: <strong>Different amounts of energy = different colors</strong></p>
+                    
+                    <div class="interactive-demo" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 25px; border-radius: 15px; margin: 20px 0; border: 2px solid #8b5cf6;">
+                        <h4 data-en="🔬 Planck's Energy Equation" data-he="🔬 משוואת האנרגיה של פלנק">🔬 Planck's Energy Equation</h4>
+                        <div style="background: #0f172a; padding: 20px; border-radius: 12px; text-align: center; margin: 15px 0;">
+                            <div style="font-size: 24px; font-family: 'Courier New', monospace; color: #a78bfa; margin-bottom: 10px;">
+                                E = h × f
+                            </div>
+                            <div style="font-size: 16px;">
+                                <p data-en="E = Energy of light" data-he="E = אנרגיית האור">E = Energy of light</p>
+                                <p data-en="h = Planck's constant (6.626 × 10⁻³⁴)" data-he="h = קבוע פלנק (6.626 × 10⁻³⁴)">h = Planck's constant (6.626 × 10⁻³⁴)</p>
+                                <p data-en="f = Frequency (how fast the wave wiggles)" data-he="f = תדירות (כמה מהר הגל מתנודד)">f = Frequency (how fast the wave wiggles)</p>
+                            </div>
+                        </div>
+                        <p data-en="Higher frequency = more energy = bluer color. Lower frequency = less energy = redder color." data-he="תדירות גבוהה יותר = יותר אנרגיה = צבע כחול יותר. תדירות נמוכה יותר = פחות אנרגיה = צבע אדום יותר.">Higher frequency = more energy = bluer color. Lower frequency = less energy = redder color.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-en="The RGB Color System" data-he="מערכת צבעי RGB">The RGB Color System</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="Your screen can only make three colors: <strong>Red, Green, and Blue</strong>. But by mixing these in different amounts, it creates every color you see!" data-he="המסך שלך יכול ליצור רק שלושה צבעים: <strong>אדום, ירוק וכחול</strong>. אבל על ידי ערבוב של אלה בכמויות שונות, הוא יוצר כל צבע שאתה רואה!">Your screen can only make three colors: <strong>Red, Green, and Blue</strong>. But by mixing these in different amounts, it creates every color you see!</p>
+                    
+                    <div class="interactive-demo" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 25px; border-radius: 15px; margin: 20px 0; border: 2px solid #f59e0b;">
+                        <h4 data-en="🎨 Interactive RGB Color Mixer" data-he="🎨 מערבל צבעי RGB אינטראקטיבי">🎨 Interactive RGB Color Mixer</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 200px; gap: 30px; align-items: center;">
+                            <div>
+                                <div style="margin: 15px 0;">
+                                    <label style="display: block; margin-bottom: 5px;">
+                                        <span data-en="Red:" data-he="אדום:">Red:</span> <span id="redValue">128</span>
+                                    </label>
+                                    <input type="range" id="redSlider" min="0" max="255" value="128" style="width: 100%;">
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <label style="display: block; margin-bottom: 5px;">
+                                        <span data-en="Green:" data-he="ירוק:">Green:</span> <span id="greenValue">128</span>
+                                    </label>
+                                    <input type="range" id="greenSlider" min="0" max="255" value="128" style="width: 100%;">
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <label style="display: block; margin-bottom: 5px;">
+                                        <span data-en="Blue:" data-he="כחול:">Blue:</span> <span id="blueValue">128</span>
+                                    </label>
+                                    <input type="range" id="blueSlider" min="0" max="255" value="128" style="width: 100%;">
                                 </div>
                             </div>
+                            <div>
+                                <div id="colorResult" style="width: 180px; height: 180px; border-radius: 15px; background: rgb(128, 128, 128); border: 3px solid #374151; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                                    <span data-en="Your Color" data-he="הצבע שלך">Your Color</span>
+                                </div>
+                                <p style="text-align: center; margin-top: 10px; font-family: 'Courier New', monospace;" id="rgbValues">rgb(128, 128, 128)</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="neural-calculation">
-                        <h5 data-en="Calculation:" data-he="חישוב:">Calculation:</h5>
-                        <div class="equation-box">
-                            y₁ = σ(x₁×w₁₁ + x₂×w₂₁ + x₃×w₃₁ + b₁)<br>
-                            y₂ = σ(x₁×w₁₂ + x₂×w₂₂ + x₃×w₃₂ + b₂)
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title" data-en="2.3 Backpropagation: How Networks Learn" data-he="2.3 התפשטות לאחור: איך רשתות לומדות">2.3 Backpropagation: How Networks Learn</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>Backpropagation</strong> is the algorithm that trains neural networks by calculating gradients:" data-he="<strong>התפשטות לאחור</strong> הוא האלגוריתם המאמן רשתות נוירונים על ידי חישוב גרדיינטים:"><strong>Backpropagation</strong> is the algorithm that trains neural networks by calculating gradients:</p>
-                    
-                    <div class="chain-rule-explanation">
-                        <h5 data-en="The Chain Rule (Fundamental to Backpropagation):" data-he="כלל השרשרת (יסודי להתפשטות לאחור):">The Chain Rule (Fundamental to Backpropagation):</h5>
-                        <div class="equation-box">∂L/∂w = (∂L/∂y) × (∂y/∂z) × (∂z/∂w)</div>
-                        <p data-en="Where:" data-he="כאשר:">Where:</p>
-                        <ul>
-                            <li><span class="highlight">L</span> = <span data-en="Loss function" data-he="פונקציית אובדן">Loss function</span></li>
-                            <li><span class="highlight">w</span> = <span data-en="Network weight" data-he="משקל ברשת">Network weight</span></li>
-                            <li><span class="highlight">y</span> = <span data-en="Layer output" data-he="פלט השכבה">Layer output</span></li>
-                            <li><span class="highlight">z</span> = <span data-en="Pre-activation value" data-he="ערך לפני הפעלה">Pre-activation value</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="gradient-descent">
-                        <h5 data-en="Weight Update Rule:" data-he="כלל עדכון משקלים:">Weight Update Rule:</h5>
-                        <div class="equation-box">w_new = w_old - η × (∂L/∂w)</div>
-                        <p data-en="Where η (eta) is the learning rate" data-he="כאשר η (אטה) הוא קצב הלמידה">Where η (eta) is the learning rate</p>
-                    </div>
-                </div>
-
-                <div class="quiz-section">
-                    <div class="quiz-question" data-en="🧠 Test Your Understanding: What happens if the learning rate is too high?" data-he="🧠 בחן את ההבנה שלך: מה קורה אם קצב הלמידה גבוה מדי?">🧠 Test Your Understanding: What happens if the learning rate is too high?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) The network learns faster and more accurately" data-he="א) הרשת לומדת מהר יותר ובדיוק רב יותר">A) The network learns faster and more accurately</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) The network may overshoot the optimal solution and fail to converge" data-he="ב) הרשת עלולה לחרוג מהפתרון האופטימלי ולא להתכנס">B) The network may overshoot the optimal solution and fail to converge</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Nothing, learning rate doesn't affect training" data-he="ג) כלום, קצב הלמידה לא משפיע על האימון">C) Nothing, learning rate doesn't affect training</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) The network uses less memory" data-he="ד) הרשת משתמשת בפחות זיכרון">D) The network uses less memory</div>
-                    </div>
-                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! A high learning rate causes large weight updates that can overshoot the minimum of the loss function, leading to oscillation or divergence. This is why adaptive optimizers like Adam adjust the learning rate dynamically." data-he="נכון! קצב למידה גבוה גורם לעדכוני משקלים גדולים שעלולים לחרוג מהמינימום של פונקציית האובדן, מה שמוביל לתנודות או התבדרות. בגלל זה אופטימייזרים אדפטיביים כמו Adam מתאימים את קצב הלמידה באופן דינמי.">Correct! A high learning rate causes large weight updates that can overshoot the minimum of the loss function, leading to oscillation or divergence. This is why adaptive optimizers like Adam adjust the learning rate dynamically.</span>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Chapter 3: LoRA - Low-Rank Adaptation -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 3: LoRA - Low-Rank Adaptation" data-he="פרק 3: LoRA - התאמה בדירוג נמוך">Chapter 3: LoRA - Low-Rank Adaptation</h2>
-                
-                <h3 class="subsection-title" data-en="3.1 The Problem: Fine-tuning Large Models" data-he="3.1 הבעיה: כוונון עדין של מודלים גדולים">3.1 The Problem: Fine-tuning Large Models</h3>
-                
-                <p data-en="Large language and image models like FLUX have billions of parameters. Fine-tuning all parameters requires enormous computational resources and memory. LoRA provides an elegant solution." data-he="מודלים גדולים של שפה ותמונה כמו FLUX יש מיליארדי פרמטרים. כוונון עדין של כל הפרמטרים דורש משאבי חישוב וזיכרון עצומים. LoRA מספקת פתרון אלגנטי.">Large language and image models like FLUX have billions of parameters. Fine-tuning all parameters requires enormous computational resources and memory. LoRA provides an elegant solution.</p>
-
-                <h3 class="subsection-title" data-en="3.2 Mathematical Foundation of LoRA" data-he="3.2 הבסיס המתמטי של LoRA">3.2 Mathematical Foundation of LoRA</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>LoRA decomposes weight updates</strong> into two smaller matrices:" data-he="<strong>LoRA מפרקת עדכוני משקלים</strong> לשתי מטריצות קטנות יותר:"><strong>LoRA decomposes weight updates</strong> into two smaller matrices:</p>
-                    <div class="equation-box">ΔW = B × A</div>
-                    <p data-en="Where:" data-he="כאשר:">Where:</p>
-                    <ul>
-                        <li><span class="highlight">ΔW</span> = <span data-en="Weight update matrix (d × k)" data-he="מטריצת עדכון משקלים (d × k)">Weight update matrix (d × k)</span></li>
-                        <li><span class="highlight">B</span> = <span data-en="Down-projection matrix (d × r)" data-he="מטריצת השלכה למטה (d × r)">Down-projection matrix (d × r)</span></li>
-                        <li><span class="highlight">A</span> = <span data-en="Up-projection matrix (r × k)" data-he="מטריצת השלכה למעלה (r × k)">Up-projection matrix (r × k)</span></li>
-                        <li><span class="highlight">r</span> = <span data-en="Rank (much smaller than d and k)" data-he="דירוג (הרבה יותר קטן מ-d ו-k)">Rank (much smaller than d and k)</span></li>
-                    </ul>
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-en="From Electricity to Light" data-he="מחשמל לאור">From Electricity to Light</h3>
                 </div>
-
-                <div class="interactive-demo">
-                    <h4 data-en="LoRA Parameter Reduction Calculator" data-he="מחשבון הפחתת פרמטרים של LoRA">LoRA Parameter Reduction Calculator</h4>
-                    <p data-en="See how LoRA dramatically reduces the number of trainable parameters:" data-he="ראה איך LoRA מפחיתה דרמטית את מספר הפרמטרים הניתנים לאימון:">See how LoRA dramatically reduces the number of trainable parameters:</p>
+                <div class="step-content">
+                    <p data-en="Now here's where it gets amazing: Your screen uses the electricity we learned about to control light!" data-he="עכשיו כאן זה נהיה מדהים: המסך שלך משתמש בחשמל שלמדנו עליו כדי לשלוט באור!">Now here's where it gets amazing: Your screen uses the electricity we learned about to control light!</p>
                     
-                    <div class="lora-calculator">
-                        <div class="calc-inputs">
-                            <label data-en="Original Matrix Size (d):" data-he="גודל מטריצה מקורית (d):">Original Matrix Size (d): <input type="number" id="matrixD" value="4096" min="1"></label>
-                            <label data-en="Output Size (k):" data-he="גודל פלט (k):">Output Size (k): <input type="number" id="matrixK" value="4096" min="1"></label>
-                            <label data-en="LoRA Rank (r):" data-he="דירוג LoRA (r):">LoRA Rank (r): <input type="number" id="loraRank" value="16" min="1"></label>
-                        </div>
-                        <div class="calc-results" id="loraResults">
-                            <p data-en="Original Parameters: 16,777,216" data-he="פרמטרים מקוריים: 16,777,216">Original Parameters: 16,777,216</p>
-                            <p data-en="LoRA Parameters: 131,072" data-he="פרמטרי LoRA: 131,072">LoRA Parameters: 131,072</p>
-                            <p data-en="Reduction: 99.22%" data-he="הפחתה: 99.22%">Reduction: 99.22%</p>
-                        </div>
+                    <div style="background: #0f172a; padding: 20px; border-radius: 12px; margin: 20px 0;">
+                        <h4 data-en="🔌 The Connection:" data-he="🔌 הקשר:">🔌 The Connection:</h4>
+                        <ol style="line-height: 1.8;">
+                            <li data-en="Computer calculates what color each pixel should be" data-he="מחשב מחשב איזה צבע כל פיקסל צריך להיות">Computer calculates what color each pixel should be</li>
+                            <li data-en="Sends electrical signals (0s and 1s) to the screen" data-he="שולח אותות חשמליים (0ים ו-1ים) למסך">Sends electrical signals (0s and 1s) to the screen</li>
+                            <li data-en="Screen converts these signals to precise voltages" data-he="מסך מהמר את האותות האלה למתחים מדויקים">Screen converts these signals to precise voltages</li>
+                            <li data-en="Voltages control how much red, green, and blue light each pixel emits" data-he="מתחים שולטים כמה אור אדום, ירוק וכחול כל פיקסל פולט">Voltages control how much red, green, and blue light each pixel emits</li>
+                            <li data-en="Your eye sees the combined light as a single color" data-he="העין שלך רואה את האור המשולב כצבע יחיד">Your eye sees the combined light as a single color</li>
+                        </ol>
                     </div>
+                    
+                    <p data-en="This is the bridge between the digital world (0s and 1s) and the physical world (photons hitting your retina)!" data-he="זה הגשר בין העולם הדיגיטלי (0ים ו-1ים) לעולם הפיזי (פוטונים שמכים ברשתית שלך)!">This is the bridge between the digital world (0s and 1s) and the physical world (photons hitting your retina)!</p>
                 </div>
+            </div>
 
-                <h3 class="subsection-title" data-en="3.3 LoRA in AI-Toolkit Implementation" data-he="3.3 יישום LoRA ב-AI-Toolkit">3.3 LoRA in AI-Toolkit Implementation</h3>
-                
-                <div class="code-explanation">
-                    <h5 data-en="Key Implementation Details from AI-Toolkit:" data-he="פרטי יישום מפתח מ-AI-Toolkit:">Key Implementation Details from AI-Toolkit:</h5>
-                    <div class="code-block">
-                        <pre><code># From kohya_lora.py
-class LoRAModule(nn.Module):
-    def __init__(self, lora_name, org_module, multiplier=1.0, 
-                 lora_dim=4, alpha=1):
-        # B matrix (down projection)
-        self.lora_down = nn.Linear(org_module.in_features, lora_dim, bias=False)
-        # A matrix (up projection)  
-        self.lora_up = nn.Linear(lora_dim, org_module.out_features, bias=False)
-        self.multiplier = multiplier
-        self.alpha = alpha
-        
-    def forward(self, x):
-        # Original computation: W₀x
-        orig_output = self.org_forward(x)
-        # LoRA computation: α(BAx)
-        lora_output = self.lora_up(self.lora_down(x)) * self.multiplier * self.alpha
-        return orig_output + lora_output</code></pre>
-                    </div>
-                    <p data-en="The final output combines original weights with LoRA adaptation:" data-he="הפלט הסופי משלב משקלים מקוריים עם התאמת LoRA:">The final output combines original weights with LoRA adaptation:</p>
-                    <div class="equation-box">h = W₀x + α(BAx)</div>
-                </div>
+            <div class="knowledge-block">
+                <h3 class="knowledge-title" data-en="🧱 Key Knowledge Block #4" data-he="🧱 בלוק ידע מפתח #4">🧱 Key Knowledge Block #4</h3>
+                <ul class="knowledge-items">
+                    <li data-en="Light is electromagnetic radiation - energy traveling as waves" data-he="אור הוא קרינה אלקטרומגנטית - אנרגיה שנוסעת כגלים">Light is electromagnetic radiation - energy traveling as waves</li>
+                    <li data-en="E = h × f: Higher frequency = more energy = bluer color" data-he="E = h × f: תדירות גבוהה יותר = יותר אנרגיה = צבע כחול יותר">E = h × f: Higher frequency = more energy = bluer color</li>
+                    <li data-en="Screens use RGB: mix Red, Green, Blue light to create all colors" data-he="מסכים משתמשים ב-RGB: מערבבים אור אדום, ירוק, כחול כדי ליצור כל הצבעים">Screens use RGB: mix Red, Green, Blue light to create all colors</li>
+                    <li data-en="Electricity controls the brightness of each RGB component" data-he="חשמל שולט על הבהירות של כל רכיב RGB">Electricity controls the brightness of each RGB component</li>
+                </ul>
+            </div>
 
-                <div class="quiz-section">
-                    <div class="quiz-question" data-en="🔬 Advanced Question: Why does LoRA work so well despite using far fewer parameters?" data-he="🔬 שאלה מתקדמת: למה LoRA עובדת כל כך טוב למרות שימוש בהרבה פחות פרמטרים?">🔬 Advanced Question: Why does LoRA work so well despite using far fewer parameters?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Because it uses random matrices" data-he="א) כי היא משתמשת במטריצות אקראיות">A) Because it uses random matrices</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) Because fine-tuning updates have intrinsically low rank - most information is redundant" data-he="ב) כי לעדכוני כוונון עדין יש דירוג נמוך במטבעם - רוב המידע מיותר">B) Because fine-tuning updates have intrinsically low rank - most information is redundant</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) Because it's faster to compute" data-he="ג) כי זה מהיר יותר לחשב">C) Because it's faster to compute</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Because it prevents overfitting" data-he="ד) כי זה מונע התאמת יתר">D) Because it prevents overfitting</div>
-                    </div>
-                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! Research shows that the weight updates during fine-tuning live in a low-dimensional subspace. LoRA exploits this 'intrinsic dimensionality' - the hypothesis that the important changes can be captured with just a few dimensions, making the full rank matrix mostly redundant." data-he="נכון! מחקרים מראים שעדכוני המשקלים במהלך כוונון עדין חיים במרחב תת-ממדי נמוך. LoRA מנצלת את 'הממדיות הפנימית' הזו - ההשערה שהשינויים החשובים ניתנים ללכידה עם כמה ממדים בלבד, מה שהופך את מטריצת הדירוג המלא למיותרת ברובה.">Correct! Research shows that the weight updates during fine-tuning live in a low-dimensional subspace. LoRA exploits this 'intrinsic dimensionality' - the hypothesis that the important changes can be captured with just a few dimensions, making the full rank matrix mostly redundant.</span>
-                    </div>
-                </div>
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(5)" data-en="📺 Next: How Your Screen Actually Works" data-he="📺 הבא: איך המסך שלך באמת עובד">📺 Next: How Your Screen Actually Works</button>
             </div>
         </section>
 
-        <!-- Chapter 4: Diffusion Models Theory -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 4: Diffusion Models - The Art of Controlled Noise" data-he="פרק 4: מודלי דיפוזיה - האומנות של רעש מבוקר">Chapter 4: Diffusion Models - The Art of Controlled Noise</h2>
-                
-                <h3 class="subsection-title" data-en="4.1 The Core Insight: Reversible Noise Process" data-he="4.1 התובנה המרכזית: תהליך רעש הפיך">4.1 The Core Insight: Reversible Noise Process</h3>
-                
-                <p data-en="Diffusion models generate images by learning to reverse a noise corruption process. Instead of generating images directly, they learn to remove noise step by step." data-he="מודלי דיפוזיה יוצרים תמונות על ידי למידה להפוך תהליך השחתת רעש. במקום ליצור תמונות ישירות, הם לומדים להסיר רעש צעד אחר צעד.">Diffusion models generate images by learning to reverse a noise corruption process. Instead of generating images directly, they learn to remove noise step by step.</p>
-
-                <h3 class="subsection-title" data-en="4.2 Forward Process: Adding Noise" data-he="4.2 תהליך קדמי: הוספת רעש">4.2 Forward Process: Adding Noise</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>The forward process</strong> gradually adds Gaussian noise to an image:" data-he="<strong>התהליך הקדמי</strong> מוסיף באופן הדרגתי רעש גאוסיאני לתמונה:"><strong>The forward process</strong> gradually adds Gaussian noise to an image:</p>
-                    <div class="equation-box">q(x_t | x_{t-1}) = N(x_t; √(1-β_t)x_{t-1}, β_t I)</div>
-                    <p data-en="Where:" data-he="כאשר:">Where:</p>
-                    <ul>
-                        <li><span class="highlight">x_t</span> = <span data-en="Image at timestep t" data-he="תמונה בזמן t">Image at timestep t</span></li>
-                        <li><span class="highlight">β_t</span> = <span data-en="Noise schedule parameter" data-he="פרמטר לוח זמני רעש">Noise schedule parameter</span></li>
-                        <li><span class="highlight">N</span> = <span data-en="Gaussian distribution" data-he="התפלגות גאוסיאנית">Gaussian distribution</span></li>
-                        <li><span class="highlight">I</span> = <span data-en="Identity matrix" data-he="מטריצת יחידה">Identity matrix</span></li>
-                    </ul>
-                </div>
-
-                <div class="diffusion-visualization">
-                    <h4 data-en="Noise Addition Process Visualization" data-he="הדמיית תהליך הוספת רעש">Noise Addition Process Visualization</h4>
-                    <div class="noise-steps">
-                        <div class="step" data-en="Original Image<br>t=0" data-he="תמונה מקורית<br>t=0">🖼️<br>Original Image<br>t=0</div>
-                        <div class="arrow">→</div>
-                        <div class="step" data-en="Light Noise<br>t=250" data-he="רעש קל<br>t=250">🌫️<br>Light Noise<br>t=250</div>
-                        <div class="arrow">→</div>
-                        <div class="step" data-en="Medium Noise<br>t=500" data-he="רעש בינוני<br>t=500">⛅<br>Medium Noise<br>t=500</div>
-                        <div class="arrow">→</div>
-                        <div class="step" data-en="Heavy Noise<br>t=750" data-he="רעש כבד<br>t=750">☁️<br>Heavy Noise<br>t=750</div>
-                        <div class="arrow">→</div>
-                        <div class="step" data-en="Pure Noise<br>t=1000" data-he="רעש טהור<br>t=1000">❄️<br>Pure Noise<br>t=1000</div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title" data-en="4.3 Reverse Process: Learned Denoising" data-he="4.3 תהליך הפוך: הסרת רעש נלמדת">4.3 Reverse Process: Learned Denoising</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>The reverse process</strong> is learned by a neural network (U-Net) that predicts the noise:" data-he="<strong>התהליך ההפוך</strong> נלמד על ידי רשת נוירונים (U-Net) המנבאת את הרעש:"><strong>The reverse process</strong> is learned by a neural network (U-Net) that predicts the noise:</p>
-                    <div class="equation-box">ε_θ(x_t, t) ≈ ε</div>
-                    <p data-en="The network learns to predict the noise that was added at each step, allowing us to remove it:" data-he="הרשת לומדת לחזות את הרעש שהוסף בכל צעד, מה שמאפשר לנו להסיר אותו:">The network learns to predict the noise that was added at each step, allowing us to remove it:</p>
-                    <div class="equation-box">x_{t-1} = (1/√α_t)(x_t - (β_t/√(1-ᾱ_t))ε_θ(x_t, t)) + σ_t z</div>
-                </div>
-
-                <h3 class="subsection-title" data-en="4.4 FLUX and Flow Matching: Advanced Techniques" data-he="4.4 FLUX והתאמת זרם: טכניקות מתקדמות">4.4 FLUX and Flow Matching: Advanced Techniques</h3>
-                
-                <div class="formula-explanation">
-                    <p data-en="<strong>FLUX uses Flow Matching</strong>, a more efficient alternative to traditional DDPM:" data-he="<strong>FLUX משתמש בהתאמת זרם</strong>, חלופה יעילה יותר ל-DDPM המסורתי:"><strong>FLUX uses Flow Matching</strong>, a more efficient alternative to traditional DDPM:</p>
-                    
-                    <div class="flow-matching-explanation">
-                        <h5 data-en="Key Advantages of Flow Matching:" data-he="יתרונות מפתח של התאמת זרם:">Key Advantages of Flow Matching:</h5>
-                        <ul>
-                            <li data-en="<strong>Straight paths:</strong> More direct interpolation between noise and data" data-he="<strong>נתיבים ישרים:</strong> אינטרפולציה ישירה יותר בין רעש ונתונים"><strong>Straight paths:</strong> More direct interpolation between noise and data</li>
-                            <li data-en="<strong>Faster sampling:</strong> Requires fewer denoising steps" data-he="<strong>דגימה מהירה יותר:</strong> דורש פחות צעדי הסרת רעש"><strong>Faster sampling:</strong> Requires fewer denoising steps</li>
-                            <li data-en="<strong>Better training stability:</strong> More stable gradient flow" data-he="<strong>יציבות אימון טובה יותר:</strong> זרם גרדיינט יציב יותר"><strong>Better training stability:</strong> More stable gradient flow</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="quiz-section">
-                    <div class="quiz-question" data-en="🎯 Conceptual Question: Why do diffusion models generate high-quality images?" data-he="🎯 שאלה קונספטואלית: למה מודלי דיפוזיה יוצרים תמונות באיכות גבוהה?">🎯 Conceptual Question: Why do diffusion models generate high-quality images?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) They use more parameters than other models" data-he="א) הם משתמשים ביותר פרמטרים ממודלים אחרים">A) They use more parameters than other models</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="B) The gradual denoising process allows fine-grained control and prevents mode collapse" data-he="ב) תהליך הסרת הרעש ההדרגתי מאפשר שליטה עדינה ומונע קריסת מצב">B) The gradual denoising process allows fine-grained control and prevents mode collapse</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="C) They train faster than other generative models" data-he="ג) הם מתאמנים מהר יותר ממודלים גנרטיביים אחרים">C) They train faster than other generative models</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) They require less memory during training" data-he="ד) הם דורשים פחות זיכרון במהלך האימון">D) They require less memory during training</div>
-                    </div>
-                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! The step-by-step denoising process gives the model many opportunities to refine the image, leading to high fidelity. Unlike GANs which can suffer from mode collapse (generating only a few types of images), diffusion models learn the full data distribution through the noise corruption process." data-he="נכון! תהליך הסרת הרעש צעד אחר צעד נותן למודל הזדמנויות רבות לשכלל את התמונה, מה שמוביל לנאמנות גבוהה. בניגוד ל-GANs שעלולים לסבול מקריסת מצב (יצירת רק כמה סוגי תמונות), מודלי דיפוזיה לומדים את ההתפלגות המלאה של הנתונים דרך תהליך השחתת הרעש.">Correct! The step-by-step denoising process gives the model many opportunities to refine the image, leading to high fidelity. Unlike GANs which can suffer from mode collapse (generating only a few types of images), diffusion models learn the full data distribution through the noise corruption process.</span>
-                    </div>
-                </div>
+        <!-- Lesson 5: How Screens Actually Work -->
+        <section class="lesson" id="lesson5">
+            <div class="lesson-header">
+                <div class="lesson-number">5</div>
+                <h2 class="lesson-title" data-en="How Your Screen Actually Works" data-he="איך המסך שלך באמת עובד">How Your Screen Actually Works</h2>
+                <p class="lesson-subtitle" data-en="From pixels to pictures - the technology behind your display" data-he="מפיקסלים לתמונות - הטכנולוגיה מאחורי התצוגה שלך">From pixels to pictures - the technology behind your display</p>
             </div>
-        </section>
 
-        <!-- Chapter 5: AI-Toolkit Architecture -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="Chapter 5: AI-Toolkit Architecture Deep Dive" data-he="פרק 5: צלילה עמוקה לארכיטקטורת AI-Toolkit">Chapter 5: AI-Toolkit Architecture Deep Dive</h2>
-                
-                <h3 class="subsection-title" data-en="5.1 Framework Design Principles" data-he="5.1 עקרונות עיצוב המסגרת">5.1 Framework Design Principles</h3>
-                
-                <div class="architecture-overview">
-                    <p data-en="AI-Toolkit is designed as a <strong>modular, extensible training framework</strong> for modern AI models. Let's explore its key architectural decisions:" data-he="AI-Toolkit מעוצב כ<strong>מסגרת אימון מודולרית וניתנת להרחבה</strong> למודלי AI מודרניים. בואו נחקור את החלטות הארכיטקטורה המפתח שלו:">AI-Toolkit is designed as a <strong>modular, extensible training framework</strong> for modern AI models. Let's explore its key architectural decisions:</p>
-                    
-                    <div class="system-components">
-                        <div class="component-card">
-                            <h4 data-en="🏗️ Job System" data-he="🏗️ מערכת עבודות">🏗️ Job System</h4>
-                            <p data-en="Config-driven job execution with support for different training types" data-he="ביצוע עבודות מונחה תצורה עם תמיכה בסוגי אימון שונים">Config-driven job execution with support for different training types</p>
-                        </div>
-                        <div class="component-card">
-                            <h4 data-en="🧠 Model Abstraction" data-he="🧠 הפשטת מודל">🧠 Model Abstraction</h4>
-                            <p data-en="Unified interface for different model types (FLUX, SD, etc.)" data-he="ממשק מאוחד לסוגי מודלים שונים (FLUX, SD, וכו')">Unified interface for different model types (FLUX, SD, etc.)</p>
-                        </div>
-                        <div class="component-card">
-                            <h4 data-en="💾 Memory Management" data-he="💾 ניהול זיכרון">💾 Memory Management</h4>
-                            <p data-en="Smart memory optimization with quantization and gradient checkpointing" data-he="אופטימיזציית זיכרון חכמה עם קוונטיזציה ונקודות בדיקה של גרדיינט">Smart memory optimization with quantization and gradient checkpointing</p>
-                        </div>
-                        <div class="component-card">
-                            <h4 data-en="📊 Dataset Pipeline" data-he="📊 צינור נתונים">📊 Dataset Pipeline</h4>
-                            <p data-en="Efficient data loading with bucketing and caching" data-he="טעינת נתונים יעילה עם קיבוץ וקאשינג">Efficient data loading with bucketing and caching</p>
-                        </div>
-                    </div>
+            <div class="motivation">
+                <h3>📱 <span data-en="The Engineering Marvel You Touch Every Day" data-he="פלא ההנדסה שאתה נוגע בו כל יום">The Engineering Marvel You Touch Every Day</span></h3>
+                <p data-en="Your screen contains millions of tiny light sources, each one controlled by sophisticated electronics. Every letter you read, every color you see, every image you view - it's all created by precisely controlling electricity to create light. Understanding how screens work connects all our previous lessons: atoms, electricity, and light working together to create information." data-he="המסך שלך מכיל מיליוני מקורות אור קטנים, כל אחד נשלט על ידי אלקטרוניקה מתוחכמת. כל אות שאתה קורא, כל צבע שאתה רואה, כל תמונה שאתה צופה - הכל נוצר על ידי שליטה מדויקת בחשמל כדי ליצור אור. הבנת איך מסכים עובדים מחברת את כל השיעורים הקודמים שלנו: אטומים, חשמל ואור עובדים יחד כדי ליצור מידע.">Your screen contains millions of tiny light sources, each one controlled by sophisticated electronics. Every letter you read, every color you see, every image you view - it's all created by precisely controlling electricity to create light. Understanding how screens work connects all our previous lessons: atoms, electricity, and light working together to create information.</p>
+            </div>
+
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-en="What is a Pixel?" data-he="מה זה פיקסל?">What is a Pixel?</h3>
                 </div>
-
-                <h3 class="subsection-title" data-en="5.2 Memory Optimization Strategies" data-he="5.2 אסטרטגיות אופטימיזציית זיכרון">5.2 Memory Optimization Strategies</h3>
-                
-                <div class="memory-optimization">
-                    <h4 data-en="Key Memory Saving Techniques:" data-he="טכניקות מפתח לחיסכון בזיכרון:">Key Memory Saving Techniques:</h4>
+                <div class="step-content">
+                    <p data-en="<strong>Pixel</strong> = <strong>Picture Element</strong> - the smallest dot of color your screen can create." data-he="<strong>פיקסל</strong> = <strong>אלמנט תמונה</strong> - הנקודה הכי קטנה של צבע שהמסך שלך יכול ליצור."><strong>Pixel</strong> = <strong>Picture Element</strong> - the smallest dot of color your screen can create.</p>
                     
-                    <div class="technique-grid">
-                        <div class="technique-card">
-                            <h5 data-en="🔢 8-bit Quantization" data-he="🔢 קוונטיזציה 8-ביט">🔢 8-bit Quantization</h5>
-                            <p data-en="Reduces model weights from 32-bit to 8-bit precision" data-he="מפחית משקלי מודל מדיוק 32-ביט ל-8-ביט">Reduces model weights from 32-bit to 8-bit precision</p>
-                            <div class="savings" data-en="Memory Savings: ~75%" data-he="חיסכון בזיכרון: ~75%">Memory Savings: ~75%</div>
-                        </div>
-                        
-                        <div class="technique-card">
-                            <h5 data-en="🗂️ Gradient Checkpointing" data-he="🗂️ נקודות בדיקה של גרדיינט">🗂️ Gradient Checkpointing</h5>
-                            <p data-en="Trades computation for memory by recomputing activations" data-he="מחליף חישוב בזיכרון על ידי חישוב מחדש של הפעלות">Trades computation for memory by recomputing activations</p>
-                            <div class="savings" data-en="Memory Savings: ~50%" data-he="חיסכון בזיכרון: ~50%">Memory Savings: ~50%</div>
-                        </div>
-                        
-                        <div class="technique-card">
-                            <h5 data-en="🎯 LoRA Fine-tuning" data-he="🎯 כוונון עדין LoRA">🎯 LoRA Fine-tuning</h5>
-                            <p data-en="Only trains small adapter modules instead of full model" data-he="מאמן רק מודולי מתאם קטנים במקום המודל המלא">Only trains small adapter modules instead of full model</p>
-                            <div class="savings" data-en="Parameter Reduction: ~99%" data-he="הפחתת פרמטרים: ~99%">Parameter Reduction: ~99%</div>
-                        </div>
-                        
-                        <div class="technique-card">
-                            <h5 data-en="📦 Latent Caching" data-he="📦 קאשינג חבוי">📦 Latent Caching</h5>
-                            <p data-en="Pre-computes and caches VAE encodings of images" data-he="מחשב מראש ושומר בקאש קידודי VAE של תמונות">Pre-computes and caches VAE encodings of images</p>
-                            <div class="savings" data-en="Training Speed: +3x" data-he="מהירות אימון: +3x">Training Speed: +3x</div>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title" data-en="5.3 Configuration System Architecture" data-he="5.3 ארכיטקטורת מערכת התצורה">5.3 Configuration System Architecture</h3>
-                
-                <div class="config-explanation">
-                    <p data-en="AI-Toolkit uses YAML configuration files for declarative training setup. This enables reproducibility and easy experimentation:" data-he="AI-Toolkit משתמש בקבצי תצורת YAML להגדרת אימון הצהרתית. זה מאפשר יכולת שחזור וניסויים קלים:">AI-Toolkit uses YAML configuration files for declarative training setup. This enables reproducibility and easy experimentation:</p>
-                    
-                    <div class="config-structure">
-                        <h5 data-en="Key Configuration Sections:" data-he="סעיפי תצורה מפתח:">Key Configuration Sections:</h5>
-                        <div class="config-tree">
-                            <div class="config-node">
-                                <span class="config-key" data-en="job: extension" data-he="job: extension">job: extension</span>
-                                <div class="config-children">
-                                    <div class="config-node">
-                                        <span class="config-key" data-en="config:" data-he="config:">config:</span>
-                                        <div class="config-children">
-                                            <div class="config-item" data-en="name: Training run identifier" data-he="name: מזהה ריצת אימון">name: Training run identifier</div>
-                                            <div class="config-item" data-en="process: Training process configuration" data-he="process: תצורת תהליך אימון">process: Training process configuration</div>
-                                            <div class="config-item" data-en="network: LoRA network settings" data-he="network: הגדרות רשת LoRA">network: LoRA network settings</div>
-                                            <div class="config-item" data-en="datasets: Data loading configuration" data-he="datasets: תצורת טעינת נתונים">datasets: Data loading configuration</div>
-                                            <div class="config-item" data-en="train: Training hyperparameters" data-he="train: היפר-פרמטרי אימון">train: Training hyperparameters</div>
-                                            <div class="config-item" data-en="model: Base model specification" data-he="model: מפרט מודל בסיס">model: Base model specification</div>
-                                            <div class="config-item" data-en="sample: Generation settings" data-he="sample: הגדרות יצירה">sample: Generation settings</div>
-                                        </div>
+                    <div class="interactive-demo" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 25px; border-radius: 15px; margin: 20px 0; border: 2px solid #10b981;">
+                        <h4 data-en="🔍 Pixel Structure" data-he="🔍 מבנה פיקסל">🔍 Pixel Structure</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: center;">
+                            <div>
+                                <p data-en="Each pixel contains three sub-pixels:" data-he="כל פיקסל מכיל שלושה תת-פיקסלים:">Each pixel contains three sub-pixels:</p>
+                                <div style="margin: 15px 0;">
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #ef4444; border-radius: 3px; margin-right: 10px;"></div>
+                                        <span data-en="Red sub-pixel" data-he="תת-פיקסל אדום">Red sub-pixel</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #22c55e; border-radius: 3px; margin-right: 10px;"></div>
+                                        <span data-en="Green sub-pixel" data-he="תת-פיקסל ירוק">Green sub-pixel</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #3b82f6; border-radius: 3px; margin-right: 10px;"></div>
+                                        <span data-en="Blue sub-pixel" data-he="תת-פיקסל כחול">Blue sub-pixel</span>
                                     </div>
                                 </div>
+                                <p data-en="By controlling how bright each sub-pixel glows, we create any color!" data-he="על ידי שליטה כמה בהיר כל תת-פיקסל זוהר, אנחנו יוצרים כל צבע!">By controlling how bright each sub-pixel glows, we create any color!</p>
+                            </div>
+                            <div>
+                                <div style="display: grid; grid-template-columns: repeat(8, 30px); gap: 2px; justify-content: center;">
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #3b82f6 66%); border: 1px solid #374151;"></div>
+                                </div>
+                                <p style="text-align: center; margin-top: 10px; font-size: 14px;" data-en="Each square = one pixel (RGB)" data-he="כל ריבוע = פיקסל אחד (RGB)">Each square = one pixel (RGB)</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h3 class="subsection-title" data-en="5.4 Production Considerations" data-he="5.4 שיקולי ייצור">5.4 Production Considerations</h3>
-                
-                <div class="production-best-practices">
-                    <h4 data-en="Best Practices for Production Deployment:" data-he="שיטות עבודה מומלצות לפריסת ייצור:">Best Practices for Production Deployment:</h4>
-                    
-                    <div class="best-practices-grid">
-                        <div class="practice-card">
-                            <h5 data-en="🔄 Model Versioning" data-he="🔄 ניהול גרסאות מודל">🔄 Model Versioning</h5>
-                            <ul>
-                                <li data-en="Use semantic versioning for model releases" data-he="השתמש בגרסאות סמנטיות לשחרורי מודל">Use semantic versioning for model releases</li>
-                                <li data-en="Track training configurations and datasets" data-he="עקוב אחר תצורות אימון ונתונים">Track training configurations and datasets</li>
-                                <li data-en="Implement model registry for organization" data-he="יישם רישום מודלים לארגון">Implement model registry for organization</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="practice-card">
-                            <h5 data-en="📈 Monitoring & Logging" data-he="📈 ניטור ורישום">📈 Monitoring & Logging</h5>
-                            <ul>
-                                <li data-en="Log training metrics (loss, learning rate)" data-he="רשום מטריקות אימון (אובדן, קצב למידה)">Log training metrics (loss, learning rate)</li>
-                                <li data-en="Monitor GPU utilization and memory usage" data-he="נטר ניצול GPU ושימוש בזיכרון">Monitor GPU utilization and memory usage</li>
-                                <li data-en="Set up alerts for training failures" data-he="הגדר התראות לכשלי אימון">Set up alerts for training failures</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="practice-card">
-                            <h5 data-en="🔒 Security & Privacy" data-he="🔒 אבטחה ופרטיות">🔒 Security & Privacy</h5>
-                            <ul>
-                                <li data-en="Implement access controls for sensitive models" data-he="יישם בקרות גישה למודלים רגישים">Implement access controls for sensitive models</li>
-                                <li data-en="Audit training data for privacy compliance" data-he="בדוק נתוני אימון לעמידה בפרטיות">Audit training data for privacy compliance</li>
-                                <li data-en="Use encrypted storage for model weights" data-he="השתמש באחסון מוצפן למשקלי מודל">Use encrypted storage for model weights</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="practice-card">
-                            <h5 data-en="⚡ Performance Optimization" data-he="⚡ אופטימיזציית ביצועים">⚡ Performance Optimization</h5>
-                            <ul>
-                                <li data-en="Profile memory usage patterns" data-he="פרופיל דפוסי שימוש בזיכרון">Profile memory usage patterns</li>
-                                <li data-en="Optimize data loading pipelines" data-he="אופטימיזציה של צינורות טעינת נתונים">Optimize data loading pipelines</li>
-                                <li data-en="Use mixed precision training (bf16)" data-he="השתמש באימון דיוק מעורב (bf16)">Use mixed precision training (bf16)</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-en="LCD Technology: Liquid Crystals" data-he="טכנולוגיית LCD: גבישים נוזליים">LCD Technology: Liquid Crystals</h3>
                 </div>
-
-                <div class="quiz-section">
-                    <div class="quiz-question" data-en="🏭 Production Question: What's the most critical factor when deploying AI training systems at scale?" data-he="🏭 שאלת ייצור: מהו הגורם הקריטי ביותר בפריסת מערכות אימון AI בקנה מידה?">🏭 Production Question: What's the most critical factor when deploying AI training systems at scale?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="A) Using the latest GPU hardware" data-he="א) שימוש בחומרת GPU החדשה ביותר">A) Using the latest GPU hardware</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="B) Having the largest possible datasets" data-he="ב) קבלת מערכי הנתונים הגדולים ביותר האפשריים">B) Having the largest possible datasets</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, true)" data-en="C) Reproducibility and experiment tracking" data-he="ג) יכולת שחזור ומעקב אחר ניסויים">C) Reproducibility and experiment tracking</div>
-                        <div class="quiz-option" onclick="checkAnswer(this, false)" data-en="D) Training as fast as possible" data-he="ד) אימון מהיר ככל האפשר">D) Training as fast as possible</div>
+                <div class="step-content">
+                    <p data-en="Most screens use <strong>LCD (Liquid Crystal Display)</strong> technology. Here's how it works:" data-he="רוב המסכים משתמשים בטכנולוגיית <strong>LCD (תצוגת גבישים נוזליים)</strong>. כך זה עובד:">Most screens use <strong>LCD (Liquid Crystal Display)</strong> technology. Here's how it works:</p>
+                    
+                    <div style="background: #0f172a; padding: 20px; border-radius: 12px; margin: 20px 0;">
+                        <h4 data-en="🧪 The LCD Stack (from back to front):" data-he="🧪 ערימת ה-LCD (מאחור לקדמה):">🧪 The LCD Stack (from back to front):</h4>
+                        <ol style="line-height: 2;">
+                            <li data-en="<strong>Backlight</strong> - bright white LEDs that provide the light" data-he="<strong>תאורה אחורית</strong> - לדים לבנים בהירים שמספקים את האור"><strong>Backlight</strong> - bright white LEDs that provide the light</li>
+                            <li data-en="<strong>Polarizer</strong> - filters light waves to one direction" data-he="<strong>מקטב</strong> - מסנן גלי אור לכיוון אחד"><strong>Polarizer</strong> - filters light waves to one direction</li>
+                            <li data-en="<strong>Liquid Crystals</strong> - molecules that twist when electricity is applied" data-he="<strong>גבישים נוזליים</strong> - מולקולות שמתפתלות כשחשמל מופעל"><strong>Liquid Crystals</strong> - molecules that twist when electricity is applied</li>
+                            <li data-en="<strong>Color Filters</strong> - red, green, and blue filters for each sub-pixel" data-he="<strong>מסנני צבע</strong> - מסננים אדומים, ירוקים וכחולים לכל תת-פיקסל"><strong>Color Filters</strong> - red, green, and blue filters for each sub-pixel</li>
+                            <li data-en="<strong>Second Polarizer</strong> - blocks or allows light through based on crystal twist" data-he="<strong>מקטב שני</strong> - חוסם או מאפשר לאור לעבור בהתבסס על פיתול הגביש"><strong>Second Polarizer</strong> - blocks or allows light through based on crystal twist</li>
+                        </ol>
                     </div>
-                    <div class="answer-explanation" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(5, 150, 105, 0.1); border-radius: 8px;">
-                        <span data-en="Correct! While fast hardware and large datasets are important, the ability to reproduce experiments and track their configurations is critical for debugging, compliance, and building reliable systems. Without reproducibility, it's impossible to debug failures, meet regulatory requirements, or systematically improve model performance." data-he="נכון! בעוד שחומרה מהירה ומערכי נתונים גדולים חשובים, היכולת לשחזר ניסויים ולעקוב אחר התצורות שלהם קריטית לדיבוג, עמידה בתקנות ובניית מערכות אמינות. בלי יכולת שחזור, אי אפשר לדבג כשלים, לעמוד בדרישות רגולטוריות או לשפר באופן שיטתי את ביצועי המודל.">Correct! While fast hardware and large datasets are important, the ability to reproduce experiments and track their configurations is critical for debugging, compliance, and building reliable systems. Without reproducibility, it's impossible to debug failures, meet regulatory requirements, or systematically improve model performance.</span>
-                    </div>
+                    
+                    <p data-en="<strong>The Magic:</strong> When you apply voltage to liquid crystals, they twist and change how much light passes through. More voltage = more twist = darker pixel. Less voltage = less twist = brighter pixel!" data-he="<strong>הקסם:</strong> כשאתה מפעיל מתח על גבישים נוזליים, הם מתפתלים ומשנים כמה אור עובר דרכם. יותר מתח = יותר פיתול = פיקסל כהה יותר. פחות מתח = פחות פיתול = פיקסל בהיר יותר!"><strong>The Magic:</strong> When you apply voltage to liquid crystals, they twist and change how much light passes through. More voltage = more twist = darker pixel. Less voltage = less twist = brighter pixel!</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Summary Section -->
-        <section class="section">
-            <div class="glass-card">
-                <h2 class="section-title" data-en="<� Summary & Next Steps" data-he="<� ����� ������ �����"><� Summary & Next Steps</h2>
-                
-                <div class="grid">
-                    <div class="feature-card slide-in-left">
-                        <h4 data-en="=� What You've Learned" data-he="=� �� ����">=� What You've Learned</h4>
-                        <ul>
-                            <li data-en="Physics of digital displays and images" data-he="������ �� ������ ��������� �������">Physics of digital displays and images</li>
-                            <li data-en="Neural network mathematics from first principles" data-he="������� ����� ������ �������� �������">Neural network mathematics from first principles</li>
-                            <li data-en="Diffusion model theory and implementation" data-he="������� ������ ����� �������">Diffusion model theory and implementation</li>
-                            <li data-en="LoRA mathematical foundations" data-he="������ ������� �� LoRA">LoRA mathematical foundations</li>
-                            <li data-en="AI-Toolkit architecture analysis" data-he="����� ���������� AI-Toolkit">AI-Toolkit architecture analysis</li>
-                            <li data-en="Framework design principles" data-he="������� ����� �����">Framework design principles</li>
-                        </ul>
+            <div class="learning-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-en="Resolution and Pixel Density" data-he="רזולוציה וצפיפות פיקסלים">Resolution and Pixel Density</h3>
+                </div>
+                <div class="step-content">
+                    <p data-en="<strong>Resolution</strong> = How many pixels fit on your screen" data-he="<strong>רזולוציה</strong> = כמה פיקסלים נכנסים במסך שלך"><strong>Resolution</strong> = How many pixels fit on your screen</p>
+                    
+                    <div class="knowledge-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                        <div style="background: #0f172a; padding: 15px; border-radius: 10px; text-align: center;">
+                            <h5>HD</h5>
+                            <p>1920 × 1080</p>
+                            <p style="font-size: 14px; color: #9ca3af;">2 million pixels</p>
+                        </div>
+                        <div style="background: #0f172a; padding: 15px; border-radius: 10px; text-align: center;">
+                            <h5>4K</h5>
+                            <p>3840 × 2160</p>
+                            <p style="font-size: 14px; color: #9ca3af;">8 million pixels</p>
+                        </div>
+                        <div style="background: #0f172a; padding: 15px; border-radius: 10px; text-align: center;">
+                            <h5>8K</h5>
+                            <p>7680 × 4320</p>
+                            <p style="font-size: 14px; color: #9ca3af;">33 million pixels</p>
+                        </div>
                     </div>
                     
-                    <div class="feature-card fade-in">
-                        <h4 data-en="=� Practical Applications" data-he="=� ������� ������">=� Practical Applications</h4>
-                        <ul>
-                            <li data-en="Train custom LoRA models" data-he="��� ����� LoRA �������">Train custom LoRA models</li>
-                            <li data-en="Optimize memory usage for large models" data-he="��� ����� ������� ���� ������ ������">Optimize memory usage for large models</li>
-                            <li data-en="Debug training issues" data-he="��� ����� �����">Debug training issues</li>
-                            <li data-en="Design novel architectures" data-he="��� ����������� �������">Design novel architectures</li>
-                            <li data-en="Build production systems" data-he="��� ������ �����">Build production systems</li>
-                            <li data-en="Contribute to open source" data-he="���� ���� ����">Contribute to open source</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="feature-card slide-in-right">
-                        <h4 data-en="=� Advanced Topics to Explore" data-he="=� ������ ������� ������">=� Advanced Topics to Explore</h4>
-                        <ul>
-                            <li data-en="Attention mechanisms in transformers" data-he="������� ����� �� ������������">Attention mechanisms in transformers</li>
-                            <li data-en="Advanced sampling algorithms" data-he="��������� ����� �������">Advanced sampling algorithms</li>
-                            <li data-en="Multi-modal training" data-he="����� ��-�����">Multi-modal training</li>
-                            <li data-en="Distributed training strategies" data-he="��������� ����� �����">Distributed training strategies</li>
-                            <li data-en="Model compression techniques" data-he="������� ����� ������">Model compression techniques</li>
-                            <li data-en="Hardware-specific optimizations" data-he="������������ �������� ������">Hardware-specific optimizations</li>
-                        </ul>
-                    </div>
+                    <p data-en="Each pixel needs to be controlled individually - that's millions of tiny electrical switches being turned on and off 60+ times per second!" data-he="כל פיקסל צריך להיות נשלט בנפרד - זה מיליוני מתגים חשמליים קטנים שנדלקים ונכבים 60+ פעמים בשנייה!">Each pixel needs to be controlled individually - that's millions of tiny electrical switches being turned on and off 60+ times per second!</p>
                 </div>
+            </div>
 
-                <div style="text-align: center; margin: 3rem 0;">
-                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Ready to Build the Future?" data-he="���� ����� �� �����?">Ready to Build the Future?</h3>
-                    <p style="font-size: var(--font-size-xl); margin-bottom: 2rem; line-height: 1.6;" data-en="You now have the foundational knowledge to create innovative AI frameworks. The next breakthrough could be yours!" data-he="��� �� �� �� ���� ������ ����� ������ AI �������. ������ ���� ����� ����� ���!">
-                        You now have the foundational knowledge to create innovative AI frameworks. 
-                        The next breakthrough could be yours!
-                    </p>
-                    <div class="pulse">
-                        <button class="btn" style="font-size: var(--font-size-lg); padding: 1.25rem 2.5rem;" onclick="showCongrats()" data-en="<� Start Building Your Framework" data-he="<� ���� ����� �� ������ ���">
-                            <� Start Building Your Framework
-                        </button>
-                    </div>
-                </div>
+            <div class="knowledge-block">
+                <h3 class="knowledge-title" data-en="🧱 Key Knowledge Block #5" data-he="🧱 בלוק ידע מפתח #5">🧱 Key Knowledge Block #5</h3>
+                <ul class="knowledge-items">
+                    <li data-en="Pixel = Picture Element, made of Red, Green, Blue sub-pixels" data-he="פיקסל = אלמנט תמונה, עשוי מתת-פיקסלים אדום, ירוק, כחול">Pixel = Picture Element, made of Red, Green, Blue sub-pixels</li>
+                    <li data-en="LCD screens use liquid crystals that twist when voltage is applied" data-he="מסכי LCD משתמשים בגבישים נוזליים שמתפתלים כשמתח מופעל">LCD screens use liquid crystals that twist when voltage is applied</li>
+                    <li data-en="More voltage = more crystal twist = darker pixel" data-he="יותר מתח = יותר פיתול גביש = פיקסל כהה יותר">More voltage = more crystal twist = darker pixel</li>
+                    <li data-en="Screens control millions of pixels individually, 60+ times per second" data-he="מסכים שולטים במיליוני פיקסלים בנפרד, 60+ פעמים בשנייה">Screens control millions of pixels individually, 60+ times per second</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="nextLesson(6)" data-en="💻 Next: How Computers Process Information" data-he="💻 הבא: איך מחשבים מעבדים מידע">💻 Next: How Computers Process Information</button>
             </div>
         </section>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <h3 style="color: var(--primary-blue); margin-bottom: 2rem;" data-en="Created by Yuval Avidani" data-he="���� �� ��� ���� ������">Created by Yuval Avidani</h3>
-            <div class="author-info">
-                <a href="https://yuv.ai" class="author-link" target="_blank" rel="noopener noreferrer">< YUV.AI</a>
-                <a href="https://twitter.com/yuvalav" class="author-link" target="_blank" rel="noopener noreferrer">=& @yuvalav</a>
-                <a href="https://github.com/hoodini" class="author-link" target="_blank" rel="noopener noreferrer">=1 @hoodini</a>
-                <a href="https://linktr.ee/yuvai" class="author-link" target="_blank" rel="noopener noreferrer">= Links</a>
-            </div>
-            <p style="margin-top: 2rem; color: rgba(255, 255, 255, 0.8); font-style: italic;" data-en="&quot;Understanding the underlying principles is the first step to innovation.&quot;" data-he="&quot;���� �������� �������� ��� ���� ������ �������.&quot;">
-                "Understanding the underlying principles is the first step to innovation."
-            </p>
-        </div>
-    </footer>
+    <style>
+        @keyframes orbit1 {
+            0% { transform: translateX(-50%) rotate(0deg) translateX(60px) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg) translateX(60px) rotate(-360deg); }
+        }
+        
+        @keyframes orbit2 {
+            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+        
+        @keyframes orbit3 {
+            0% { transform: translateX(-50%) rotate(0deg) translateX(80px) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg) translateX(80px) rotate(-360deg); }
+        }
+    </style>
 
     <script>
-        // Global variables
         let currentLanguage = 'en';
-        let isRTL = false;
+        let currentLesson = 0;
+        let totalLessons = 10; // We'll build this progressively
 
-        // Language switching functionality
+        // Language switching
         function switchLanguage(lang) {
             currentLanguage = lang;
-            isRTL = lang === 'he';
+            const isRTL = lang === 'he';
             
-            // Update HTML attributes
             document.documentElement.lang = lang;
             document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-            document.body.className = isRTL ? 'rtl' : '';
-            
-            // Update toggle position
-            const toggle = document.getElementById('languageToggle');
-            toggle.className = `language-toggle${isRTL ? ' rtl' : ''}`;
             
             // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1491,167 +953,135 @@ class LoRAModule(nn.Module):
             
             // Update all translatable elements
             updateTranslations();
-            
-            // Restart animations
-            restartAnimations();
         }
 
         function updateTranslations() {
             document.querySelectorAll('[data-en]').forEach(element => {
                 const translation = element.getAttribute(`data-${currentLanguage}`);
                 if (translation) {
-                    if (element.innerHTML.includes('<')) {
-                        // Handle HTML content
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = translation;
-                        element.innerHTML = tempDiv.innerHTML;
-                    } else {
-                        element.textContent = translation;
-                    }
+                    element.textContent = translation;
                 }
             });
+        }
 
-            // Update button content
-            const startButton = document.querySelector('[onclick="showCongrats()"]');
-            if (startButton) {
-                const buttonText = startButton.getAttribute(`data-${currentLanguage}`);
-                if (buttonText) startButton.textContent = buttonText;
+        // Lesson navigation
+        function nextLesson(lessonNumber) {
+            currentLesson = lessonNumber;
+            updateProgress();
+            
+            // Scroll to next lesson
+            const nextLessonElement = document.getElementById(`lesson${lessonNumber}`);
+            if (nextLessonElement) {
+                nextLessonElement.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start' 
+                });
             }
         }
 
-        function restartAnimations() {
-            // Remove and re-add animation classes
-            const animatedElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-description');
-            animatedElements.forEach(el => {
-                el.style.animation = 'none';
-                el.offsetHeight; // Trigger reflow
-                el.style.animation = null;
-            });
-        }
-
-        // RGB Color Mixer
-        function updateRGB() {
-            const r = document.getElementById('redSlider').value;
-            const g = document.getElementById('greenSlider').value;
-            const b = document.getElementById('blueSlider').value;
+        function updateProgress() {
+            const progressPercentage = (currentLesson / totalLessons) * 100;
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
             
-            document.getElementById('redValue').textContent = r;
-            document.getElementById('greenValue').textContent = g;
-            document.getElementById('blueValue').textContent = b;
+            progressFill.style.width = `${progressPercentage}%`;
             
-            const color = `rgb(${r}, ${g}, ${b})`;
-            const preview = document.getElementById('colorPreview');
-            preview.style.backgroundColor = color;
+            const messages = {
+                en: [
+                    "Starting your AI journey...",
+                    "Understanding matter...",
+                    "Learning about atoms...",
+                    "Discovering electricity...",
+                    "Exploring light and color...",
+                    "Understanding screens...",
+                    "Learning how computers work...",
+                    "Discovering AI basics...",
+                    "Understanding training...",
+                    "Mastering AI-Toolkit...",
+                    "Congratulations! Journey complete!"
+                ],
+                he: [
+                    "מתחיל את המסע שלך ב-AI...",
+                    "מבין חומר...",
+                    "לומד על אטומים...",
+                    "מגלה חשמל...",
+                    "חוקר אור וצבע...",
+                    "מבין מסכים...",
+                    "לומד איך מחשבים עובדים...",
+                    "מגלה יסודות AI...",
+                    "מבין אימון...",
+                    "שולט ב-AI-Toolkit...",
+                    "מזל טוב! המסע הושלם!"
+                ]
+            };
             
-            // Calculate contrast for text
-            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-            preview.style.color = luminance > 0.5 ? '#000' : '#fff';
-            preview.textContent = `RGB(${r}, ${g}, ${b})`;
-        }
-
-        // LoRA Calculator functionality
-        function updateLoRACalculation() {
-            const d = parseInt(document.getElementById('matrixD')?.value) || 4096;
-            const k = parseInt(document.getElementById('matrixK')?.value) || 4096;
-            const r = parseInt(document.getElementById('loraRank')?.value) || 16;
-            
-            const originalParams = d * k;
-            const loraParams = (d * r) + (r * k);
-            const reduction = ((originalParams - loraParams) / originalParams * 100).toFixed(2);
-            
-            const resultsDiv = document.getElementById('loraResults');
-            if (resultsDiv) {
-                const currentLang = currentLanguage || 'en';
-                const originalText = currentLang === 'he' ? 'פרמטרים מקוריים' : 'Original Parameters';
-                const loraText = currentLang === 'he' ? 'פרמטרי LoRA' : 'LoRA Parameters';
-                const reductionText = currentLang === 'he' ? 'הפחתה' : 'Reduction';
-                
-                resultsDiv.innerHTML = `
-                    <p data-en="Original Parameters: ${originalParams.toLocaleString()}" data-he="${originalText}: ${originalParams.toLocaleString()}">${originalText}: ${originalParams.toLocaleString()}</p>
-                    <p data-en="LoRA Parameters: ${loraParams.toLocaleString()}" data-he="${loraText}: ${loraParams.toLocaleString()}">${loraText}: ${loraParams.toLocaleString()}</p>
-                    <p data-en="Reduction: ${reduction}%" data-he="${reductionText}: ${reduction}%">${reductionText}: ${reduction}%</p>
-                `;
+            if (progressText) {
+                progressText.textContent = messages[currentLanguage][currentLesson] || messages[currentLanguage][0];
             }
         }
 
-        // Quiz functionality
-        function checkAnswer(element, isCorrect) {
-            const options = element.parentElement.children;
-            Array.from(options).forEach(option => {
-                option.style.pointerEvents = 'none';
-                option.setAttribute('aria-disabled', 'true');
-                
-                if (option === element) {
-                    option.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    option.setAttribute('aria-label', isCorrect ? 'Correct answer' : 'Incorrect answer');
-                } else {
-                    option.classList.add('incorrect');
-                    option.setAttribute('aria-label', 'Incorrect answer');
-                }
-            });
+        // Interactive demos functionality
+        function initializeInteractiveElements() {
+            // Voltage slider for lesson 3
+            const voltageSlider = document.getElementById('voltageSlider');
+            const voltageValue = document.getElementById('voltageValue');
+            const electronFlow = document.getElementById('electronFlow');
             
-            // Show explanation
-            const explanation = element.parentElement.nextElementSibling;
-            if (explanation && explanation.id === 'answer-explanation') {
-                explanation.style.display = 'block';
-                explanation.setAttribute('role', 'alert');
-                explanation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (voltageSlider && voltageValue && electronFlow) {
+                voltageSlider.addEventListener('input', function() {
+                    const voltage = this.value;
+                    voltageValue.textContent = voltage + 'V';
+                    const flowWidth = (voltage / 12) * 100;
+                    electronFlow.style.width = flowWidth + '%';
+                });
             }
             
-            // Announce result for screen readers
-            const result = isCorrect ? 'Correct!' : 'Incorrect. Try again.';
-            const announcement = document.createElement('div');
-            announcement.setAttribute('aria-live', 'polite');
-            announcement.setAttribute('aria-atomic', 'true');
-            announcement.style.position = 'absolute';
-            announcement.style.left = '-10000px';
-            announcement.textContent = result;
-            document.body.appendChild(announcement);
-            
-            setTimeout(() => {
-                document.body.removeChild(announcement);
-            }, 1000);
-        }
-
-        function showCongrats() {
-            const message = currentLanguage === 'he' 
-                ? '<� ��� ���! ����� �� ������ ������ �-AI-Toolkit. ��� ��� ���� ����� �� ���� ��� �� ������ AI!'
-                : '<� Congratulations! You\'ve completed the comprehensive AI-Toolkit deep dive. You\'re now ready to build the next generation of AI frameworks!';
-            
-            alert(message);
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize RGB demo
-            updateRGB();
-            
-            // Initialize LoRA calculator
-            updateLoRACalculation();
-            
-            // Setup event listeners with error handling
+            // RGB sliders for lesson 4
             const redSlider = document.getElementById('redSlider');
             const greenSlider = document.getElementById('greenSlider');
             const blueSlider = document.getElementById('blueSlider');
+            const redValue = document.getElementById('redValue');
+            const greenValue = document.getElementById('greenValue');
+            const blueValue = document.getElementById('blueValue');
+            const colorResult = document.getElementById('colorResult');
+            const rgbValues = document.getElementById('rgbValues');
             
-            const matrixD = document.getElementById('matrixD');
-            const matrixK = document.getElementById('matrixK');
-            const loraRank = document.getElementById('loraRank');
+            function updateRGBColor() {
+                if (!redSlider || !greenSlider || !blueSlider) return;
+                
+                const r = parseInt(redSlider.value);
+                const g = parseInt(greenSlider.value);
+                const b = parseInt(blueSlider.value);
+                
+                if (redValue) redValue.textContent = r;
+                if (greenValue) greenValue.textContent = g;
+                if (blueValue) blueValue.textContent = b;
+                
+                const color = `rgb(${r}, ${g}, ${b})`;
+                if (colorResult) colorResult.style.background = color;
+                if (rgbValues) rgbValues.textContent = color;
+                
+                // Adjust text color for contrast
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                if (colorResult) {
+                    colorResult.style.color = brightness > 128 ? '#000' : '#fff';
+                }
+            }
             
-            if (redSlider) redSlider.addEventListener('input', updateRGB);
-            if (greenSlider) greenSlider.addEventListener('input', updateRGB);
-            if (blueSlider) blueSlider.addEventListener('input', updateRGB);
+            if (redSlider) redSlider.addEventListener('input', updateRGBColor);
+            if (greenSlider) greenSlider.addEventListener('input', updateRGBColor);
+            if (blueSlider) blueSlider.addEventListener('input', updateRGBColor);
             
-            if (matrixD) matrixD.addEventListener('input', updateLoRACalculation);
-            if (matrixK) matrixK.addEventListener('input', updateLoRACalculation);
-            if (loraRank) loraRank.addEventListener('input', updateLoRACalculation);
-            
-            console.log('<� AI-Toolkit Deep Dive loaded successfully!');
-        });
+            // Initialize RGB color
+            updateRGBColor();
+        }
 
-        // Handle errors gracefully
-        window.addEventListener('error', (e) => {
-            console.error('An error occurred:', e.error);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTranslations();
+            updateProgress();
+            initializeInteractiveElements();
+            console.log('🎓 AI From Zero - Professor\'s Guide loaded successfully!');
         });
     </script>
 </body>
